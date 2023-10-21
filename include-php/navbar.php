@@ -13,9 +13,6 @@
         color: #eee;
 
         border-bottom: 3px solid var(--derive-main-color);
-
-        padding-left: 1vw;
-        padding-right: 5vw;
     }
 
     .navbar-brand {
@@ -23,6 +20,7 @@
         margin: .5rem;
         padding: .5rem;
     }
+
     .navbar-brand:hover {
         background-color : var(--derive-main-color);
         border-radius: 0.5em;
@@ -43,7 +41,10 @@
         color: var(--text-color);
         padding: 1rem;
         display: block;
-        font-size: large;
+
+        font-family: 'Roboto', serif;
+        font-weight: bold;
+        font-size: x-large;
     }
 
     .navbar-links li:hover{
@@ -116,7 +117,7 @@
 
 <nav class="navbar">
     <div class="navbar-brand ">
-        <a href="index.php"><img src="img/Logo Revue reduced.png" style="height:100%;  filter: invert(100%);"></a>
+        <a href="index.php"><img src="image/logo.png" style="height:100%;"></a>
     </div>
     <a href="#" class="navbar-camenbert">
         <span class="bar"></span>
@@ -126,13 +127,16 @@
     <div class="navbar-links">
         <ul>
             <li><a href ="index.php">Accueil</a></li>
-            <!--<li><a href ="apropos.php">À Propos</a></li>-->
-            <li><a href ="reservation.php">Réservation</a></li>
-            <!--<li><a href ="remerciement.php">Remerciements</a></li>-->
+            <li><a href ="index.php">La Faculté</a></li>
+            <li><a href ="index.php">Cercle F.P.Ms</a></li>
+            <li><a href ="index.php">Cercle Montois</a></li>
+            <li><a href ="index.php">Galerie</a></li>
             <li><a href ="contact.php">Contact</a></li>
+            <div style="width: 2rem"></div>
         </ul>
     </div>
 </nav>
+<div style="height: 6rem"></div>
 
 <script>
     const toggleButton = document.getElementsByClassName("navbar-camenbert")[0]
