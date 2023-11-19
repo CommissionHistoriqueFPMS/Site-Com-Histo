@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Autres - Commission Historique F.P.Ms</title>
+    <title>Annecdotes - Commission Historique F.P.Ms</title>
     <?php include('include-php/header.php');?>
 </head>
 <body>
 <?php include('include-php/navbar.php');?>
 <div class="header" style="background-image:url(image/headers/st-waudru.jpg);">
     <h1 class="header-text">
-        <strong>Autres Histoires</strong>
+        <strong>Annecdotes sur le Cercle</strong>
     </h1>
 </div>
 <div style="height:3rem"></div>
@@ -97,7 +97,7 @@
             <p>Toujours est-il que dans un tel environnement, il était tout naturel que notre bonne vieille Cité du Doudou soit parsemée de bistrots à fréquentation presqu’exclusivement estudiantine … Les Wawas avaient les leurs, les Fucam beaucoup moins (vu leur éloignement géographique), et je ne parlerai donc que des cafés à tendance franchement Polytech … je compte bien évidemment sur mes contemporains et prédécesseurs pour corriger les éventuelles erreurs et inévitables oublis.</p>
             <p>Il m’est quasiment impossible de les classer dans un certain « ordre » (par chronologie, par importance, etc…), mais je m’efforcerai de citer à chaque fois: le nom officiel suivi du prénom du (des) patron(s), de 0 à 3 étoiles (entre parenthèses) censées représenter la fréquence des guindailles qui s’y déroulaient, la situation géographique, et divers commentaires et faits divers qui s’y sont déroulés.</p>
             <p>Allons, courage Verjus, faut que tu te lances !</p>
-            <p>– « Chez Andréa » (**), rue de la Clef (en face du Marché aux Herbes), fermé en 74 ou 75; patronne assez pulpeuse qui devait avoir pas mal de « kilomètres au compteur » … oufti !</p>
+            <br><p>– « Chez Andréa » (**), rue de la Clef (en face du Marché aux Herbes), fermé en 74 ou 75; patronne assez pulpeuse qui devait avoir pas mal de « kilomètres au compteur » … oufti !</p>
             <p>– « L’Archiduc » ou « Chez Yerno » (orthographe non-garantie), (***), à une trentaine de mètres à main gauche quand vous prenez la rue de Nimy en venant de la Grand-Place. Très nombreuses guindailles et point de chute naturel de tous ceux qui rentraient à la Cité le dimanche soir …</p>
             <p>– « Le Beaulieu », dont je ne me souviens que du dernier patron Robert Vasseur (dit Vibro, parce que « ma soeur »), (***), sur la Grand Place et à votre droite quand vous faites face au Théâtre, doit s’appeler « le Central » actuellement. Eut l’honneur d’avoir ses toilettes obturées par ma penne, que j’avais naïvement échangée avec celle de « Manu », un IRAM (ISIC) indigne de ma confiance à l’époque de la « Polyram ». Rien à voir avec Manu Janssen, je précise !</p>
             <p>– « L’Oeil de Boeuf » ou « Chez Denise », (*), à droite de l’entrée des anciens abattoirs. Repaire des Borains et des Centraux qui ne kottaient pas à la Cité, ainsi bien sûr que des chevilleurs de l’abattoir. Style très rustique, patronne assez agée et particulièrement sympa, doit avoir fermé en 80 ?</p>
@@ -105,11 +105,11 @@
             <p>– « Chez Bobonne », (), à main gauche quand vous pénétrez sur la Grand-Place en venant de la rue de la Chaussée. Mêmes remarques que pour l’Oeil de Boeuf, les chevilleurs en moins …</p>
             <p>– « Le Pilote » (Chez Albert, puis chez Willy), (*), juste au coin en face de la Cité quand vous allez à Houdain. On y servait de la « Supra », tous les autres étant « Jupiler » ! Jouissait évidemment de l’effet de proximité, mais n’a existé que 4 ou 5 ans …</p>
             <p>– « Le Pylône » ou « Chez Alain (et Christiane) », (**), ouvert en 76 ou 77, existe toujours au coin de la rue des Arquebusiers et de l’avenue Frère Orban, et possède d’ailleurs toujours le même mobilier !!! Christiane y faisant la petite restauration, j’y ai donc passé des journées entières à taper la carte au son inoubliable de Pink Floyd. A carrément changé de style avec le départ d’Alain en 1979 …</p>
-            – « Le Café des Boulevards » ou « Chez Nado », (*), au coin juste en face de la banque quand vous allez de la Cité aux labos du Dolez (actuellement le siège d’une compagnie d’assurances, je pense?). Très fréquenté sur le coup de 15h quand on avait labo, ou quand vous aviez envie d’une partie de billard « à bouchons ». Un hangar à l’arrière nous accueillait après le Baptême, et servait d’ailleurs à la préparation de la « potion magique » que vous connaissez bien! La vanne d’une cuve à mazout y fut arrachée à la fin d’un souper Carolo … bonjour les dégâts !</p>
-            <p>Voilà, je pense avoir fait le tour … J’ajouterai simplement que les 4 premiers estaminets de la liste constituaient les étapes du célèbre « Rallye Cafés » de ma bleusaille, mais il s’agit d’un autre débat … !</p>
+            <p>– « Le Café des Boulevards » ou « Chez Nado », (*), au coin juste en face de la banque quand vous allez de la Cité aux labos du Dolez (actuellement le siège d’une compagnie d’assurances, je pense?). Très fréquenté sur le coup de 15h quand on avait labo, ou quand vous aviez envie d’une partie de billard « à bouchons ». Un hangar à l’arrière nous accueillait après le Baptême, et servait d’ailleurs à la préparation de la « potion magique » que vous connaissez bien! La vanne d’une cuve à mazout y fut arrachée à la fin d’un souper Carolo … bonjour les dégâts !</p>
+            <br><p>Voilà, je pense avoir fait le tour … J’ajouterai simplement que les 4 premiers estaminets de la liste constituaient les étapes du célèbre « Rallye Cafés » de ma bleusaille, mais il s’agit d’un autre débat … !</p>
             <p>Allez, à plusss !</p>
-            <p>Votre dévoué</p>
-            <p>Verjus</p>
+            <p>Votre dévoué,</p>
+            <div class="sources italic-text">Jean-Claude "Verjus" Versieux, ancien Carolo, 134ème promotion (peut-être un peu avant)</div>
             <br>
 
 
