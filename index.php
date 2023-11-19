@@ -15,8 +15,9 @@
 </div>
 <div style="height:3rem"></div>
 
-<div class="container">
+<div class="container" style="max-width: 1000px; width: 65%;">
     <div class="article-title">Accueil</div>
+        <div class="article-subtitle">Accueil</div>
     <p>
         Petite terre de défense du folklore estudiantin, la Commission est pour nous l’occasion de relater les diverses
         frasques et anecdotes qui jalonnent l’histoire estudiantine de Mons et principalement celles des étudiants de la

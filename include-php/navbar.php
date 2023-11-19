@@ -90,7 +90,6 @@
         .navbar-links ul {
             flex-direction: column;
             width: 100%;
-
         }
 
         .navbar {
@@ -99,7 +98,7 @@
         }
 
         .navbar-links li {
-            text-align: center;
+            /*text-align: center;*/
         }
 
         .navbar-brand {
@@ -113,6 +112,37 @@
             display: flex;
         }
     }
+
+    /* Ajoutez du CSS pour masquer initialement le dropdown */
+    .dropdown-toggle .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    /* Ajoutez du CSS pour styliser le dropdown */
+    .dropdown-toggle .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-toggle .horizontal-display a {
+        padding-right: 5px;
+    }
+
+    .dropdown-toggle .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown-arrow {
+        transform: translateY(15%);
+        font-size: 0.8em; /* Ajustez la taille du texte selon vos besoins */
+    }
+
 </style>
 
 <nav class="navbar">
@@ -127,10 +157,24 @@
     <div class="navbar-links">
         <ul>
             <li><a href ="index.php">Accueil</a></li>
-            <li><a href ="index.php">La Faculté</a></li>
-            <li><a href ="index.php">Cercle F.P.Ms</a></li>
-            <li><a href ="index.php">Cercle Montois</a></li>
-            <li><a href ="index.php">Galerie</a></li>
+            <li><a href ="fac.php">La Faculté</a></li>
+            <li class="dropdown-toggle">
+                <a href="#">
+                    <div class="horizontal-display">
+                        Cercle F.P.Ms <div style="width: 5px"></div> <div class="dropdown-arrow">&#9660;</div> <!-- Triangle vers le bas -->
+                    </div>
+                </a>
+                <div class="dropdown-content">
+                    <a href="fedefetes.php">Fédé et Fêtes</a>
+                    <a href="cerclesfederes.php">Cercles Fédérés</a>
+                    <a href="regio.php">Régionales</a>
+                    <a href="revue.php">Revue des Mines</a>
+                    <!-- <a href="#">Commissions</a> -->
+                    <!-- Ajoutez d'autres liens du dropdown ici -->
+                </div>
+            </li>
+            <li><a href ="cerclesmons.php">Cercles Montois</a></li>
+            <li><a href ="annecdotes.php">Annecdotes sur le Cercle</a></li>
             <li><a href ="contact.php">Contact</a></li>
             <div style="width: 2rem"></div>
         </ul>
@@ -139,10 +183,28 @@
 <div style="height: 6rem"></div>
 
 <script>
-    const toggleButton = document.getElementsByClassName("navbar-camenbert")[0]
-    const navbarLinks  = document.getElementsByClassName("navbar-links")[0]
+    const toggleButton = document.getElementsByClassName("navbar-camenbert")[0];
+    const navbarLinks = document.getElementsByClassName("navbar-links")[0];
+    const dropdown = document.querySelector('.dropdown-toggle');
 
-    toggleButton.addEventListener('click', () =>{
-        navbarLinks.classList.toggle('active')
-    })
+    toggleButton.addEventListener('click', () => {
+        navbarLinks.classList.toggle('active');
+    });
+
+    // Ajoutez ces événements pour gérer le dropdown au survol
+    dropdown.addEventListener('mouseenter', () => {
+        dropdown.querySelector('.dropdown-content').style.display = 'block';
+    });
+
+    dropdown.addEventListener('mouseleave', () => {
+        dropdown.querySelector('.dropdown-content').style.display = 'none';
+    });
+
+
+    dropdown.addEventListener('click', () => {
+        if (dropdown.querySelector('.dropdown-content').style.display === 'block')
+            dropdown.querySelector('.dropdown-content').style.display = 'none';
+        else
+            dropdown.querySelector('.dropdown-content').style.display = 'block';
+    });
 </script>
