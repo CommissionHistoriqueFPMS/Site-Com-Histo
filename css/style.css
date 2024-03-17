@@ -188,7 +188,7 @@ body {
     font-size: larger;
 }
 
-.article-title {
+.article-title, .sommaire-title {
     font-family: 'Fondamento', serif;
     font-weight: bold;
     font-size: xx-large;
@@ -197,12 +197,16 @@ body {
     padding-bottom: 5px;
     margin-bottom: 20px;
 }
+.article-title {
+    cursor: pointer; /* Définir le curseur en une main */
+}
 
 .article-subtitle {
     font-family: 'Fondamento', serif;
     font-weight: bold;
     font-size: x-large;
     color: var(--derive-main-color);
+    cursor: pointer; /* Définir le curseur en une main */
 }
 
 p {
@@ -316,4 +320,16 @@ p {
 
 .sources {
     text-align: right;
+}
+
+.article-content, .main-article-content {
+    overflow: hidden;
+}
+.article-content {
+    max-height: 2000px;
+    transition: max-height 0.3s ease-in-out;
+}
+.main-article-content {
+    max-height: 10000px;
+    transition: max-height 0.5s ease-in-out;
 }

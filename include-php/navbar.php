@@ -174,7 +174,7 @@
                 </div>
             </li>
             <li><a href ="cerclesmons.php">Cercles Montois</a></li>
-            <li><a href ="annecdotes.php">Annecdotes sur le Cercle</a></li>
+            <li><a href ="anecdotes.php">Anecdotes sur le Cercle</a></li>
             <li><a href ="contact.php">Contact</a></li>
             <div style="width: 2rem"></div>
         </ul>
