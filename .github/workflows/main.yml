@@ -27,7 +27,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ secrets.DOCKER_USERNAME }}/cloudproject-ci-cd
+          images: ${{ secrets.DOCKER_USERNAME }}/site-comhisto
           tags: |
             type=raw,value=c-{{sha}}
 
