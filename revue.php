@@ -5,9 +5,12 @@
     <?php include('include-php/header.php');?>
 </head>
 <body>
-<?php include('include-php/navbar.php');?>
 
+<?php
+include('include-php/navbar.php');
+generatePage("Revue des Mines", ["Revue des Mines"], ["revuedesmines"], [""]);
+include('include-php/footer.php');
+?>
 
-<?php include('include-php/footer.php');?>
 </body>
 </html>

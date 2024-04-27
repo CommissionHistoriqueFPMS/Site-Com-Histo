@@ -28,7 +28,7 @@
             <a class="flex items-center gap-2" href="https://www.facebook.com/CommissionHistoriqueFPMs">Facebook</a>
         </div>
         <div>
-Copyright &copy; 2023
+Copyright &copy; 2024
 </div>
     </footer>
 </section>
