@@ -2,4 +2,3 @@
 <div class="article-content">
     <p>Content...</p>
 </div>
-<br>

@@ -161,7 +161,8 @@
             <li class="dropdown-toggle">
                 <a href="#">
                     <div class="horizontal-display">
-                        Cercle F.P.Ms <div style="width: 5px"></div> <div class="dropdown-arrow">&#9660;</div> <!-- Triangle vers le bas -->
+                        Cercle F.P.Ms <div style="width: 5px"></div>
+                        <div class="dropdown-arrow">&#9660;</div> <!-- Triangle vers le bas -->
                     </div>
                 </a>
                 <div class="dropdown-content">
@@ -174,7 +175,19 @@
                 </div>
             </li>
             <li><a href ="cerclesmons.php">Cercles Montois</a></li>
-            <li><a href ="anecdotes.php">Anecdotes sur le Cercle</a></li>
+            <li class="dropdown-toggle">
+                <a href="#">
+                    <div class="horizontal-display">
+                        Anecdotes sur le Cercle <div style="width: 5px"></div>
+                        <div class="dropdown-arrow">&#9660;</div> <!-- Triangle vers le bas -->
+                    </div>
+                </a>
+                <div class="dropdown-content">
+                    <a href="blagueestudiantine.php">Blagues Estudiantines</a>
+                    <a href="vieetudiante.php">Vie Étudiante</a>
+                    <!-- Ajoutez d'autres liens du dropdown ici -->
+                </div>
+            </li>
             <li><a href ="contact.php">Contact</a></li>
             <div style="width: 2rem"></div>
         </ul>
@@ -185,26 +198,26 @@
 <script>
     const toggleButton = document.getElementsByClassName("navbar-camenbert")[0];
     const navbarLinks = document.getElementsByClassName("navbar-links")[0];
-    const dropdown = document.querySelector('.dropdown-toggle');
+    const dropdowns = document.querySelectorAll('.dropdown-toggle');
 
     toggleButton.addEventListener('click', () => {
         navbarLinks.classList.toggle('active');
     });
 
-    // Ajoutez ces événements pour gérer le dropdown au survol
-    dropdown.addEventListener('mouseenter', () => {
-        dropdown.querySelector('.dropdown-content').style.display = 'block';
-    });
-
-    dropdown.addEventListener('mouseleave', () => {
-        dropdown.querySelector('.dropdown-content').style.display = 'none';
-    });
-
-
-    dropdown.addEventListener('click', () => {
-        if (dropdown.querySelector('.dropdown-content').style.display === 'block')
-            dropdown.querySelector('.dropdown-content').style.display = 'none';
-        else
+    // Ajoutez ces événements pour gérer les dropdowns au survol
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('mouseenter', () => {
             dropdown.querySelector('.dropdown-content').style.display = 'block';
+        });
+
+        dropdown.addEventListener('mouseleave', () => {
+            dropdown.querySelector('.dropdown-content').style.display = 'none';
+        });
+
+        dropdown.addEventListener('click', () => {
+            const dropdownContent = dropdown.querySelector('.dropdown-content');
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        });
     });
 </script>
+
