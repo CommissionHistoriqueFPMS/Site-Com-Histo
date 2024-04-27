@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <title>Blagues Estudiantines - Commission Historique F.P.Ms</title>
-    <?php include('include-php/header.php');?>
-</head>
-<body>
-
 <?php
-include('include-php/navbar.php');
+include("./include-php/fonctions.php");
 generatePage("Blagues Estudiantines", ["Blagues Estudiantines"], ["blagueestudiantine"], ["
                 <p>
                     Depuis la lointaine création de la faculté, les étudiants ont toujours cherché un moyen d’occupation durant
@@ -17,8 +9,4 @@ generatePage("Blagues Estudiantines", ["Blagues Estudiantines"], ["blagueestudia
                     C’est là qu’interviennent les blagues estudiantines.
                 </p>
                 "]);
-include('include-php/footer.php');
 ?>
-
-</body>
-</html>

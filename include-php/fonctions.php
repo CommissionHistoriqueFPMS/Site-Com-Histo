@@ -16,6 +16,16 @@ function generateSidebarFromArticle($articlePath) {
 
 
 function generatePage($pageName, $themesName, $themesPath, $themeEntete) {
+    echo "<!DOCTYPE html>
+    <html lang=\"fr\">
+    <head>
+        <title>$pageName - Commission Historique F.P.Ms</title>";
+    include('include-php/header.php');
+    echo"</head>
+    <body>";
+
+    include('include-php/navbar.php');
+
     echo "
     <div class=\"header\" style=\"background-image:url(image/headers/st-waudru.jpg);\">
     <h1 class=\"header-text\">
@@ -60,5 +70,7 @@ function generatePage($pageName, $themesName, $themesPath, $themeEntete) {
         echo "</div></div>";
     }
     echo '</div></div>';
+    include('include-php/footer.php');
+    echo '</body></html>';
 }
 ?>
