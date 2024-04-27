@@ -13,7 +13,6 @@
 
 <?php
 # TODO list :
-# - Ajouter une fonction de création des articles (pas obligatoire car seulement 3-4 lignes se répètent)
 # - Ajouter des balises CSS permettant une création plus simple des articles
 # - Faire que les articles soient bien responsive
 # - Faire la page Contact

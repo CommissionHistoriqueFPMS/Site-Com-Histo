@@ -11,10 +11,10 @@ function scrollToSection(sectionId) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Récupérer tous les éléments avec la classe article-subtitle
+    // Récupérer tous les éléments avec la classe articles-subtitle
     var titles = document.querySelectorAll(".article-subtitle, .article-title");
 
-    // Boucle à travers tous les éléments avec la classe article-subtitle
+    // Boucle à travers tous les éléments avec la classe articles-subtitle
     titles.forEach(function(title) {
         // Ajouter un gestionnaire d'événements pour le clic sur chaque titre
         title.addEventListener("click", function() {

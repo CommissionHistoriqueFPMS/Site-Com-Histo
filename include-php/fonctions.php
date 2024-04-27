@@ -1,19 +1,25 @@
 <?php
 function generateSidebarFromArticle($articlePath) {
-    $html = file_get_contents($articlePath);
-    $doc = new DOMDocument();
-    $doc->loadHTML($html);
+    // Obtenir le contenu du fichier
+    $fileContents = file_get_contents($articlePath);
 
-    $sections = $doc->getElementsByTagName('div');
-    foreach ($sections as $section) {
-        if ($section->getAttribute('class') === 'article-subtitle') {
-            $id = $section->getAttribute('id');
-            $title = $section->nodeValue;
-            echo "<li><a onclick=\"scrollToSection('$id')\">$title</a></li>";
-        }
+    // Extraire l'ID et le titre à l'aide de l'expression régulière
+    preg_match('/\$id\s*=\s*["]([^"]+)["];/i', $fileContents, $matchesId);
+    preg_match('/\$title\s*=\s*["]([^"]+)["];/i', $fileContents, $matchesTitle);
+
+
+    // Vérifier si les variables ont été trouvées
+    if (isset($matchesId[1]) && isset($matchesTitle[1])) {
+        $id = $matchesId[1];
+        $title = $matchesTitle[1];
+
+        // Générer le lien dans la barre latérale
+        echo "<li><a onclick=\"scrollToSection('$id')\">$title</a></li>";
+    } else {
+        // Afficher une erreur si les variables ne sont pas trouvées
+        echo "Les variables \$id et \$title n'ont pas été trouvées dans le fichier.";
     }
 }
-
 
 function generatePage($pageName, $themesName, $themesPath, $themeEntete) {
     echo "<!DOCTYPE html>
@@ -43,8 +49,8 @@ function generatePage($pageName, $themesName, $themesPath, $themeEntete) {
     for ($i = 0; $i < count($themesName); ++$i) {
         echo "<li><a onclick=\"scrollToSection('$themesPath[$i]')\">$themesName[$i]</a></li>
               <ul>";
-        // Fonction pour extraire les sections d"un article et les ajouter au sommaire
-        $articleDir = "article/$themesPath[$i]/*.php";
+        // Fonction pour extraire les sections d"un articles et les ajouter au sommaire
+        $articleDir = "articles/$themesPath[$i]/*.php";
         $articles = glob($articleDir);
         foreach ($articles as $article) {
             generateSidebarFromArticle($article);
@@ -60,17 +66,26 @@ function generatePage($pageName, $themesName, $themesPath, $themeEntete) {
         echo "<div class=\"article-title\" id=\"$themesPath[$i]\">$themesName[$i]</div>
                 <div class=\"main-article-content\">
                 $themeEntete[$i]";
-        // Fonction pour extraire les sections d"un article et les ajouter au sommaire
-        $articleDir = "article/$themesPath[$i]/*.php";
+        // Fonction pour extraire les sections d"un articles et les ajouter au sommaire
+        $articleDir = "articles/$themesPath[$i]/*.php";
         $articles = glob($articleDir);
         foreach ($articles as $article) {
             include $article;
-            echo "<br>";
+            echo "</div><br>";
         }
         echo "</div></div>";
     }
     echo '</div></div>';
     include('include-php/footer.php');
     echo '</body></html>';
+}
+
+
+function baseArticle($articleName, $articleId) {
+    echo "
+    <meta charset=\"UTF-8\"> <!-- Important afin d'afficher le \"é\" correctement dans le sommaire -->
+        <div class=\"article-subtitle\" id=\"$articleId\">$articleName</div>
+        <div class=\"article-content\">
+        ";
 }
 ?>
