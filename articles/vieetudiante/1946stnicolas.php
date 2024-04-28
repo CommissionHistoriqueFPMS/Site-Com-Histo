@@ -10,7 +10,6 @@ baseArticle($title,$id);
     Voici nos compagnons, à savoir le patron, le gentil baudet et un père fouettard (qui me rapelle de bons souvenirs
     aussi mais ce n’était pas les mêmes qu’en St Nic).
 </p>
-<div class="horizontal-display">
-    <img src="image/vieetudiante/1946char.webp" alt="1946char" style="max-width: 45%">
-    <img src="image/vieetudiante/1946stnic.webp" alt="1946stnic" style="max-width: 45%">
-</div>
+
+<img class="img-left" src="image/vieetudiante/1946char.webp" alt="1946char" style="width: 400px">
+<img class="img-right" src="image/vieetudiante/1946stnic.webp" alt="1946stnic" style="width: 400px">

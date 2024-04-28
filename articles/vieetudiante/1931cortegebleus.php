@@ -45,6 +45,7 @@ baseArticle($title,$id);
     camarades du commerce de Mons. Des discours vibrants furent échangés, et l’on partit joyeux pour la dernière étape
     du voyage, celle qui devait hisser les bleus au Paradis terrestre, en l’occurence pour la salle du « Chien Vert ».
 </p>
+<img class="img-right" style="width: 500px" src="image/vieetudiante/1931cortege.webp" alt="cortege1931">
 <p>
     Bleus, vous avez une mère et peut-être des sœurs. Ce ne sont probablement pas là toutes vos relations féminines.
     Eh bien, par respect pour ces êtres qui vous sont chers – car nous espérons bien qu’ils lisent MONS-MINES -,
@@ -58,4 +59,3 @@ baseArticle($title,$id);
     simplement pour eux les noms magiques du « Celta» de la « Marée» qui seuls dominent, lumine les chants et les ris
     de cette nuit mémorable.
 </p>
-<img src="image/vieetudiante/1931cortege.webp" alt="cortege1931">

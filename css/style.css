@@ -317,19 +317,57 @@ p {
     }
 }
 
-
 .sources {
     text-align: right;
 }
 
-.article-content, .main-article-content {
-    overflow: hidden;
-}
 .article-content {
-    max-height: 2000px;
     transition: max-height 0.3s ease-in-out;
 }
 .main-article-content {
-    max-height: 10000px;
     transition: max-height 0.5s ease-in-out;
+}
+
+/* --------------------- gestion des images dans les articles --------------------- */
+
+.main-article-content .clear {
+    clear: both;
+}
+
+.main-article-content .img-full {
+    max-width: 90%;
+}
+
+.main-article-content .img-left {
+    float: left;
+    margin-right: 10px;
+}
+
+.main-article-content .img-right {
+    float: right;
+    margin-left: 10px;
+}
+
+@media (max-width: 1200px) {
+    .main-article-content .img-left {
+        float: unset;
+        max-width: 90%;
+        margin: 0;
+        margin-top: 5px;
+    }
+    .main-article-content .img-right {
+        float: unset;
+        max-width: 90%;
+        margin: 0;
+        margin-top: 5px;
+    }
+    .article-content {
+         display: flex;
+        flex-direction: column;
+         align-items: center;
+         justify-content: center;
+    }
+    .article-content p {
+        width: 100%;
+    }
 }

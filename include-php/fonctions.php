@@ -71,7 +71,7 @@ function generatePage($pageName, $themesName, $themesPath, $themeEntete) {
         $articles = glob($articleDir);
         foreach ($articles as $article) {
             include $article;
-            echo "</div><br>";
+            echo "</div><div class='clear'></div><br>";
         }
         echo "</div></div>";
     }

@@ -159,13 +159,13 @@
             <li><a href ="index.php">Accueil</a></li>
             <li><a href ="fac.php">La Faculté</a></li>
             <li class="dropdown-toggle">
-                <a href="#">
+                <a>
                     <div class="horizontal-display">
                         Cercle F.P.Ms <div style="width: 5px"></div>
                         <div class="dropdown-arrow">&#9660;</div> <!-- Triangle vers le bas -->
                     </div>
                 </a>
-                <div class="dropdown-content">
+                <div class="dropdown-content" style="display: none;">
                     <a href="fedefetes.php">Fédé et Fêtes</a>
                     <a href="cerclesfederes.php">Cercles Fédérés</a>
                     <a href="regio.php">Régionales</a>
@@ -176,13 +176,13 @@
             </li>
             <li><a href ="cerclesmons.php">Cercles Montois</a></li>
             <li class="dropdown-toggle">
-                <a href="#">
-                    <div class="horizontal-display">
-                        Anecdotes sur le Cercle <div style="width: 5px"></div>
+                <a>
+                    <div class="horizontal-display" >
+                        Anecdotes Diverses <div style="width: 5px"></div>
                         <div class="dropdown-arrow">&#9660;</div> <!-- Triangle vers le bas -->
                     </div>
                 </a>
-                <div class="dropdown-content">
+                <div class="dropdown-content" style="display: none;">
                     <a href="blagueestudiantine.php">Blagues Estudiantines</a>
                     <a href="vieetudiante.php">Vie Étudiante</a>
                     <!-- Ajoutez d'autres liens du dropdown ici -->

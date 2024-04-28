@@ -21,20 +21,30 @@ document.addEventListener("DOMContentLoaded", function() {
             // Récupérer l'élément du contenu correspondant
             var content = this.nextElementSibling;
 
+            if (!content.classList.contains("hidden"))
+                content.style.overflow = "hidden";
+
             // Basculer la classe 'hidden' pour afficher ou cacher le contenu
             content.classList.toggle("hidden");
 
             // Récupérer la hauteur du contenu
             var contentHeight = content.scrollHeight;
-            if (content.classList.contains("main-article-content"))
-                contentHeight = 10000;
+
+            content.style.maxHeight = contentHeight + "px";
+            //if (content.classList.contains("main-article-content"))
+                //contentHeight = 10000;
 
             // Modifier la hauteur maximale du contenu pour l'animation
             if (content.classList.contains("hidden")) {
-                content.style.maxHeight = "0";
-            } else {
-                content.style.maxHeight = contentHeight + "px";
+                sleep(10).then(() => content.style.maxHeight = "0");
             }
+
+            if (!content.classList.contains("hidden"))
+                sleep(300).then(() => content.style.overflow = "");
         });
     });
 });
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}

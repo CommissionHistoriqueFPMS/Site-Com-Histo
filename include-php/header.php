@@ -13,10 +13,8 @@
 
 <?php
 # TODO list :
-# - Ajouter des balises CSS permettant une création plus simple des articles
-# - Faire que les articles soient bien responsive
 # - Faire la page Contact
 # - Ajouter tous les articles dans le site
-# - Changer les headers pour qqc d'appropirer à chaque page
+# - Changer les images des headers pour qqc d'approprier à chaque page
 # - faire le README
 ?>
