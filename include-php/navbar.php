@@ -147,7 +147,7 @@
 
 <nav class="navbar">
     <div class="navbar-brand ">
-        <a href="index.php"><img src="image/logo.png" style="height:100%;"></a>
+        <a href="/index.php"><img src="/image/logo.png" style="height:100%;" alt="logo"></a>
     </div>
     <a href="#" class="navbar-camenbert">
         <span class="bar"></span>
@@ -156,8 +156,8 @@
     </a>
     <div class="navbar-links">
         <ul>
-            <li><a href ="index.php">Accueil</a></li>
-            <li><a href ="fac.php">La Faculté</a></li>
+            <li><a href ="/index.php">Accueil</a></li>
+            <li><a href ="/fac.php">La Faculté</a></li>
             <li class="dropdown-toggle">
                 <a>
                     <div class="horizontal-display">
@@ -166,15 +166,15 @@
                     </div>
                 </a>
                 <div class="dropdown-content" style="display: none;">
-                    <a href="fedefetes.php">Fédé et Fêtes</a>
-                    <a href="cerclesfederes.php">Cercles Fédérés</a>
-                    <a href="regio.php">Régionales</a>
-                    <a href="revue.php">Revue des Mines</a>
+                    <a href="/fedefetes.php">Fédé et Fêtes</a>
+                    <a href="/cerclesfederes.php">Cercles Fédérés</a>
+                    <a href="/regio.php">Régionales</a>
+                    <a href="/revue.php">Revue des Mines</a>
                     <!-- <a href="#">Commissions</a> -->
                     <!-- Ajoutez d'autres liens du dropdown ici -->
                 </div>
             </li>
-            <li><a href ="cerclesmons.php">Cercles Montois</a></li>
+            <li><a href ="/cerclesmons.php">Cercles Montois</a></li>
             <li class="dropdown-toggle">
                 <a>
                     <div class="horizontal-display" >
@@ -183,12 +183,12 @@
                     </div>
                 </a>
                 <div class="dropdown-content" style="display: none;">
-                    <a href="blagueestudiantine.php">Blagues Estudiantines</a>
-                    <a href="vieetudiante.php">Vie Étudiante</a>
+                    <a href="/blagueestudiantine.php">Blagues Estudiantines</a>
+                    <a href="/vieetudiante.php">Vie Étudiante</a>
                     <!-- Ajoutez d'autres liens du dropdown ici -->
                 </div>
             </li>
-            <li><a href ="contact.php">Contact</a></li>
+            <li><a href ="/contact.php">Contact</a></li>
             <div style="width: 2rem"></div>
         </ul>
     </div>

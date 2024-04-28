@@ -11,5 +11,5 @@ baseArticle($title,$id);
     aussi mais ce n’était pas les mêmes qu’en St Nic).
 </p>
 
-<img class="img-left" src="image/vieetudiante/1946char.webp" alt="1946char" style="width: 400px">
-<img class="img-right" src="image/vieetudiante/1946stnic.webp" alt="1946stnic" style="width: 400px">
+<img class="img-left" src="/image/vieetudiante/1946char.webp" alt="1946char" style="width: 400px">
+<img class="img-right" src="/image/vieetudiante/1946stnic.webp" alt="1946stnic" style="width: 400px">

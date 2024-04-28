@@ -4,8 +4,8 @@ function generateSidebarFromArticle($articlePath) {
     $fileContents = file_get_contents($articlePath);
 
     // Extraire l'ID et le titre à l'aide de l'expression régulière
-    preg_match('/\$id\s*=\s*["]([^"]+)["];/i', $fileContents, $matchesId);
-    preg_match('/\$title\s*=\s*["]([^"]+)["];/i', $fileContents, $matchesTitle);
+    preg_match('/\$id\s*=\s*"([^"]+)";/i', $fileContents, $matchesId);
+    preg_match('/\$title\s*=\s*"([^"]+)";/i', $fileContents, $matchesTitle);
 
 
     // Vérifier si les variables ont été trouvées

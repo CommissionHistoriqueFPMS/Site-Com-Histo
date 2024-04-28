@@ -4,7 +4,7 @@ $id = "doudou1957";
 baseArticle($title,$id);
 ?>
 
-<img class="img-right" src="image/blagueestudiantine/1957doudou.jpg" alt="doudou" style="width: 500px">
+<img class="img-right" src="/image/blagueestudiantine/1957doudou.jpg" alt="doudou" style="width: 500px">
 <p>
     En 1957, des étudiants ont volé le dragon à la veille de la Ducasse et ont été le cacher dans une maison en construction des environs. Les autorités communales ont été prévenues par un message anonyme disant que « el biette étoit r’tournée à Wasmes », car les voleurs ne voulaient néanmoins pas empêcher le combat traditionnel d’avoir lieu. Le message n’a d’abord pas été pris au sérieux, puis, après vérification, il a bien fallu se rendre à l’évidence : « el biette avoit disparu ! ».
 </p>
