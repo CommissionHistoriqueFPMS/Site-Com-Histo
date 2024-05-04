@@ -17,41 +17,41 @@ body {
 
 @font-face {
     font-family: 'Roboto';
-    src: url('fonts/RobotoCondensed-Regular.ttf') format('truetype');
+    src: url('/css/fonts/RobotoCondensed-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Roboto';
-    src: url('fonts/RobotoCondensed-italic.ttf') format('truetype');
+    src: url('/css/fonts/RobotoCondensed-italic.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
 }
 @font-face {
     font-family: 'Fondamento';
-    src: url('fonts/Fondamento-regular.ttf') format('truetype');
+    src: url('/css/fonts/Fondamento-regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Fondamento';
-    src: url('fonts/Fondamento-italic.ttf') format('truetype');
+    src: url('/css/fonts/Fondamento-italic.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Roboto';
-    src: url('fonts/RobotoCondensed-bold.ttf') format('truetype');
+    src: url('/css/fonts/RobotoCondensed-bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Roboto';
-    src: url('fonts/RobotoCondensed-BoldItalic.ttf') format('truetype');
+    src: url('/css/fonts/RobotoCondensed-BoldItalic.ttf') format('truetype');
     font-weight: bold;
     font-style: italic;
 }
