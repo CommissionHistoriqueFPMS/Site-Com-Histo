@@ -19,7 +19,7 @@
     <div class="horizontal-display">
         <div class="content">
             <div class="article-title">Accueil</div>
-            <div class="article-content">
+            <div class="main-article-content">
                 <p>
                     Petite terre de défense du folklore estudiantin, la Commission est pour nous l’occasion de relater les diverses
                     frasques et anecdotes qui jalonnent l’histoire estudiantine de Mons et principalement celles des étudiants de la
@@ -34,7 +34,7 @@
             </div>
             <br>
             <div class="article-title">La Commission Historique</div>
-            <div class="article-content">
+            <div class="main-article-content">
                 <p>
                     Depuis des siècles, l’homme est à la recherche de son passé afin de connaître ses origines et de mieux
                     comprendre son présent. Il en va de même pour nous,
@@ -84,7 +84,6 @@
 
 <?php include('include-php/footer.php');?>
 
-<script src="javascript/main-scripts.js"></script>
 
 </body>
 </html>
