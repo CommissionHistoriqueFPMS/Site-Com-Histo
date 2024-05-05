@@ -68,6 +68,10 @@ body {
     font-style: italic;
 }
 
+h4 {
+    font-family: 'Fondamento', serif;
+}
+
 /* ---------------------- ScrollBar --------------------------*/
 /* Pour les navigateurs Webkit (Google Chrome, Safari) */
 ::-webkit-scrollbar {
@@ -269,6 +273,7 @@ p {
     padding: 20px;
     box-sizing: border-box;
     overflow-anchor: none;
+    max-width: 400px;
 }
 
 .sidebar-content {
@@ -280,7 +285,8 @@ p {
 .sidebar-content ul li {
     list-style-type: none;
     margin-bottom: 0;
-    cursor: pointer; /* Ajout de la propriété cursor */
+    cursor: pointer;
+    text-align: left;
 }
 
 .sidebar-content ul ul {
@@ -371,3 +377,4 @@ p {
         width: 100%;
     }
 }
+

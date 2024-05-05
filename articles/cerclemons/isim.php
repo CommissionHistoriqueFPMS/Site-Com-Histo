@@ -1,5 +1,5 @@
 <?php
-$title ="ISIM";
+$title ="Institut Supérieur Industriel de Mons (ISIMs)";
 $id = "isim";
 baseArticle($title,$id);
 ?>
