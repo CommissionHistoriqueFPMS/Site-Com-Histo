@@ -14,9 +14,3 @@ baseArticle($title,$id);
 <p>
     L’identité des voleurs est restée inconnue de la plupart des Montois mais ils ne sont pas restés cachés longtemps. Abel Dubois, futur bourgmestre, devait en être mais s’est désisté.
 </p>
-
-<!-- Interview sonore
-<p>Ci-dessous, l’interview de Claude Pépin (l’un des voleurs), à l’occasion des 50 ans du vol du Doudou.</p>
-
-** contenu sonore **
--->
