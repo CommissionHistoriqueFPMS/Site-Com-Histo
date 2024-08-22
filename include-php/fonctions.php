@@ -105,7 +105,11 @@ function addImage($imagePath, $width = 500, $orientation = "center", $additionna
     }
 }
 
-function addSource($text) {
-    echo '<div class="sources"><i>' . $text .'</i></div>';
+function addSource($text, $url = "") {
+    if ($url != "") {
+        echo '<div class="sources"><a href="' . $url . '">' . $text . '</a></div>';
+    } else {
+        echo '<div class="sources"><i>' . $text . '</i></div>';
+    }
 }
 ?>
