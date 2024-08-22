@@ -104,4 +104,8 @@ function addImage($imagePath, $width = 500, $orientation = "center", $additionna
         echo "</div>";
     }
 }
+
+function addSource($text) {
+    echo '<div class="sources"><i>' . $text .'</i></div>';
+}
 ?>

@@ -5,8 +5,8 @@ baseArticle($title,$id);
 ?>
 
 <h4> Origine de la Penne Isicienne</h4>
+<?php addImage("/image/cerclemons/isic.jpg", 300, "right") ?>
 
-<img class="img-right" src="/image/cerclemons/isic.jpg">
 <p>
 « Voilà, vous n’êtes surement sans savoir que la penne qui m’est si chère, trouve une partie de son origine chez vous. Voici un petit texte expliquant un peu cette histoire. Bien évidement, beaucoup de portes restent ouvertes et sans réponse encore.
 </p><p>

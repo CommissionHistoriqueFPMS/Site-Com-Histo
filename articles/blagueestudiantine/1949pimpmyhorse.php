@@ -5,7 +5,7 @@ baseArticle($title,$id);
 ?>
 
 
-<img class="img-left" style="width: 200px" src="/image/blagueestudiantine/pimpmyhorse1949.webp" alt="pimpmyhorse1949">
+<?php addImage("/image/blagueestudiantine/pimpmyhorse1949.webp", 200, "left") ?>
 
 <p>
     La traditionnelle blague estudiantine dont nous ne sommes pas prêts de retrouver les origines avait déjà
