@@ -88,4 +88,20 @@ function baseArticle($articleName, $articleId) {
         <div class=\"article-content\">
         ";
 }
+
+function addImage($imagePath, $width = 500, $orientation = "center", $additionnalCSS = "") {
+    if ($orientation[0] == "r" or $orientation[0] == "R") {
+        $orientation = "img-right";
+    } elseif ($orientation[0] == "l" or $orientation[0] == "L") {
+        $orientation = "img-left";
+    } else {
+        echo "<div style = 'display: flex; flex-direction: column; align-items: center;'>";
+        $orientation = "img-center";
+    }
+    echo "<img class='" . $orientation . "' src='" . $imagePath . "' alt='" . $imagePath  .
+        "' style='width: " .  $width . "px; " . $additionnalCSS . "''>";
+    if ($orientation == "img-center") {
+        echo "</div>";
+    }
+}
 ?>
