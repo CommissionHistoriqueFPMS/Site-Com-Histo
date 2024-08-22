@@ -355,6 +355,14 @@ p {
     margin-left: 10px;
 }
 
+
+.main-article-content .img-center {
+    float: unset;
+    max-width: 90%;
+    margin: 0;
+    margin-top: 5px;
+}
+
 @media (max-width: 1200px) {
     .main-article-content .img-left {
         float: unset;
@@ -377,4 +385,3 @@ p {
         width: 100%;
     }
 }
-
