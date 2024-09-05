@@ -170,6 +170,7 @@
                     <a href="cerclesfederes.php">Cercles Fédérés</a>
                     <a href="regio.php">Régionales</a>
                     <a href="revue.php">Revue des Mines</a>
+                    <a href="listingcomite.php">Listing des Comités</a>
                     <!-- <a href="#">Commissions</a> -->
                     <!-- Ajoutez d'autres liens du dropdown ici -->
                 </div>
@@ -185,6 +186,7 @@
                 <div class="dropdown-content" style="display: none;">
                     <a href="blagueestudiantine.php">Blagues Estudiantines</a>
                     <a href="vieetudiante.php">Vie Étudiante</a>
+                    <a href="autresannecdotes.php">Autres Annecdotes</a>
                     <!-- Ajoutez d'autres liens du dropdown ici -->
                 </div>
             </li>
