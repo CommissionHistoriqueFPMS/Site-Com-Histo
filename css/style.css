@@ -392,12 +392,17 @@ p {
     .article-content p {
         width: 100%;
     }
+
+
+    .header-text {
+        font-size: 7vh;
+    }
 }
 
 
 /* --------------------------- TABLE ----------------------------- */
 .table-container {
-    max-width: 80%;
+    max-width: 100%;
     margin: 0 auto; /* Centrer le conteneur */
     overflow-x: auto; /* Permettre le scroll horizontal si nécessaire */
     -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur iOS */
@@ -406,7 +411,7 @@ p {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 0;
     font-size: 18px;
 }
 
