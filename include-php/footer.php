@@ -24,8 +24,9 @@
     <footer>
         <div>
             Contacts :
-            <a href="mailto:historique.fpms@gmail.com">historique.fpms@gmail.com</a>
-            <a class="flex items-center gap-2" href="https://www.facebook.com/CommissionHistoriqueFPMs">Facebook</a>
+            <a href="mailto:historique.fpms@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a class="flex items-center gap-2" href="https://www.facebook.com/CommissionHistoriqueFPMs"><i class="fab fa-facebook"></i></a>
+            <a class="flex items-center gap-2" href="https://www.instagram.com/commission_historique_fpms/"><i class="fab fa-instagram"></i></a>
         </div>
         <div>
 Copyright &copy; 2024
