@@ -396,6 +396,13 @@ p {
 
 
 /* --------------------------- TABLE ----------------------------- */
+.table-container {
+    max-width: 80%;
+    margin: 0 auto; /* Centrer le conteneur */
+    overflow-x: auto; /* Permettre le scroll horizontal si nécessaire */
+    -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur iOS */
+}
+
 table {
     width: 100%;
     border-collapse: collapse;

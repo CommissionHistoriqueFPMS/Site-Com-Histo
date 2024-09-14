@@ -123,6 +123,7 @@ function generateTable($headers, $contents) {
     $num_cols = sizeof($headers);
     $num_rows = sizeof($contents);
 
+    echo '<div class="table-container">';
     echo "<table><thead><tr>";
     for ($i = 0; $i < $num_cols; ++$i) {
         echo "<th>" . $headers[$i] ."</th>";
@@ -137,7 +138,7 @@ function generateTable($headers, $contents) {
         echo "</tr>";
     }
 
-    echo "</tbody></table>";
+    echo "</tbody></table></div>";
 }
 
 

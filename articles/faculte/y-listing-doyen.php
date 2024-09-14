@@ -25,7 +25,7 @@ generateTable(["Année", "Nom", "Titre"],
         ["1890-1918", "Auguste Macquet", "Directeur"],
         ["1888-1890", "M. Lambert", "Directeur Intérimaire"],
         ["1866-1888", "Adolphe Devillez", "Directeur"],
-        ["1837-1865", "Adolphe Devillez", "Sans Titre"]
+        ["1837-1865", "Adolphe Devillez", "<i>Sans Titre</i>"]
     ]
 );
 addSource("Historique UMONS - FPMs", "https://web.umons.ac.be/fpms/fr/a-propos-de-la-faculte/historique/");
