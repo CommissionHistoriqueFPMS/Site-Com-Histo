@@ -117,4 +117,28 @@ function defaultArticle() {
     echo '<img src="image/workinprogress.png">';
     echo '<br>Article encore en cours de construction...';
 }
+
+
+function generateTable($headers, $contents) {
+    $num_cols = sizeof($headers);
+    $num_rows = sizeof($contents);
+
+    echo "<table><thead><tr>";
+    for ($i = 0; $i < $num_cols; ++$i) {
+        echo "<th>" . $headers[$i] ."</th>";
+    }
+    echo "</tr></thead><tbody>";
+
+    for ($i = 0; $i < $num_rows; ++$i) {
+        echo "<tr>";
+        for ($j = 0; $j < $num_cols; ++$j) {
+            echo "<td>" . $contents[$i][$j] ."</td>";
+        }
+        echo "</tr>";
+    }
+
+    echo "</tbody></table>";
+}
+
+
 ?>
