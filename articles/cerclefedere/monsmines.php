@@ -4,4 +4,4 @@ $id = "mons-mines";
 baseArticle($title,$id);
 ?>
 
-<p>Content...</p>
+<?php defaultArticle(); ?>

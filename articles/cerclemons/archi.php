@@ -4,6 +4,5 @@ $id = "archi";
 baseArticle($title,$id);
 ?>
 
-<p>
-    Todo
-</p>
+
+<?php defaultArticle(); ?>

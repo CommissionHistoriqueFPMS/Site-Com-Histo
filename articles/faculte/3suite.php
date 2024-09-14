@@ -4,6 +4,7 @@ $id = "3suite";
 baseArticle($title,$id);
 ?>
 
+<?php defaultArticle(); ?>
 <p> sources pour la suite :</p>
 
 <?php addSource("blogspot historique fpms", 'https://historique-fpms.blogspot.com/') ?>

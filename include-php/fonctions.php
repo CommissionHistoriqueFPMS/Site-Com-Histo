@@ -112,4 +112,9 @@ function addSource($text, $url = "") {
         echo '<div class="sources"><i>' . $text . '</i></div>';
     }
 }
+
+function defaultArticle() {
+    echo '<img src="image/workinprogress.png">';
+    echo '<br>Article encore en cours de construction...';
+}
 ?>

@@ -29,7 +29,7 @@
             <a class="flex items-center gap-2" href="https://www.instagram.com/commission_historique_fpms/"><i class="fab fa-instagram"></i></a>
         </div>
         <div>
-Copyright &copy; 2024
+Copyright &copy; 2024 - Commission Historique FPMs
 </div>
     </footer>
 </section>

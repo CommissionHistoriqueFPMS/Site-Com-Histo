@@ -4,4 +4,4 @@ $id = "culturel";
 baseArticle($title,$id);
 ?>
 
-<p>Content...</p>
+<?php defaultArticle(); ?>

@@ -4,4 +4,5 @@ $id = "isim";
 baseArticle($title,$id);
 ?>
 
-<p>Content...</p>
+
+<?php defaultArticle(); ?>

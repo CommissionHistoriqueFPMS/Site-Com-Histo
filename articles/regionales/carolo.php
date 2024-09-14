@@ -4,6 +4,4 @@ $id = "carolo";
 baseArticle($title,$id);
 ?>
 
-<p>
-    Todo
-</p>
+<?php defaultArticle(); ?>

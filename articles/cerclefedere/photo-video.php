@@ -4,4 +4,4 @@ $id = "cpv";
 baseArticle($title,$id);
 ?>
 
-<p>Content...</p>
+<?php defaultArticle(); ?>

@@ -6,4 +6,5 @@ baseArticle($title,$id);
 addSource("site comhisto", "https://historiquefpms.wordpress.com/la-fac/");
 ?>
 
+<?php defaultArticle(); ?>
 

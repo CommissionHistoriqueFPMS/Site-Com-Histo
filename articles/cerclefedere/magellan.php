@@ -3,6 +3,10 @@ $title ="Cercle Magellan";
 $id = "magellan";
 baseArticle($title,$id);
 ?>
+
+<?php defaultArticle(); ?>
+
+<!--
 <p>
     Le Cercle Magellan existe officiellement depuis 2002. Avant cette date, le Magellan était une partie du Cercle
     Culturel, où nous pouvions retrouver un délégué Magellan, qui se chargeait alors de la gestion du local 500 et
@@ -22,4 +26,4 @@ baseArticle($title,$id);
     l'un des kots en face, et les câbles sortaient ensuite par la fenêtre du kot, pour rejoindre d'autres kot afin
     de donner du réseau internet aux résidents. La facade de la cité ressemblait alors à une grande toile
     d'arreignée.
-</p>
+</p>-->

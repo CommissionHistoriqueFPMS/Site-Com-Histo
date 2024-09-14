@@ -303,6 +303,10 @@ p {
     cursor: pointer; /* Ajout de la propriété cursor */
 }
 
+.dropdown-toggle {
+    cursor: default;
+}
+
 .sidebar-content ul a:hover {
     background-color: #f0f0f0;
 }
