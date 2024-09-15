@@ -19,6 +19,10 @@
 <div style="height: 2em"></div>
 <div class="container">
     <div class="centered-item">
+        <p class="article-title" style="text-decoration: none; cursor: default">Contact</p>
+        <p>Le but de la Commission Historique est de rassembler un maximum de documents en rapport avec le passé de notre chère faculté. Toute aide est donc la bienvenue.</p>
+        <p>Si vous êtes en possession de photos, vidéos, anecdotes,… à partager, nous vous invitons donc à prendre contact avec nous.
+            N'hésitez pas à nous contacter également si vous souhaitez consulter nos archives, nous serions ravis de vous aider !</p>
         <div style="height: 2em"></div>
         <a class="article-title" href="https://www.facebook.com/CommissionHistoriqueFPMs" style="text-decoration: none;"><i class="fab fa-facebook"></i> Facebook - Commission Historique FPMs</a>
         <div style="height: 2em"></div>
