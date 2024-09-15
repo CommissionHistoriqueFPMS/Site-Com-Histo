@@ -326,6 +326,10 @@ p {
         flex-direction: column;
     }
 
+    .content {
+        padding: 0;
+    }
+
     .sidebar {
         display: none;
     }
@@ -402,7 +406,8 @@ p {
 
 /* --------------------------- TABLE ----------------------------- */
 .table-container {
-    max-width: 100%;
+    width: 100%;
+    max-width: 80vw;
     margin: 0 auto; /* Centrer le conteneur */
     overflow-x: auto; /* Permettre le scroll horizontal si nécessaire */
     -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur iOS */
