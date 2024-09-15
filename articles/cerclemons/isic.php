@@ -99,6 +99,5 @@ J’espère avoir pu vous éclairer. N’hésitez pas à apporter votre pierre �
 
 </p><p>
 Fokloriquement vôtre,
-</p><p>
-    <i>MiniC **(*)*(*)</i>
 </p>
+<?php addSource("MiniC **(*)*(*)");?>

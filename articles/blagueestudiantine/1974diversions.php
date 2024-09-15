@@ -33,7 +33,7 @@ baseArticle($title,$id);
 <div class="clear"></div>
 
 
-<h4>Capteurs Solaires Gratuit - 1979</h4>
+<h4>Capteurs Solaires Gratuits - 1979</h4>
 <p>Hé oui, on parlait déjà d’énergies renouvelable à l’époque! Et les experts vous ont bien sûr choisi comme cobaye!</p>
 <?php addImage("/image/blagueestudiantine/solaire.webp", 400, "center") ?>
 <div class="clear"></div>
