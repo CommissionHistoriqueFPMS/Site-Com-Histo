@@ -191,7 +191,12 @@ function createAlbum($directory) {
         }
         </style>';
     foreach ($images as $image) {
-        $promo = substr($image, -7, 3);
+        $promo = "img";
+        $lastBackslash = strrpos($image, '/');
+        $lastDot = strrpos($image, '.');
+        if ($lastBackslash !== false && $lastDot !== false && $lastBackslash < $lastDot) {
+            $promo = substr($image, $lastBackslash + 1, $lastDot - $lastBackslash - 1);
+        }
         echo '
         <div class="image-container" style = "">
             <img src=" ' . $image . '" alt="' . $promo . '" class="img-album" style="">
