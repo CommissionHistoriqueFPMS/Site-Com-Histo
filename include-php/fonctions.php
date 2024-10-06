@@ -143,8 +143,40 @@ function generateTable($headers, $contents) {
 
 function createAlbum($directory) {
     $images = glob("$directory/*.*");
+    echo ' <style>       
+        .image-container .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); 
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .image-container:hover .overlay {
+    opacity: 1;
+}
+
+        .overlay-text {
+    font-size: 24px;
+            text-align: center;
+        } </style>';
     foreach ($images as $image) {
-        addImage($image, 450, "left", "float:none; max-height: 500px;max-width:450px; width:auto; height:auto;");
+        $promo = substr($image, -7, 3);
+        echo '
+        <div class="image-container" style = "display: flex; flex-direction: column; align-items: center; position: relative; float:left; max-width: 450px; width: auto; max-height: 500px; height: auto;">
+            <img src=" ' . $image . '" alt="' . $promo . '" class="" style="max-width: 450px; width: auto; max-height: 500px; height: auto;">
+            <div class="overlay" style="float:none;">
+                <div class="overlay-text"  style="float:none;">' . $promo . '</div>
+            </div>
+        </div>
+        ';
+//        addImage($image, 450, "left", "float:none; max-height: 500px;max-width:450px; width:auto; height:auto;");
     }
 }
 ?>
