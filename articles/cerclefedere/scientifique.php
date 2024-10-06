@@ -4,7 +4,9 @@ $id = "scientifique";
 baseArticle($title,$id);
 ?>
 
-<?php defaultArticle(); ?>
+<?php
+createAlbum("image/cerclefedere/chars/");
+?>
 
 
 <!--

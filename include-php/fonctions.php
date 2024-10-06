@@ -141,5 +141,10 @@ function generateTable($headers, $contents) {
     echo "</tbody></table></div>";
 }
 
-
+function createAlbum($directory) {
+    $images = glob("$directory/*.*");
+    foreach ($images as $image) {
+        addImage($image, 450, "left", "float:none; max-height: 500px;max-width:450px; width:auto; height:auto;");
+    }
+}
 ?>
