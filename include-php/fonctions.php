@@ -144,6 +144,17 @@ function generateTable($headers, $contents) {
 function createAlbum($directory) {
     $images = glob("$directory/*.*");
     echo ' <style>       
+         .image-container {
+             display: flex; 
+             flex-direction: column; 
+             align-items: center; 
+             position: relative; 
+             float:left; 
+             max-width: 450px; 
+             width: auto; 
+             max-height: 500px; 
+             height: auto;
+         }
         .image-container .overlay {
             position: absolute;
             top: 0;
@@ -159,18 +170,31 @@ function createAlbum($directory) {
             transition: opacity 0.3s ease;
         }
         .image-container:hover .overlay {
-    opacity: 1;
-}
+            opacity: 1;
+        }
 
         .overlay-text {
-    font-size: 24px;
+            font-size: 24px;
             text-align: center;
-        } </style>';
+        } 
+        .img-album {
+        max-width: 450px; width: auto; max-height: 500px; height: auto;
+        }
+        
+        @media (max-width: 825px) {
+            .image-container {
+            max-width: 90%;
+            }
+            .img-album {
+            max-width: 100%;
+            }
+        }
+        </style>';
     foreach ($images as $image) {
         $promo = substr($image, -7, 3);
         echo '
-        <div class="image-container" style = "display: flex; flex-direction: column; align-items: center; position: relative; float:left; max-width: 450px; width: auto; max-height: 500px; height: auto;">
-            <img src=" ' . $image . '" alt="' . $promo . '" class="" style="max-width: 450px; width: auto; max-height: 500px; height: auto;">
+        <div class="image-container" style = "">
+            <img src=" ' . $image . '" alt="' . $promo . '" class="img-album" style="">
             <div class="overlay" style="float:none;">
                 <div class="overlay-text"  style="float:none;">' . $promo . '</div>
             </div>
