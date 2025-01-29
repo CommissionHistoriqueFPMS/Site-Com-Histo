@@ -4,6 +4,7 @@ $id = "scientifique";
 baseArticle($title,$id);
 ?>
 
+<h4>Listing des Chars</h4>
 <?php
 createAlbum("image/cerclefedere/chars/");
 ?>
