@@ -13,5 +13,6 @@ addImage("/image/cerclemons/isic.jpg", 500, "left");
 </p>
 <?php 
 addImage("/image/cerclemons/isic.jpg", 500, "left"); ?>
+<div class="clear"></div>
 <h4>Sous titre </h4>
 
