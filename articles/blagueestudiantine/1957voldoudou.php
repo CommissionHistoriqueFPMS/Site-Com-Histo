@@ -13,5 +13,5 @@ baseArticle($title,$id);
     Malheureusement, les indications pour retrouver le dragon devaient être approximatives, car il a fallu longtemps avant qu’il ne soit ramené à Mons. Le combat a commencé avec près d’une heure de retard, ce qui a provoqué un émoi considérable dans la ville. Ce n’est que des années plus tard que le pardon leur a été accordé par le bourgmestre.
 </p>
 <p>
-    L’identité des voleurs est restée inconnue de la plupart des Montois mais ils ne sont pas restés cachés longtemps. Abel Dubois, futur bourgmestre, devait en être mais s’est désisté.
+    L’identité des voleurs est restée inconnue de la plupart des Montois mais ils ne sont pas restés cachés longtemps.
 </p>
