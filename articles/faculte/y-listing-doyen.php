@@ -7,7 +7,7 @@ baseArticle($title,$id);
 <?php
 generateTable(["Année", "Nom", "Titre"],
     [
-        ["2022-today", "Véronique Felheim", "Doyenne"],
+        ["2022-today", "Véronique Feldheim", "Doyenne"],
         ["2018-2022", "Christine Renotte", "Doyenne"],
         ["2014-2018", "Pierre Dehombreux", "Doyen"],
         ["2009-2014", "Paul Lybaert", "Doyen"],
