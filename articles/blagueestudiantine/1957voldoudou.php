@@ -15,3 +15,5 @@ baseArticle($title,$id);
 <p>
     L’identité des voleurs est restée inconnue de la plupart des Montois mais ils ne sont pas restés cachés longtemps.
 </p>
+
+    <?php addSource('Interview Ernest Carlier (TeleMB)','https://www.youtube.com/watch?v=ZSOuI5yNj6U') ?>
