@@ -3,7 +3,7 @@
     <!-- Réglages FormSubmit (champs cachés) -->
     <input type="hidden" name="_subject" value="Nouveau message — site Com'Histo">
     <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_captcha" value="true">
     <!-- Piège à robots : si rempli, le message est ignoré -->
     <input type="text" name="_honey" class="hp">
  
