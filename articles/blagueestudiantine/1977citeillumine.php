@@ -5,7 +5,7 @@ baseArticle($title,$id);
 ?>
 <?php addImage("/image/blagueestudiantine/cite69.jpg", 270, "right") ?>
 <p>
-    C’est durant une belle nuit de revue que la cité s’illumina de mille feux, laissant aparaitre cette majestueuse figure. Avec l’aide de nos Fredo et des ouvriers de l’époque, Talkie-Walkie à la main, les étudiants ce livrerent à ce petit jeu qui devrait se relancer un peu plus souvent… Ahhhhhh la belle époque ou tout le monde était la pour s’amuser et se faire plaisir, va-t-en demander cela à certains locataires actuels de la cite, super sympathique et ouverts d’esprit de laisser allumé ou éteint juste quelques minutes…
+    C’est durant une belle nuit de revue que la cité s’illumina de mille feux, laissant apparaître cette majestueuse figure. Avec l’aide de nos Fredo et des ouvriers de l’époque, Talkie-Walkie à la main, les étudiants ce livrèrent à ce petit jeu qui devrait se relancer un peu plus souvent… Ahhhhhh la belle époque où tout le monde était là pour s’amuser et se faire plaisir, va-t-en demander cela à certains locataires actuels de la cité, super sympathique et ouverts d’esprit de laisser allumé ou éteint juste quelques minutes…
 </p>
 <p> <i> Petite precision d’un bourgeois : </i></p>
 <p>
