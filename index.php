@@ -47,18 +47,18 @@
                     qu’a été crée la Commission Historique il y a quelques années.
                 </p>
                 <p>
-                    Cette dernière est constituée d’un petit groupe d’étudiant voulant
+                    Cette dernière est constituée d’un petit groupe d’étudiants voulant
                     en savoir plus sur le folklore dans lequel ils vivent.
                 </p>
                 <br>
                 <p>
-                    La Commission Historique se charge de recenser des objets, annecdotes et informations relatifs au patrimoine de
-                    la Faculté Polytechique de Mons et de ses étudiant.
+                    La Commission Historique se charge de recenser des objets, anecdotes et informations relatifs au patrimoine de
+                    la Faculté Polytechnique de Mons et de ses étudiants.
                 </p>
                 <p>
                     Afin d'exposer au mieux ses trouvailles, la commission utilise un local au onzième étage
                     de la cité Pierre Houzeau de Lehaie, où nous exposons divers objets historiques et où nous stockons des archives
-                    ainsi que ce site web, permettant à n'importe qui de découvrir l'histoire du folklore de la factulté directement
+                    ainsi que ce site web, permettant à n'importe qui de découvrir l'histoire du folklore de la faculté directement
                     depuis chez lui.
                 </p>
                 <br>
@@ -73,7 +73,7 @@
                 <p>
                     Et si, par exemple lors d’un bon tri dans le grenier, tu retombes sur des trésors datant de tes années
                     étudiantes à la Polytech, ou des années de tes parents, n’hésitez pas à nous les partager,
-                    ne fut-ce qu’en photo !
+                    ne fût-ce qu’en photo !
                 </p>
                 <br>
                 <div class="centered-item" style="padding-top:2rem"><a href="contact.php" class="big-button">Contactez-nous !</a></div>
