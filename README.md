@@ -3,22 +3,6 @@
 Site web de la **Commission Historique** de la Faculté Polytechnique de Mons, dédié à la préservation et à la mise en valeur du folklore estudiantin montois : anecdotes, blagues des Mines, histoire de la faculté et des cercles.
  
 🔗 En ligne : [historique.fede.fpms.ac.be](https://historique.fede.fpms.ac.be/)
- 
-## Technique
- 
-Site en **PHP** servi par **Apache**, conteneurisé avec **Docker**. Pas de base de données : les articles sont de simples fichiers PHP.
- 
-## Lancer en local
- 
-Avec Docker :
- 
-```bash
-docker build -t site-comhisto .
-docker run -p 8080:80 site-comhisto
-```
- 
-Puis ouvrir <http://localhost:8080>.
- 
 ## Structure
  
 ```
