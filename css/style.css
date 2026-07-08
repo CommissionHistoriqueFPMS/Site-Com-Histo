@@ -443,3 +443,50 @@ tr:nth-child(even) {
 tr:hover {
     background-color: #f1f1f1;
 }
+
+/* ------------------ Formulaire de contact -------------------- */
+.contact-form {
+    max-width: 550px;
+    margin: 2em auto;
+    text-align: left;
+}
+.contact-form label {
+    display: block;
+    margin: 1em 0 .3em;
+    font-weight: bold;
+}
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: .7em;
+    border: 2px solid var(--derive-main-color);
+    border-radius: .5em;
+    font-family: inherit;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+.contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--main-color);
+}
+.contact-form button {
+    margin-top: 1.2em;
+    padding: .7em 1.6em;
+    border: 2px solid var(--derive-main-color);
+    border-radius: .5em;
+    background-color: var(--main-color);
+    color: var(--text-color);
+    font-size: 1.2em;
+    cursor: pointer;
+    opacity: .9;
+}
+.contact-form button:hover {
+    background-color: var(--derive-main-color);
+}
+/* Champ anti-spam : invisible pour les humains, piège à robots */
+.contact-form .hp { display: none !important; }
