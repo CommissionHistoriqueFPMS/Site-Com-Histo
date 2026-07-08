@@ -11,7 +11,7 @@ baseArticle($title,$id);
     la reconnaissance que nous devons aux fondateurs de la Faculté, et déposa une gerbe à leurs pieds.
     Il évoqua ensuite la mémoire des étudiants morts au champ d’honneur pendant que l’on déposait
     des fleurs au mémorial, puis les camarades observèrent une émouvante minute de silence au son de
-    la Brabanconne et de la Marseillaise.
+    la Brabançonne et de la Marseillaise.
 </p>
 <p>
     Et la musique reprit ses accents joyeux pour nous ramener sur la Grand’Place au son des airs familiers.
