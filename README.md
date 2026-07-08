@@ -43,4 +43,4 @@ Les contributions sont les bienvenues (corrections, nouveaux témoignages, photo
 - Instagram : [@commission_historique_fpms](https://www.instagram.com/commission_historique_fpms/)
 ---
  
-© Commission Historique F.P.Ms — Les contenus historiques appartiennent à leurs auteurs respectifs.
+© Commission Historique F.P.Ms
