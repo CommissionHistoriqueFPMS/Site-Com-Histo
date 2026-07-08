@@ -41,6 +41,7 @@ Les contributions sont les bienvenues (corrections, nouveaux témoignages, photo
  
 - Facebook : [Commission Historique FPMs](https://www.facebook.com/CommissionHistoriqueFPMs)
 - Instagram : [@commission_historique_fpms](https://www.instagram.com/commission_historique_fpms/)
+- Mail : [historique.fpms@gmail.com](mailto:historique.fpms@gmail.com)
 ---
  
 © Commission Historique F.P.Ms
