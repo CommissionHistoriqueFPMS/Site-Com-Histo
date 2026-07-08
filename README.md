@@ -1,20 +1,62 @@
-# Titre du Projet
-
-Une brève description de ce que fait votre projet.
-
-## Table des Matières
-
-- [Installation](#installation)
-- [Utilisation](#utilisation)
-- [Contribuer](#contribuer)
-- [Licence](#licence)
-
-## Installation
-
-Décrivez ici comment installer votre projet. Incluez des instructions pour cloner le dépôt, installer des dépendances, etc.
-
+# Site de la Commission Historique F.P.Ms
+ 
+Site web de la **Commission Historique** de la Faculté Polytechnique de Mons, dédié à la préservation et à la mise en valeur du folklore estudiantin montois : anecdotes, blagues des Mines, histoire de la faculté et des cercles.
+ 
+🔗 En ligne : [historique.fede.fpms.ac.be](https://historique.fede.fpms.ac.be/)
+ 
+## Technique
+ 
+Site en **PHP** servi par **Apache**, conteneurisé avec **Docker**. Pas de base de données : les articles sont de simples fichiers PHP.
+ 
+## Lancer en local
+ 
+Avec Docker :
+ 
 ```bash
-git clone https://github.com/votre_utilisateur/votre_projet.git
-cd votre_projet
-npm install
+docker build -t site-comhisto .
+docker run -p 8080:80 site-comhisto
 ```
+ 
+Puis ouvrir <http://localhost:8080>.
+ 
+## Structure
+ 
+```
+├── index.php            # Page d'accueil
+├── *.php                # Pages de thèmes (faculté, cercles, anecdotes…)
+├── include-php/         # Header, navbar, footer et fonctions communes
+├── articles/            # Contenu, un sous-dossier par thème
+├── image/               # Images, un sous-dossier par thème
+├── css/ · javascript/   # Styles et scripts
+└── Dockerfile
+```
+ 
+Chaque page de thème génère automatiquement son sommaire et son contenu à partir des articles présents dans le sous-dossier correspondant de `articles/`.
+ 
+## Ajouter un article
+ 
+Créer un fichier `.php` dans le sous-dossier de thème voulu (ex. `articles/blagueestudiantine/`) :
+ 
+```php
+<?php
+$title = "Titre de l'article";
+$id    = "identifiant-unique";
+baseArticle($title, $id);
+?>
+ 
+<p>Le contenu de l'article…</p>
+```
+ 
+Fonctions utiles disponibles : `addImage()`, `addSource()`, `generateTable()`. L'article est repris automatiquement dans la page du thème.
+ 
+## Contribuer
+ 
+Les contributions sont les bienvenues (corrections, nouveaux témoignages, photos). Ouvrir une *issue* ou une *pull request*.
+ 
+## Contact
+ 
+- Facebook : [Commission Historique FPMs](https://www.facebook.com/CommissionHistoriqueFPMs)
+- Instagram : [@commission_historique_fpms](https://www.instagram.com/commission_historique_fpms/)
+---
+ 
+© Commission Historique F.P.Ms — Les contenus historiques appartiennent à leurs auteurs respectifs.
