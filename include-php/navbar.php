@@ -186,7 +186,7 @@
                 <div class="dropdown-content" style="display: none;">
                     <a href="blagueestudiantine.php">Blagues Estudiantines</a>
                     <a href="vieetudiante.php">Vie Étudiante</a>
-                    <a href="autresannecdotes.php">Autres Annecdotes</a>
+                    <a href="autresanecdotes.php">Autres anecdotes</a>
                     <!-- Ajoutez d'autres liens du dropdown ici -->
                 </div>
             </li>
