@@ -1,4 +1,4 @@
 <?php
 include("./include-php/fonctions.php");
-generatePage("Autres Annecdotes", ["Autres Annecdotes"], ["autresannecdotes"], [""]);
+generatePage("Autres anecdotes", ["Autres anecdotes"], ["autresanecdotes"], [""]);
 ?>
