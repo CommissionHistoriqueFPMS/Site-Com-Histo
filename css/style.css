@@ -318,6 +318,7 @@ p {
     flex: 1;
     padding: 20px;
     box-sizing: border-box;
+    min-width: 0; /*permet aux tableaux larges de défiler au lieu de déborder*/
 }
 
 /* Styles pour les petits écrans */
