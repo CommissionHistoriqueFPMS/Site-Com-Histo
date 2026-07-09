@@ -261,6 +261,7 @@ p {
     flex-direction: row;
     text-align: center;
     align-content: center;
+    min-width: 0;
 }
 
 .horizontal-display .content {
