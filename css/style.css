@@ -490,3 +490,29 @@ tr:hover {
 }
 /* Champ anti-spam : invisible pour les humains, piège à robots */
 .contact-form .hp { display: none !important; }
+
+/* ------------------ Listing des comités -------------------- */
+.lc-sub        { color:#777; margin:0 0 1.4em; }
+.lc-tabs       { display:flex; gap:.5em; margin-bottom:1.2em; flex-wrap:wrap; }
+.lc-tab        { padding:.55em 1.1em; border:2px solid var(--derive-main-color); border-radius:.5em;
+                 background:#fff; color:var(--derive-main-color); cursor:pointer;
+                 font-size:1em; font-weight:bold; font-family:inherit; }
+.lc-tab.on     { background:var(--main-color); color:var(--text-color); }
+.lc-field      { width:100%; padding:.7em; border:2px solid var(--derive-main-color); border-radius:.5em;
+                 font-size:1em; font-family:inherit; box-sizing:border-box; }
+.lc-field:focus{ outline:none; border-color:var(--main-color); }
+.lc-meta       { color:#888; font-size:.9em; margin:.6em 0 1em; }
+.lc-scroll     { overflow-x:auto; border:1px solid #e3d7d7; border-radius:.5em; }
+.lc-table      { border-collapse:collapse; width:100%; font-size:.9em; white-space:nowrap; }
+.lc-table th,
+.lc-table td   { padding:.5em .7em; border-bottom:1px solid #e3d7d7; text-align:left; }
+.lc-table thead th          { background:var(--main-color); color:var(--text-color); position:sticky; top:0; }
+.lc-table tbody tr:nth-child(even) { background:#f6f2f2; }
+.lc-table td.y { font-weight:bold; color:var(--derive-main-color); }
+.lc-card       { border:1px solid #e3d7d7; border-left:4px solid var(--main-color); border-radius:.4em;
+                 padding:.7em 1em; margin:.6em 0; background:#f6f2f2; }
+.lc-card h3    { margin:0 0 .3em; color:var(--derive-main-color); }
+.lc-line       { font-size:.92em; padding:.12em 0; }
+.lc-role       { color:var(--main-color); font-weight:bold; }
+.lc-hint       { color:#999; padding:1em 0; }
+.lc-hidden     { display:none; }
