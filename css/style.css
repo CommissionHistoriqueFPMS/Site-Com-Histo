@@ -517,3 +517,4 @@ tr:hover {
 .lc-role       { color:var(--main-color); font-weight:bold; }
 .lc-hint       { color:#999; padding:1em 0; }
 .lc-hidden     { display:none; }
+.lc-scroll { max-width: 100%; }
