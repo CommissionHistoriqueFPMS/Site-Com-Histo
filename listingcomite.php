@@ -1,5 +1,5 @@
 <?php
 include("./include-php/fonctions.php");
 generatePage("Listing des Anciens Comités", ["Listing des Anciens Comités"], ["listingcomite"], [""]);
+include('include-php/listinginteractif.php');
 ?>
-<?php include('include-php/contact-form.php'); ?>
