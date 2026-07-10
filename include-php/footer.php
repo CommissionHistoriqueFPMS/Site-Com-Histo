@@ -10,16 +10,15 @@
 
         <div class="footer-col">
             <h3>Comité 188</h3>
-            <!-- Remplace par les vrais noms -->
-            <span>Nom Prénom</span>
-            <span>Nom Prénom</span>
-            <span>Nom Prénom</span>
+            <span>Arthur Janssens</span>
+            <span>Arthur Maton</span>
+            <span>Raphaël Platteau-Holvoets</span>
+            <span>Hugo Quintart</span>
         </div>
 
         <div class="footer-col">
-            <h3>Site développé par</h3>
-            <!-- Remplace par le(s) vrai(s) nom(s) -->
-            <span>Nom Prénom</span>
+            <h3>Webmaster 188</h3>
+            <span>Hugo Quintart</span>
         </div>
 
         <div class="footer-logo">
