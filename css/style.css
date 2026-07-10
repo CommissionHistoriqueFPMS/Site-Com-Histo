@@ -537,7 +537,7 @@ p {
 
 
     .header-text {
-    color: #fff;
+    color: #8a1c1c;
     -webkit-text-stroke: 2px var(--main-color);
     text-shadow: 3px 3px 6px rgba(0,0,0,.55);
 }
