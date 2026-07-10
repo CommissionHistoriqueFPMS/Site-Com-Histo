@@ -32,7 +32,7 @@
                 en discuter autour d’une excellente bière.
                 </p>
             </div>
-            <br>
+            
             <div class="article-title">La Commission Historique</div>
             <div class="main-article-content">
                 <p>
@@ -40,7 +40,7 @@
                     comprendre son présent. Il en va de même pour nous,
                     étudiants baptisés de notre chère Faculté Polytechnique de Mons !
                 </p>
-                <br>
+                
                 <p>
                     C’est donc dans le but de répondre à des questions comme : « A quoi ressemblait la faculté à ses débuts ? » ;
                     « Quelles sont les origines du cercle Polytech Mons ? » ;
@@ -50,7 +50,7 @@
                     Cette dernière est constituée d’un petit groupe d’étudiants voulant
                     en savoir plus sur le folklore dans lequel ils vivent.
                 </p>
-                <br>
+                
                 <p>
                     La Commission Historique se charge de recenser des objets, anecdotes et informations relatifs au patrimoine de
                     la Faculté Polytechnique de Mons et de ses étudiants.
@@ -61,7 +61,7 @@
                     ainsi que ce site web, permettant à n'importe qui de découvrir l'histoire du folklore de la faculté directement
                     depuis chez lui.
                 </p>
-                <br>
+                
                 <p>
                     Les étudiants responsables de la « Com’Histo » sont élus chaque année pour un mandat annuel.
                     Si tu es étudiant à la Faculté Polytechnique de Mons ou membre actif du cercle Polytech Mons,
@@ -69,13 +69,13 @@
                     Tu peux également t'investir de manière plus légère  dans la Com'Histo en nous aidant durant les différentes
                     expositions, ouvertures ou rangements que nous effectuons.
                 </p>
-                <br>
+                
                 <p>
                     Et si, par exemple lors d’un bon tri dans le grenier, tu retombes sur des trésors datant de tes années
                     étudiantes à la Polytech, ou des années de tes parents, n’hésitez pas à nous les partager,
                     ne fût-ce qu’en photo !
                 </p>
-                <br>
+                
                 <div class="centered-item" style="padding-top:2rem"><a href="contact.php" class="big-button">Contactez-nous !</a></div>
             </div>
         </div>
