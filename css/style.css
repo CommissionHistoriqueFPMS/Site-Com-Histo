@@ -1,10 +1,10 @@
 /* ------- Root, Body and Fonts ----- */
 
 :root {
-    --main-color: #c0392b;
-    --derive-main-color: #96271c;
-    --text-color : #fff;
-    --text-hover-color : #fff;
+    --main-color: #7e212a;
+    --derive-main-color: #5e1820;
+    --text-color: #fff;
+    --text-hover-color: #fff;
 }
 
 body {
@@ -538,6 +538,7 @@ p {
 
     .header-text {
         font-size: 7vh;
+        color: var(--main-color);
     }
 }
 
