@@ -1,8 +1,8 @@
 /* ------- Root, Body and Fonts ----- */
 
 :root {
-    --main-color: #d22;
-    --derive-main-color: #a22;
+    --main-color: #c0392b;
+    --derive-main-color: #96271c;
     --text-color : #fff;
     --text-hover-color : #fff;
 }
