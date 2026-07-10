@@ -326,7 +326,7 @@ th {
 
     padding: 30px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: justify;
+    text-align: left;
     margin: 0 auto;
     font-size: larger;
 }
@@ -353,9 +353,9 @@ th {
 }
 
 p {
-    text-indent: 20px; /* Adjust the value as needed */
-    margin: 0;
-    line-height: 1.4;
+    text-indent: 0;         /* on enlève le retrait de première ligne */
+    margin: 0 0 1em 0;      /* espace régulier entre paragraphes */
+    line-height: 1.6;       /* au lieu de 1.4 */
 }
 /* -------- Buttons --------- */
 
