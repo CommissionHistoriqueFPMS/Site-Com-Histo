@@ -537,9 +537,10 @@ p {
 
 
     .header-text {
-        font-size: 7vh;
-        color: var(--main-color);
-    }
+    color: #fff;
+    -webkit-text-stroke: 2px var(--main-color);
+    text-shadow: 3px 3px 6px rgba(0,0,0,.55);
+}
 }
 
 
