@@ -462,6 +462,7 @@ p {
 
 /* Styles pour les petits écrans */
 @media (max-width: 825px) {
+    .header { background-attachment: scroll; }
     .container {
         flex-direction: column;
 
@@ -721,3 +722,12 @@ tr:hover {
     margin: 0 0 1em 0;
 }
 .chant p:last-child { margin-bottom: 0; }
+.chant .chant-titre {
+    font-family: 'Fondamento', serif;   /* la police de tes titres */
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: var(--derive-main-color);
+    text-align: center;
+    margin-bottom: .2em;
+}

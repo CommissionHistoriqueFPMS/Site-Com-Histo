@@ -208,4 +208,27 @@ function createAlbum($directory) {
 //        addImage($image, 450, "left", "float:none; max-height: 500px;max-width:450px; width:auto; height:auto;");
     }
 }
+function addChant($fichier, $air = "", $titre = "") {
+    echo "<div class='chant'>";
+
+    if ($titre !== "") {
+        echo "<p class='chant-titre'>" . htmlspecialchars($titre) . "</p>";
+    }
+    if ($air !== "") {
+        echo "<p class='chant-air'>Air : " . htmlspecialchars($air) . "</p>";
+    }
+
+    $chemin = "articles/chants/" . $fichier;
+    if (!file_exists($chemin)) {
+        echo "<p><em>Chant introuvable : " . htmlspecialchars($fichier) . "</em></p></div>";
+        return;
+    }
+
+    $couplets = preg_split("/\n\s*\n/", trim(file_get_contents($chemin)));
+    foreach ($couplets as $couplet) {
+        echo "<p>" . nl2br(htmlspecialchars(trim($couplet))) . "</p>";
+    }
+    echo "</div>";
+}
 ?>
+

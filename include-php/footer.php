@@ -10,7 +10,7 @@
 
         <div class="footer-col">
             <h3>Comité 188</h3>
-            <span>Raphaël Platteau-Holvoets - <i>Responsable</i></span>
+            <span>Raphaël Platteau Holvoet - <i>Responsable</i></span>
             <span>Hugo Quintart - <i>Webmaster</i></span>
             <span>Arthur Janssens</span>
             <span>Arthur Maton</span>
