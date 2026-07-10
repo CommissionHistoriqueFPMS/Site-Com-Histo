@@ -197,7 +197,7 @@ th {
 .footer-col a:hover { text-decoration: underline; }
 .footer-col i { width: 1.3em; text-align: center; }
 .footer-logo { display: flex; align-items: flex-start; }
-.footer-logo img { height: 5rem; background: #fff; border-radius: 8px; padding: .4rem; box-sizing: border-box; }
+.footer-logo img { height: 10rem; background: none; border-radius: 8px; padding: .4rem; box-sizing: border-box; }
 .footer-copy {
     text-align: center; margin-top: 1.5rem; padding-top: 1rem;
     border-top: 1px solid rgba(255,255,255,.3); font-size: .9rem;

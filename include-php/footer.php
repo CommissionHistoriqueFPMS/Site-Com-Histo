@@ -9,13 +9,11 @@
         </div>
 
         <div class="footer-col">
-            <h3>Responsables 188</h3>
+            <h3>Comité 188</h3>
+            <span>Raphaël Platteau-Holvoets - <i>Responsable</i></span>
+            <span>Hugo Quintart - <i>Webmaster</i></span>
             <span>Arthur Janssens</span>
             <span>Arthur Maton</span>
-            <span>Raphaël Platteau-Holvoets</span>
-            <br>
-            <h3>Webmaster 188</h3>
-            <span>Hugo Quintart</span>
         </div>
 
         <div class="footer-col">
