@@ -13,6 +13,7 @@
             <span>Arthur Janssens</span>
             <span>Arthur Maton</span>
             <span>Raphaël Platteau-Holvoets</span>
+            <br>
             <h3>Webmaster 188</h3>
             <span>Hugo Quintart</span>
         </div>
