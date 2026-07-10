@@ -3,7 +3,7 @@ $title = "Visites Royales";
 $id = "visiteroi";
 baseArticle($title, $id);
  
-addSource("site comhisto", "https://historiquefpms.wordpress.com/la-fac/");
+/* addSource("site comhisto", "https://historiquefpms.wordpress.com/la-fac/"); Sera down un jour */
 ?>
  
 <p>Notre Faculté a eu l'honneur de recevoir la visite de plusieurs souverains belges au fil de son histoire.</p>
