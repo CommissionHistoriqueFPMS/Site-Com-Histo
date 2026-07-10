@@ -1,6 +1,6 @@
 <?php
 $title = "Listing interactif";
-$id = "listing-interactif";
+$id = "1listing-interactif";
 baseArticle($title, $id);
 ?>
 
