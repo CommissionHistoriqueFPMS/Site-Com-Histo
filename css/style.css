@@ -97,7 +97,7 @@ th {
     transition: opacity .15s ease;
 }
 .navbar-brand:hover { opacity: .8; }
-.navbar-brand img { height: 3rem; display: block; }
+.navbar-brand img { height: 5rem; display: block; }
 .navbar-brand span { font-weight: bold; font-size: 1.5rem; }
 
 .navbar-burger {
@@ -731,24 +731,4 @@ tr:hover {
     color: var(--derive-main-color);
     text-align: center;
     margin-bottom: .2em;
-}
-
-/* ------------------ Logo SVG ------------------ */
-.logo-comhisto {
-    width: 3rem;      /* taille dans la navbar — ajuste */
-    height: auto;
-    display: block;
-}
-
-/* Le sceau : intérieur couleur principale, contour blanc */
-.logo-comhisto .logo-sceau {
-    fill: var(--main-color);
-    stroke: #fff;
-    stroke-width: 3px;
-}
-
-/* Le texte : blanc, sans contour */
-.logo-comhisto .logo-texte {
-    fill: #fff;
-    stroke: none;
 }

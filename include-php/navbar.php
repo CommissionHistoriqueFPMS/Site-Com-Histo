@@ -1,7 +1,7 @@
 <nav class="navbar">
     <div class="navbar-top">
         <a href="index.php" class="navbar-brand">
-            <?php include('include-php/logo.php'); ?>
+            <img src="/image/logo.png" alt="logo Commission Historique">
             <span>Commission Historique F.P.Ms</span>
         </a>
         <button class="navbar-burger" aria-label="Menu">
