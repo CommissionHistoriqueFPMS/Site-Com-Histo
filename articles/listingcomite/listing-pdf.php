@@ -4,4 +4,4 @@ $id = "listing-pdf";
 baseArticle($title,$id);
 ?>
 
-<?php addSource('Listing des Anciens Comité - PDF','/articles/listingcomite/listing-pdf188.pdf') ?>
+<?php addSource('Listing des Anciens Comités - PDF','/articles/listingcomite/listing-pdf188.pdf') ?>

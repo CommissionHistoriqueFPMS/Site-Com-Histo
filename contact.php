@@ -24,13 +24,11 @@
         <p>Si vous êtes en possession de photos, vidéos, anecdotes,… à partager, nous vous invitons donc à prendre contact avec nous.
             N'hésitez pas à nous contacter également si vous souhaitez consulter nos archives, nous serions ravis de vous aider !</p>
         <?php include('include-php/contact-form.php'); ?>
-        <div style="height: 2em"></div>
-        <a class="article-title" href="https://www.facebook.com/CommissionHistoriqueFPMs" style="text-decoration: none;"><i class="fab fa-facebook"></i> Facebook - Commission Historique FPMs</a>
-        <div style="height: 2em"></div>
-        <a class="article-title"  href="https://www.instagram.com/commission_historique_fpms/" style="text-decoration: none;"><i class="fab fa-instagram"></i> Instagram - commission_historique_fpms</a>
-        <div style="height: 2em"></div>
-        <a class="article-title"  href="mailto:historique.fpms@gmail.com" style="text-decoration: none;"><i class="fas fa-envelope"></i> Email - historique.fpms@gmail.com</a>
-        <div style="height: 2em"></div>
+        <div class="contact-links">
+            <a href="https://www.facebook.com/CommissionHistoriqueFPMs"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://www.instagram.com/commission_historique_fpms/"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="mailto:historique.fpms@gmail.com"><i class="fas fa-envelope"></i> historique.fpms@gmail.com</a>
+        </div>
     </div>
 </div>
 
