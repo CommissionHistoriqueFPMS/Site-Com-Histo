@@ -31,6 +31,7 @@ function updateLcTabState(def="#lc-tbrowse") {
             document.location.hash = e.id;
             updateLcTabState();
             document.getElementById("lc-q").focus();
+            window.scrollTo({behavior:"instant",top: document.querySelector(".container").offsetTop-200})
         }
     });
 })();
