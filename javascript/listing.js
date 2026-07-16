@@ -1,3 +1,40 @@
+function updateLcTabState(def="#lc-tbrowse") {
+    const state = (document.location.hash || def).slice(1);
+    const tabs = document.querySelectorAll(".lc-tab");
+    
+    for (const tab of tabs) {
+        const display = state === tab.id;
+        
+        tab.classList.remove("lc-hidden");
+        if (display) { tab.classList.add("on") }
+        else { tab.classList.remove("on") }
+        
+        const elements = document.querySelectorAll(`[data-displaytab="${tab.id}"]`);
+        
+        for (const element of elements) {
+            if (display) { element.classList.remove("lc-hidden"); }
+            else { element.classList.add("lc-hidden"); }
+        }
+
+        if (display) { 
+            const foc = document.querySelector(`[data-displayfocus="${tab.id}"]`); 
+            if(foc) foc.focus(); 
+        }
+    }
+
+    
+}
+
+(()=> {
+    document.querySelectorAll(".lc-tab").forEach((e) => {
+        e.onclick = ()=> {
+            document.location.hash = e.id;
+            updateLcTabState();
+            document.getElementById("lc-q").focus();
+        }
+    });
+})();
+
 (function () {
     const norm = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
     const esc  = s => (s || "").replace(/[&<>"]/g, c =>
@@ -12,6 +49,8 @@
         });
 
     function init(DATA) {
+        updateLcTabState();
+
         const nC = Object.keys(DATA).length;
         const nM = Object.values(DATA).reduce((s, e) => s + e.recs.length, 0);
         document.getElementById("lc-sub").innerHTML =
@@ -68,10 +107,5 @@
             }).join("");
         });
 
-        /* ---- Onglets ---- */
-        const tb = document.getElementById("lc-tbrowse"), ts = document.getElementById("lc-tsearch");
-        const b  = document.getElementById("lc-browse"),  s  = document.getElementById("lc-search");
-        tb.onclick = () => { tb.classList.add("on"); ts.classList.remove("on"); b.classList.remove("lc-hidden"); s.classList.add("lc-hidden"); };
-        ts.onclick = () => { ts.classList.add("on"); tb.classList.remove("on"); s.classList.remove("lc-hidden"); b.classList.add("lc-hidden"); q.focus(); };
     }
 })();
