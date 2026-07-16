@@ -1,9 +1,15 @@
-function updateLcTabState(def="#lc-tbrowse") {
-    const state = (document.location.hash || def).slice(1);
+function updateLcHash() {
+    let tab = document.querySelector(".lc-tab.on");
+    let comite = document.querySelector("#lc-pick").value;
+    if (tab) tab=tab.id;
+    location.hash = `${tab}|${comite}`;
+}
+
+function updateLcTabState(state="lc-tbrowse") {
     const tabs = document.querySelectorAll(".lc-tab");
     
     for (const tab of tabs) {
-        const display = state === tab.id;
+        const display = state .includes(tab.id);
         
         tab.classList.remove("lc-hidden");
         if (display) { tab.classList.add("on") }
@@ -21,20 +27,28 @@ function updateLcTabState(def="#lc-tbrowse") {
             if(foc) foc.focus(); 
         }
     }
-
-    
 }
 
 (()=> {
     document.querySelectorAll(".lc-tab").forEach((e) => {
         e.onclick = ()=> {
-            document.location.hash = e.id;
-            updateLcTabState();
+            updateLcTabState(e.id);
             document.getElementById("lc-q").focus();
-            window.scrollTo({behavior:"instant",top: document.querySelector(".container").offsetTop-200})
+            window.scrollTo({behavior:"instant",top: document.querySelector(".container").offsetTop-200});
+            updateLcHash();
         }
     });
 })();
+
+function normalizeName(str) {
+    return str
+        .normalize("NFD")
+        .replace(/\p{Diacritic}/gu, "")
+        .toLowerCase()
+        .replace(/['’`]/g, "")
+        .replace(/[^a-z0-9]+/g, "-") // toute suite de caractères non autorisés -> -
+        .replace(/^-+|-+$/g, "");    // retire les - en début/fin
+}
 
 (function () {
     const norm = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
@@ -61,10 +75,15 @@ function updateLcTabState(def="#lc-tbrowse") {
         const pick = document.getElementById("lc-pick");
         Object.keys(DATA).sort((a, b) => a.localeCompare(b)).forEach(name => {
             const o = document.createElement("option");
-            o.value = name; o.textContent = name; pick.appendChild(o);
+            o.value = normalizeName(name); o.textContent = name; pick.appendChild(o);
         });
 
+        /** Restaurer un éventuel comité selectionné */
+        const h = location.hash.split('|').slice(1).join('|')
+        if (h) { pick.value = h; }
+
         function renderTable(name) {
+            name = document.querySelector(`#lc-pick [value="${name}"]`).textContent;
             const e = DATA[name], roles = [];
             e.recs.forEach(r => Object.keys(r.r).forEach(k => { if (!roles.includes(k)) roles.push(k); }));
             let h = "<thead><tr><th>N°</th><th>Année</th>" +
@@ -77,7 +96,10 @@ function updateLcTabState(def="#lc-tbrowse") {
             document.getElementById("lc-cmeta").textContent =
                 e.recs.length + " mandats" + (e.c ? " · création " + e.c : "");
         }
-        pick.addEventListener("change", () => renderTable(pick.value));
+        pick.addEventListener("change", () => {
+            renderTable(pick.value);
+            updateLcHash();
+        });
         renderTable(pick.value);
 
         /* ---- Index des personnes ---- */
