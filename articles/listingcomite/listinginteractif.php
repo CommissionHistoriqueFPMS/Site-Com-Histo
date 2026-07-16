@@ -4,6 +4,22 @@ $id = "1listing-interactif";
 baseArticle($title, $id);
 ?>
 
+<!-- Fix "Flicker" barre de Recherche -->
+<style>
+.horizontal-display {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+.sidebar {
+    flex: 0 0 310px;
+}
+.content {
+    flex: 1 0 0;
+    min-width: 0;
+}
+</style>
+
 <p class="lc-sub" id="lc-sub">Chargement…</p>
 
 <div class="lc-tabs">
