@@ -84,6 +84,9 @@ function updateLcTabState(def="#lc-tbrowse") {
         for (const [ename, e] of Object.entries(DATA)) {
             e.recs.forEach(r => {
                 for (const [role, people] of Object.entries(r.r)) {
+                    // Evite d'indexer "Thème(s)" comme étant une personne
+                    if (role === "Thème(s)") continue; 
+
                     people.split(/[+\/,]| et /).forEach(p => {
                         p = p.replace(/\(.*?\)/g, "").trim();
                         if (p.length > 3) (index[p] = index[p] || []).push({ c: ename, role, a: r.a });
