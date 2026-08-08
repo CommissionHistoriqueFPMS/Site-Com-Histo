@@ -1,3 +1,55 @@
+function updateLcHash() {
+    let tab = document.querySelector(".lc-tab.on");
+    let comite = document.querySelector("#lc-pick").value;
+    if (tab) tab=tab.id;
+    location.hash = `${tab}|${comite}`;
+}
+
+function updateLcTabState(state="lc-tbrowse") {
+    const tabs = document.querySelectorAll(".lc-tab");
+    
+    for (const tab of tabs) {
+        const display = state .includes(tab.id);
+        
+        tab.classList.remove("lc-hidden");
+        if (display) { tab.classList.add("on") }
+        else { tab.classList.remove("on") }
+        
+        const elements = document.querySelectorAll(`[data-displaytab="${tab.id}"]`);
+        
+        for (const element of elements) {
+            if (display) { element.classList.remove("lc-hidden"); }
+            else { element.classList.add("lc-hidden"); }
+        }
+
+        if (display) { 
+            const foc = document.querySelector(`[data-displayfocus="${tab.id}"]`); 
+            if(foc) foc.focus(); 
+        }
+    }
+}
+
+(()=> {
+    document.querySelectorAll(".lc-tab").forEach((e) => {
+        e.onclick = ()=> {
+            updateLcTabState(e.id);
+            document.getElementById("lc-q").focus();
+            window.scrollTo({behavior:"instant",top: document.querySelector(".container").offsetTop-200});
+            updateLcHash();
+        }
+    });
+})();
+
+function normalizeName(str) {
+    return str
+        .normalize("NFD")
+        .replace(/\p{Diacritic}/gu, "")
+        .toLowerCase()
+        .replace(/['’`]/g, "")
+        .replace(/[^a-z0-9]+/g, "-") // toute suite de caractères non autorisés -> -
+        .replace(/^-+|-+$/g, "");    // retire les - en début/fin
+}
+
 (function () {
     const norm = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
     const esc  = s => (s || "").replace(/[&<>"]/g, c =>
@@ -12,6 +64,8 @@
         });
 
     function init(DATA) {
+        updateLcTabState();
+
         const nC = Object.keys(DATA).length;
         const nM = Object.values(DATA).reduce((s, e) => s + e.recs.length, 0);
         document.getElementById("lc-sub").innerHTML =
@@ -21,10 +75,15 @@
         const pick = document.getElementById("lc-pick");
         Object.keys(DATA).sort((a, b) => a.localeCompare(b)).forEach(name => {
             const o = document.createElement("option");
-            o.value = name; o.textContent = name; pick.appendChild(o);
+            o.value = normalizeName(name); o.textContent = name; pick.appendChild(o);
         });
 
+        /** Restaurer un éventuel comité selectionné */
+        const h = location.hash.split('|').slice(1).join('|')
+        if (h) { pick.value = h; }
+
         function renderTable(name) {
+            name = document.querySelector(`#lc-pick [value="${name}"]`).textContent;
             const e = DATA[name], roles = [];
             e.recs.forEach(r => Object.keys(r.r).forEach(k => { if (!roles.includes(k)) roles.push(k); }));
             let h = "<thead><tr><th>N°</th><th>Année</th>" +
@@ -37,7 +96,10 @@
             document.getElementById("lc-cmeta").textContent =
                 e.recs.length + " mandats" + (e.c ? " · création " + e.c : "");
         }
-        pick.addEventListener("change", () => renderTable(pick.value));
+        pick.addEventListener("change", () => {
+            renderTable(pick.value);
+            updateLcHash();
+        });
         renderTable(pick.value);
 
         /* ---- Index des personnes ---- */
@@ -45,6 +107,9 @@
         for (const [ename, e] of Object.entries(DATA)) {
             e.recs.forEach(r => {
                 for (const [role, people] of Object.entries(r.r)) {
+                    // Evite d'indexer "Thème(s)" comme étant une personne
+                    if (role === "Thème(s)") continue; 
+
                     people.split(/[+\/,]| et /).forEach(p => {
                         p = p.replace(/\(.*?\)/g, "").trim();
                         if (p.length > 3) (index[p] = index[p] || []).push({ c: ename, role, a: r.a });
@@ -68,10 +133,5 @@
             }).join("");
         });
 
-        /* ---- Onglets ---- */
-        const tb = document.getElementById("lc-tbrowse"), ts = document.getElementById("lc-tsearch");
-        const b  = document.getElementById("lc-browse"),  s  = document.getElementById("lc-search");
-        tb.onclick = () => { tb.classList.add("on"); ts.classList.remove("on"); b.classList.remove("lc-hidden"); s.classList.add("lc-hidden"); };
-        ts.onclick = () => { ts.classList.add("on"); tb.classList.remove("on"); s.classList.remove("lc-hidden"); b.classList.add("lc-hidden"); q.focus(); };
     }
 })();
