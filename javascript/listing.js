@@ -135,3 +135,45 @@ function normalizeName(str) {
 
     }
 })();
+/* ------------------ Suggérer une modification ------------------ */
+(function () {
+    const toggle = document.getElementById("lc-suggest-toggle");
+    const panel  = document.getElementById("lc-suggest");
+    const form   = document.getElementById("lc-suggest-form");
+    if (!toggle || !panel || !form) return;
+
+    /* Nom lisible du cercle actuellement affiché (le <select> stocke un slug) */
+    function currentCercle() {
+        const pick = document.getElementById("lc-pick");
+        const opt  = pick && pick.selectedOptions[0];
+        return opt ? opt.textContent : "";
+    }
+
+    toggle.addEventListener("click", () => {
+        panel.classList.toggle("lc-hidden");
+        const open = !panel.classList.contains("lc-hidden");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        toggle.classList.toggle("on", open);
+        if (!open) return;
+
+        /* Pré-remplissage : on propose le cercle affiché, l'utilisateur peut le changer */
+        const cercle = document.getElementById("lc-s-cercle");
+        if (cercle && !cercle.value) cercle.value = currentCercle();
+        panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+
+    /* Sujet dynamique + retour sur la page (et sur le bon comité) après envoi */
+    form.addEventListener("submit", () => {
+        const cercle = (document.getElementById("lc-s-cercle").value || "").trim();
+        form.querySelector("[name='_subject']").value =
+            "Listing des comités — suggestion de modification" + (cercle ? " · " + cercle : "");
+        form.querySelector("[name='_next']").value =
+            location.origin + location.pathname + "?merci=listing" + location.hash;
+    });
+
+    /* Confirmation au retour de FormSubmit */
+    if (new URLSearchParams(location.search).get("merci") === "listing") {
+        document.getElementById("lc-suggest-ok").classList.remove("lc-hidden");
+        history.replaceState(null, "", location.pathname + location.hash);
+    }
+})();

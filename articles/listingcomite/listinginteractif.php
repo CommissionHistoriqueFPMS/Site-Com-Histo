@@ -37,5 +37,5 @@ baseArticle($title, $id);
     <input class="lc-field" id="lc-q" data-displayfocus="lc-tsearch" type="text" placeholder="Tapez un nom (ex. Musin, Rudodo…)" autocomplete="off">
     <div id="lc-results"><p class="lc-hint">Commencez à taper pour retrouver quelqu'un à travers tous les comités.</p></div>
 </div>
-
+<?php include('include-php/suggestion-listing.php'); ?>
 <script src="/javascript/listing.js"></script>
