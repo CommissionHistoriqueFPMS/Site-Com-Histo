@@ -8,12 +8,25 @@
 <?php include('include-php/navbar.php');?>
 
 
-<div class="header" style="background-image:url(image/headers/st-waudru.jpg);">
-    <h1 class="header-text">
-        <strong>Commission Historique F.P.Ms</strong>
-    </h1>
-</div>
-<div style="height:3rem"></div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Accueil - Commission Historique F.P.Ms</title>
+    <?php include('include-php/header.php');?>
+</head>
+<body class="has-hero">
+<?php include('include-php/navbar.php');?>
+
+<header class="hero">
+    <div class="hero__media" style="background-image:url('image/headers/st-waudru.jpg');"></div>
+    <div class="hero__inner">
+        <h1 class="hero__title">Commission Historique F.P.Ms</h1>
+        <hr class="hero__rule">
+        <p class="hero__sub">Le folklore estudiantin montois, recueilli témoignage par témoignage.</p>
+        <a href="#accueil" class="hero__cta">Nous découvrir</a>
+    </div>
+    <span class="hero__scroll" aria-hidden="true"></span>
+</header>
 
 <div class="container">
     <div class="horizontal-display">

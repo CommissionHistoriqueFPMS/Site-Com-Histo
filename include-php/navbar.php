@@ -49,4 +49,8 @@
             label.parentElement.classList.toggle('open');
         });
     });
+    const navbar = document.querySelector('.navbar');
+    const majNavbar = () => navbar.classList.toggle('is-scrolled', window.scrollY > 40);
+    majNavbar();
+    window.addEventListener('scroll', majNavbar, { passive: true });
 </script>

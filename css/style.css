@@ -179,7 +179,207 @@ th {
     .navbar-links > li > a:hover,
     .nav-dropdown-label:hover { transform: translateX(.5rem); }
 }
+/* ============================ HÉROS D'ACCUEIL ============================ */
+/* Tout est portée par body.has-hero : seul index.php est concerné,
+   les pages de generatePage() ne bougent pas. */
 
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;              /* évite le saut dû à la barre d'URL mobile */
+    display: grid;
+    place-items: center;
+    padding: 8rem 1.5rem 6rem;
+    overflow: hidden;
+    isolation: isolate;
+    box-sizing: border-box;
+}
+
+.hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+}
+
+/* Voile : sombre en haut pour la navbar, doux au centre pour le titre */
+.hero__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(115% 75% at 50% 52%,
+            rgba(12, 7, 8, .52) 0%, rgba(12, 7, 8, .18) 55%, rgba(12, 7, 8, 0) 100%),
+        linear-gradient(to bottom,
+            rgba(12, 7, 8, .58) 0%, rgba(12, 7, 8, .05) 24%,
+            rgba(12, 7, 8, .05) 70%, rgba(12, 7, 8, .42) 100%);
+}
+
+/* Parallaxe uniquement là où c'est fiable (cassé sur iOS) */
+@media (min-width: 826px) and (hover: hover) {
+    .hero__media { background-attachment: fixed; }
+}
+
+.hero__inner {
+    position: relative;
+    text-align: center;
+    color: #fff;
+    max-width: 62rem;
+}
+
+.hero__title {
+    font-family: 'Fondamento', Georgia, serif;
+    font-weight: normal;
+    font-size: clamp(2.5rem, 6.4vw, 5rem);
+    line-height: 1.06;
+    letter-spacing: .01em;
+    margin: 0;
+    color: #fff;
+    text-shadow: 0 2px 28px rgba(0, 0, 0, .5), 0 1px 3px rgba(0, 0, 0, .35);
+}
+
+.hero__rule {
+    width: min(15rem, 60%);
+    height: 1px;
+    margin: 1.6rem auto;
+    border: 0;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, .75), transparent);
+}
+
+.hero__sub {
+    font-family: 'Roboto', system-ui, sans-serif;
+    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+    line-height: 1.65;
+    color: rgba(255, 255, 255, .95);
+    margin: 0 auto 2.2rem;
+    max-width: 46ch;
+    text-shadow: 0 1px 14px rgba(0, 0, 0, .55);
+}
+
+.hero__cta {
+    display: inline-block;
+    font-family: 'Roboto', system-ui, sans-serif;
+    font-size: 1.05rem;
+    font-weight: bold;
+    letter-spacing: .04em;
+    color: #fff;
+    text-decoration: none;
+    background: var(--main-color);
+    border: 1px solid rgba(255, 255, 255, .3);
+    border-radius: .4em;
+    padding: .8rem 2.1rem;
+    transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.hero__cta:hover {
+    background: var(--derive-main-color);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px -14px rgba(0, 0, 0, .85);
+}
+.hero__cta:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+/* Chevron : signale qu'il y a du contenu sous l'image */
+.hero__scroll {
+    position: absolute;
+    left: 50%;
+    bottom: 2rem;
+    translate: -50% 0;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-right: 2px solid rgba(255, 255, 255, .8);
+    border-bottom: 2px solid rgba(255, 255, 255, .8);
+    rotate: 45deg;
+    animation: hero-bob 2.4s ease-in-out infinite;
+}
+@keyframes hero-bob {
+    0%, 100% { transform: translateY(0);      opacity: .55; }
+    50%      { transform: translateY(.45rem); opacity: 1;   }
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero__scroll { animation: none; opacity: .7; }
+}
+
+@media (max-width: 825px) {
+    .hero { padding: 6rem 1.25rem 5rem; }
+    .hero__scroll { display: none; }
+}
+
+/* ---- Navbar par-dessus le héros ---- */
+body.has-hero .navbar-spacer { display: none; }
+
+body.has-hero .navbar {
+    background: transparent;
+    border-bottom-color: transparent;
+    transition: background-color .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+body.has-hero .navbar.is-scrolled {
+    background: var(--main-color);
+    border-bottom-color: var(--derive-main-color);
+    box-shadow: 0 6px 24px -14px rgba(0, 0, 0, .55);
+}
+
+body.has-hero .navbar-links { gap: .6rem; }
+body.has-hero .navbar-links > li > a,
+body.has-hero .nav-dropdown-label { font-size: 1.1rem; }
+
+body.has-hero .navbar-cta {
+    background: var(--main-color);
+    color: #fff;
+    border-color: rgba(255, 255, 255, .35);
+}
+body.has-hero .navbar-cta:hover {
+    background: #fff;
+    color: var(--main-color);
+    border-color: #fff;
+}
+
+/* Navbar sur une seule ligne, sans toucher au HTML de navbar.php */
+@media (min-width: 900px) {
+    body.has-hero .navbar {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding: .35rem 2rem;
+    }
+    body.has-hero .navbar-top {
+        max-width: none;
+        margin: 0;
+        flex: none;
+        padding: 0;
+    }
+    body.has-hero .navbar-menu {
+        max-width: none;
+        margin: 0;
+        flex: 1 1 auto;
+        justify-content: flex-end;
+        gap: 1.5rem;
+        padding: 0;
+    }
+    body.has-hero .navbar-brand span { display: none; }
+    body.has-hero .navbar-brand img { height: 4.2rem; transition: height .35s ease; }
+    body.has-hero .navbar.is-scrolled .navbar-brand img { height: 3.2rem; }
+}
+
+/* Sous 900px : navbar pleine et fixe, sinon le menu déplié devient illisible */
+@media (max-width: 899px) {
+    body.has-hero .navbar,
+    body.has-hero .navbar.is-scrolled {
+        position: fixed;
+        background: var(--main-color);
+        border-bottom-color: var(--derive-main-color);
+    }
+    body.has-hero .navbar-spacer { display: block; height: 5.5rem; }
+}
+
+/* ---- Ancres ---- */
+html { scroll-behavior: smooth; scroll-padding-top: 7rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 /* ============================ FOOTER ============================ */
 .site-footer {
     background-color: var(--main-color);
