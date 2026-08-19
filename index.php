@@ -18,72 +18,74 @@
     <span class="hero__scroll" aria-hidden="true"></span>
 </header>
 
-<div class="container" id="accueil">
-    <div class="horizontal-display">
-        <div class="content">
-            <div class="article-title">Accueil</div>
-            <div class="main-article-content">
-                <p>
-                    Petite terre de défense du folklore estudiantin, la Commission est pour nous l’occasion de relater les diverses
-                    frasques et anecdotes qui jalonnent l’histoire estudiantine de Mons et principalement celles des étudiants de la
-                    Faculté Polytechnique. Pour ce faire, nous rassemblons divers témoignages écrits, oraux et matériels que nous
-                    publierons sur ce site internet.
-                </p>
-                <p>
-                    Toute contribution est donc la bienvenue ! Si vous êtes en possession de documents, objets, souvenirs ou tout
-                simplement d’anecdotes que vous désirez partager, n’hésitez pas à prendre contact avec nous pour que nous puissions
-                en discuter autour d’une excellente bière.
-                </p>
-            </div>
-            
-            <div class="article-title">La Commission Historique</div>
-            <div class="main-article-content">
-                <p>
-                    Depuis des siècles, l’homme est à la recherche de son passé afin de connaître ses origines et de mieux
-                    comprendre son présent. Il en va de même pour nous,
-                    étudiants baptisés de notre chère Faculté Polytechnique de Mons !
-                </p>
-                
-                <p>
-                    C’est donc dans le but de répondre à des questions comme : « A quoi ressemblait la faculté à ses débuts ? » ;
-                    « Quelles sont les origines du cercle Polytech Mons ? » ;
-                    qu’a été crée la Commission Historique il y a quelques années.
-                </p>
-                <p>
-                    Cette dernière est constituée d’un petit groupe d’étudiants voulant
-                    en savoir plus sur le folklore dans lequel ils vivent.
-                </p>
-                
-                <p>
-                    La Commission Historique se charge de recenser des objets, anecdotes et informations relatifs au patrimoine de
-                    la Faculté Polytechnique de Mons et de ses étudiants.
-                </p>
-                <p>
-                    Afin d'exposer au mieux ses trouvailles, la commission utilise un local au onzième étage
-                    de la cité Pierre Houzeau de Lehaie, où nous exposons divers objets historiques et où nous stockons des archives
-                    ainsi que ce site web, permettant à n'importe qui de découvrir l'histoire du folklore de la faculté directement
-                    depuis chez lui.
-                </p>
-                
-                <p>
-                    Les étudiants responsables de la « Com’Histo » sont élus chaque année pour un mandat annuel.
-                    Si tu es étudiant à la Faculté Polytechnique de Mons ou membre actif du cercle Polytech Mons,
-                    n’hésite pas à venir renforcer les rangs de la Commission en prenant contact avec nous !
-                    Tu peux également t'investir de manière plus légère  dans la Com'Histo en nous aidant durant les différentes
-                    expositions, ouvertures ou rangements que nous effectuons.
-                </p>
-                
-                <p>
-                    Et si, par exemple lors d’un bon tri dans le grenier, tu retombes sur des trésors datant de tes années
-                    étudiantes à la Polytech, ou des années de tes parents, n’hésitez pas à nous les partager,
-                    ne fût-ce qu’en photo !
-                </p>
-                
-                <div class="centered-item" style="padding-top:2rem"><a href="contact.php" class="big-button">Contactez-nous !</a></div>
-            </div>
+<section class="accueil" id="accueil">
+    <div class="accueil__inner">
+
+        <div class="accueil__intro">
+            <p>
+                Petite terre de défense du folklore estudiantin, la Commission est pour nous l’occasion de relater
+                les diverses frasques et anecdotes qui jalonnent l’histoire estudiantine de Mons, et principalement
+                celles des étudiants de la Faculté Polytechnique.
+            </p>
         </div>
+
+        <article class="duo">
+            <div class="duo__media">
+                <img src="image/vieetudiante/1931cortege.webp" alt="Cortège estudiantin, 1931">
+            </div>
+            <div class="duo__texte">
+                <h2 class="duo__titre">Ce que nous conservons</h2>
+                <p>
+                    Nous rassemblons des témoignages écrits, oraux et matériels que nous publions ici au fil de
+                    nos trouvailles. Objets, photographies, chants, coupures de presse : tout ce qui documente
+                    le patrimoine de la Faculté Polytechnique et de ses étudiants a sa place dans le fonds.
+                </p>
+                <p>
+                    Nos collections sont exposées dans notre local, au onzième étage de la cité Pierre Houzeau
+                    de Lehaie, où sont également stockées les archives.
+                </p>
+            </div>
+        </article>
+
+        <article class="duo duo--inverse">
+            <div class="duo__media">
+                <img src="image/vieetudiante/1960kot.webp" alt="Kot étudiant, 1960">
+            </div>
+            <div class="duo__texte">
+                <h2 class="duo__titre">Qui nous sommes</h2>
+                <p>
+                    La Commission Historique est un petit groupe d’étudiants baptisés qui veulent en savoir
+                    plus sur le folklore dans lequel ils vivent. Ses responsables sont élus chaque année pour
+                    un mandat annuel.
+                </p>
+                <p>
+                    Si tu es étudiant à la Faculté Polytechnique ou membre actif du cercle Polytech Mons,
+                    viens renforcer nos rangs ou donne un coup de main plus ponctuel lors des expositions
+                    et des ouvertures!
+                </p>
+            </div>
+        </article>
+
+        <article class="duo">
+            <div class="duo__media">
+                <img src="image/headers/145-cortège.jpg" alt="Cortège du 145e anniversaire">
+            </div>
+            <div class="duo__texte">
+                <h2 class="duo__titre">Contribuer au fonds</h2>
+                <p>
+                    Si, lors d’un bon tri dans le grenier, tu retombes sur des trésors datant de tes années
+                    à la Polytech (ou de celles de tes parents) partage-les nous, ne fût-ce qu’en photo.
+                </p>
+                <p>
+                    Documents, objets, souvenirs ou simples anecdotes : prends contact, on en discutera
+                    autour d’une excellente bière.
+                </p>
+                <a href="contact.php" class="big-button duo__bouton">Contactez-nous !</a>
+            </div>
+        </article>
+
     </div>
-</div>
+</section>
 
 <?php include('include-php/footer.php');?>
 

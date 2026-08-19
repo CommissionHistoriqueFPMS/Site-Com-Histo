@@ -10,82 +10,154 @@ function generateSidebarFromArticle($articlePath) {
 
     // Vérifier si les variables ont été trouvées
     if (isset($matchesId[1]) && isset($matchesTitle[1])) {
-        $id = $matchesId[1];
-        $title = $matchesTitle[1];
+        // Échapper guillemets et apostrophes, sinon un titre qui en contient casse le href
+        $id = htmlspecialchars($matchesId[1], ENT_QUOTES);
+        $title = htmlspecialchars($matchesTitle[1], ENT_QUOTES);
 
         // Générer le lien dans la barre latérale
-        echo "<li><a onclick=\"scrollToSection('$id')\">$title</a></li>";
+        // Vrai href au lieu d'un onclick : le lien devient partageable et navigable au clavier
+        // data-spy est lu par main-scripts.js pour surligner la section en cours de lecture
+        echo "<li><a href=\"#$id\" data-spy=\"$id\">$title</a></li>";
     } else {
-        // Afficher une erreur si les variables ne sont pas trouvées
-        echo "Les variables \$id et \$title n'ont pas été trouvées dans le fichier.";
+        // Signaler l'erreur en commentaire HTML, invisible pour les visiteurs
+        echo "<!-- " . basename($articlePath) . " : les variables \$id et \$title n'ont pas été trouvées -->";
     }
 }
 
-function generatePage($pageName, $themesName, $themesPath, $themeEntete) {
+// $sousTitre et $heroImage sont optionnels : les appels existants à 4 arguments fonctionnent toujours
+function generatePage($pageName, $themesName, $themesPath, $themeEntete, $sousTitre = "", $heroImage = "image/headers/st-waudru.jpg") {
+    // Une page à thème unique n'a pas besoin de titres de thème, ils feraient doublon avec le <h1>
+    $multi = count($themesName) > 1;
+
     echo "<!DOCTYPE html>
     <html lang=\"fr\">
     <head>
         <title>$pageName - Commission Historique F.P.Ms</title>";
     include('include-php/header.php');
+
+    // has-hero déclenche la navbar transparente posée par-dessus l'image d'en-tête
     echo"</head>
-    <body>";
+    <body class=\"has-hero\">";
 
     include('include-php/navbar.php');
 
     echo "
-    <div class=\"header\" style=\"background-image:url(image/headers/st-waudru.jpg);\">
-    <h1 class=\"header-text\">
-        <strong>$pageName</strong>
-    </h1>
-    </div>
-    <div style=\"height:3rem\"></div>
-    <div class=\"container\">
-        <div class=\"horizontal-display\">
-            <div class=\"sidebar\">
-                <div class=\"sidebar-content\">
-                    <div class=\"sommaire-title\" >Sommaire</div>
-                        <ul style=\"text-align: justify\">";
+    <header class=\"header\" style=\"background-image:url($heroImage);\">
+        <div class=\"header__inner\">
+            <h1 class=\"header-text\">$pageName</h1>";
+
+    // N'écrire la balise que si le sous-titre existe, sinon un <p> vide laisse une marge
+    if ($sousTitre !== "") {
+        echo "<p class=\"header__sub\">$sousTitre</p>";
+    }
+
+    echo "  </div>
+    </header>
+
+    <div class=\"page\">
+        <div class=\"page__inner\">";
+
+    // <details open> : le <summary> est masqué en CSS au-dessus de 900px, donc impossible de
+    // refermer le sommaire sur grand écran. Repliable sur mobile sans une ligne de JavaScript.
+    echo "
+            <details class=\"sommaire\" open>
+                <summary class=\"sommaire__bouton\">Sommaire</summary>
+                <div class=\"sommaire__sticky\">
+                    <p class=\"sommaire__titre\">Sommaire</p>
+                    <ul class=\"sommaire__liste\">";
 
     for ($i = 0; $i < count($themesName); ++$i) {
-        echo "<li><a onclick=\"scrollToSection('$themesPath[$i]')\">$themesName[$i]</a></li>
-              <ul>";
+        // En multi-thèmes seulement : un niveau de regroupement au-dessus des articles
+        if ($multi) {
+            echo "<li><a href=\"#$themesPath[$i]\" data-spy=\"$themesPath[$i]\">$themesName[$i]</a>
+                  <ul>";
+        }
+
         // Fonction pour extraire les sections d"un articles et les ajouter au sommaire
         $articleDir = "articles/$themesPath[$i]/*.php";
         $articles = glob($articleDir);
         foreach ($articles as $article) {
             generateSidebarFromArticle($article);
         }
-        echo "</ul>";
+
+        if ($multi) {
+            echo "</ul></li>";
+        }
     }
 
-    echo "</ul>
-        </div>
-    </div>
-    <div class=\"content\">";
+    echo "      </ul>
+                </div>
+            </details>
+
+            <div class=\"page__contenu\">";
+
     for ($i = 0; $i < count($themesName); ++$i) {
-        echo "<div class=\"article-title\" id=\"$themesPath[$i]\">$themesName[$i]</div>
-                <div class=\"main-article-content\">
-                $themeEntete[$i]";
+        echo "<section class=\"theme\" id=\"$themesPath[$i]\">";
+
+        if ($multi) {
+            echo "<h2 class=\"theme__titre\">$themesName[$i]</h2>";
+        }
+
+        // main-article-content est nécessaire ici : c'est elle qui active l'habillage des images
+        // trim() attrape aussi les chapôs qui ne contiennent que des retours à la ligne
+        if (trim($themeEntete[$i]) !== "") {
+            echo "<div class=\"theme__entete main-article-content\">$themeEntete[$i]</div>";
+        }
+
         // Fonction pour extraire les sections d"un articles et les ajouter au sommaire
         $articleDir = "articles/$themesPath[$i]/*.php";
         $articles = glob($articleDir);
+
+        // Sans ça un dossier vide produit une section blanche, sans qu'on sache si c'est un bug
+        if (empty($articles)) {
+            echo "<p class=\"theme__vide\">Aucun article publié pour le moment.</p>";
+        }
+
         foreach ($articles as $article) {
             include $article;
-            echo "</div><div class='clear'></div><br>";
+            // Ferme les balises ouvertes par baseArticle(). Le clear annule les float des images
+            // et doit rester DANS le corps de la fiche pour les annuler.
+            echo "<div class='clear'></div></div></article>";
         }
-        echo "</div></div>";
+
+        echo "</section>";
     }
-    echo '</div></div>';
+
+    echo "      </div>
+        </div>
+    </div>";
+
+    // Hors de .page : il est en position fixed, mais l'extraire de la grille évite qu'il en devienne un élément
+    echo "<button class=\"haut\" type=\"button\" aria-label=\"Revenir en haut de la page\"></button>";
+
     include('include-php/footer.php');
     echo '</body></html>';
 }
 
 
+// Signature inchangée : aucun fichier de articles/ n'a besoin d'être modifié
 function baseArticle($articleName, $articleId) {
+    // Échapper pour l'attribut aria-label, qui ne doit pas contenir de HTML
+    $nom = htmlspecialchars($articleName, ENT_QUOTES);
+
     echo "
     <meta charset=\"UTF-8\"> <!-- Important afin d'afficher le \"é\" correctement dans le sommaire -->
-        <div class=\"article-subtitle\" id=\"$articleId\">$articleName</div>
-        <div class=\"article-content\">
+    <article class=\"fiche\">
+        <div class=\"fiche__tete\">
+            <!-- L'id est sur le <h3> et pas sur le <a> : c'est le titre qu'on veut voir arriver
+                 en haut de l'écran, et le CSS lui met un scroll-margin-top pour qu'il ne passe
+                 pas sous la navbar. Le <a> donne un lien direct vers l'anecdote. -->
+            <h3 class=\"fiche__titre\" id=\"$articleId\">
+                <a class=\"fiche__lien\" href=\"#$articleId\">$articleName</a>
+            </h3>
+            <!-- Repli déplacé du titre vers un bouton dédié : avant, rien n'indiquait que le titre
+                 était cliquable, et ça entrerait maintenant en conflit avec le lien d'ancre.
+                 type=\"button\" est obligatoire, sinon le bouton vaut submit dans un formulaire. -->
+            <button class=\"fiche__replier\" type=\"button\" aria-expanded=\"true\" aria-label=\"Replier « $nom »\"></button>
+        </div>
+        <!-- article-content est gardée pour ne pas casser les anciennes règles CSS.
+             Cette div est fermée par generatePage(), pas ici. -->
+        <div class=\"fiche__corps article-content\">
         ";
 }
 
@@ -231,4 +303,3 @@ function addChant($fichier, $air = "", $titre = "") {
     echo "</div>";
 }
 ?>
-
