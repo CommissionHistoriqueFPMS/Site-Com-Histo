@@ -4,16 +4,6 @@
     <title>Accueil - Commission Historique F.P.Ms</title>
     <?php include('include-php/header.php');?>
 </head>
-<body>
-<?php include('include-php/navbar.php');?>
-
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <title>Accueil - Commission Historique F.P.Ms</title>
-    <?php include('include-php/header.php');?>
-</head>
 <body class="has-hero">
 <?php include('include-php/navbar.php');?>
 
@@ -28,7 +18,7 @@
     <span class="hero__scroll" aria-hidden="true"></span>
 </header>
 
-<div class="container">
+<div class="container" id="accueil">
     <div class="horizontal-display">
         <div class="content">
             <div class="article-title">Accueil</div>
