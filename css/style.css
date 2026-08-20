@@ -1265,76 +1265,25 @@ body { background: var(--fond); color: var(--encre); }
 }
 .fiche:last-child { margin-bottom: 0; }
 
-.fiche__tete {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1.2rem;
-    padding-bottom: .7rem;
-    border-bottom: 1px solid var(--filet);
-}
-
 .fiche__titre {
     font-family: 'Fondamento', serif;
     font-weight: bold;
-    font-size: clamp(1.25rem, 2.3vw, 1.65rem);
+    font-size: clamp(1.35rem, 2.3vw, 1.75rem);
     line-height: 1.25;
     color: var(--derive-main-color);
-    margin: 0;
+    margin: 0 0 1.3rem;
+    padding-bottom: .7rem;
+    border-bottom: 1px solid var(--filet);
     scroll-margin-top: 8rem;
 }
 .fiche__lien { color: inherit; text-decoration: none; }
 .fiche__lien:hover { color: var(--main-color); }
 
-/* Le ¶ apparaît au survol : lien direct vers l'anecdote, à copier-coller */
-.fiche__lien::after {
-    content: " ¶";
-    opacity: 0;
-    font-size: .7em;
-    color: var(--main-color);
-    transition: opacity .15s ease;
-}
-.fiche__titre:hover .fiche__lien::after { opacity: .55; }
+/* overflow:hidden contient les images flottantes des articles */
+.fiche__corps { overflow: hidden; }
 
-/* Bouton de repli : un chevron dessiné en CSS, aucune icône à charger */
-.fiche__replier {
-    flex: none;
-    width: 2rem; height: 2rem;
-    margin-top: .15rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    border-radius: var(--r-elem);
-    transition: background-color .15s ease;
-}
-.fiche__replier:hover { background: var(--surface-2); }
-.fiche__replier::before {
-    content: "";
-    position: absolute;
-    top: 50%; left: 50%;
-    width: .6rem; height: .6rem;
-    margin: -.4rem 0 0 -.3rem;
-    border-right: 2px solid var(--encre-douce);
-    border-bottom: 2px solid var(--encre-douce);
-    transform: rotate(45deg);
-    transition: transform .25s ease;
-}
-.fiche.is-replie .fiche__replier::before { transform: rotate(-135deg); margin-top: -.2rem; }
-
-.fiche__corps {
-    overflow: hidden;
-    max-height: 20000px;
-    opacity: 1;
-    transition: max-height .4s ease, opacity .25s ease;
-}
-.fiche.is-replie .fiche__tete { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-.fiche.is-replie .fiche__corps { max-height: 0; opacity: 0; visibility: hidden; }
-
-@media (prefers-reduced-motion: reduce) {
-    .fiche__corps, .fiche__replier::before { transition: none; }
-}
+/* addImage() pose un width en dur : max-width l'emporte et évite le débordement */
+.fiche__corps img { max-width: 100%; height: auto; }
 
 
 /* -----------------------------------------------------------------------------
@@ -1517,4 +1466,67 @@ tr:hover { background: #F4EFEF; }
     .fiche { padding: 1.25rem; scroll-margin-top: 6.5rem; }
     .fiche__titre { scroll-margin-top: 6.5rem; }
     .haut { right: 1rem; bottom: 1rem; }
+}
+
+/* ============================ AJUSTEMENTS MOBILE ============================ */
+
+/* Neutralise la vieille règle .article-content qui centrait tout sous 1200px.
+   .fiche__corps porte les deux classes, il faut donc la désactiver explicitement. */
+@media (max-width: 1200px) {
+    .fiche__corps.article-content {
+        display: block;
+        align-items: initial;
+    }
+}
+
+/* ---- Tablette et petit portable ---- */
+@media (max-width: 900px) {
+    .fiche { padding: 1.4rem 1.25rem; }
+    .fiche__titre {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        padding-bottom: .55rem;
+    }
+    .theme__entete { padding: 1.4rem 1.25rem; font-size: 1rem; }
+    .theme__titre { font-size: 1.5rem; margin-bottom: 1rem; }
+    .theme { margin-bottom: 2.5rem; }
+
+    /* Les images flottantes passent en pleine largeur, sinon les colonnes de
+       texte de 3 mots à côté d'une image de 500px sont illisibles */
+    .fiche__corps .img-left,
+    .fiche__corps .img-right {
+        float: none;
+        display: block;
+        width: 100% !important;
+        margin: 1rem 0;
+    }
+
+    /* Les tableaux larges défilent au lieu de faire déborder la carte */
+    .fiche__corps .table-container,
+    .fiche__corps .lc-scroll { max-width: 100%; overflow-x: auto; }
+
+    .chant { max-width: 100%; padding: 1em 1.1em; }
+    .sources { text-align: left; font-size: .9rem; }
+}
+
+/* ---- Téléphone ---- */
+@media (max-width: 560px) {
+    .page { padding: 1.5rem .75rem 2.5rem; }
+    .fiche { padding: 1.15rem 1rem; border-radius: 10px; }
+    .fiche__titre { font-size: 1.15rem; line-height: 1.3; }
+    .theme__titre { font-size: 1.35rem; }
+    .theme__entete { padding: 1.15rem 1rem; border-radius: 10px; }
+
+    p { line-height: 1.65; }
+    .fiche__corps { font-size: .98rem; }
+
+    /* Le sommaire dépliant occupe toute la largeur disponible */
+    .sommaire { border-radius: 10px; }
+    .sommaire__bouton { font-size: 1.1rem; padding: .85rem 1rem; }
+    .sommaire__liste a { padding: .55rem .6rem; }
+
+    /* Éviter qu'un mot long (nom composé, URL) fasse déborder la carte */
+    .fiche__titre, .fiche__corps { overflow-wrap: break-word; }
+
+    .haut { width: 2.6rem; height: 2.6rem; right: .8rem; bottom: .8rem; }
 }

@@ -137,19 +137,15 @@ function generatePage($pageName, $themesName, $themesPath, $themeEntete, $sousTi
 
 // Signature inchangée : aucun fichier de articles/ n'a besoin d'être modifié
 function baseArticle($articleName, $articleId) {
-    // Échapper pour l'attribut aria-label, qui ne doit pas contenir de HTML
-    $nom = htmlspecialchars($articleName, ENT_QUOTES);
-
     echo "
     <meta charset=\"UTF-8\"> <!-- Important afin d'afficher le \"é\" correctement dans le sommaire -->
     <article class=\"fiche\">
-        <div class=\"fiche__tete\">
-            <!-- L'id est sur le <h3> et pas sur le <a> : c'est le titre qu'on veut voir arriver
-                 en haut de l'écran, et le CSS lui met un scroll-margin-top pour qu'il ne passe
-                 pas sous la navbar. Le <a> donne un lien direct vers l'anecdote. -->
-            <h3 class=\"fiche__titre\" id=\"$articleId\">
-                <a class=\"fiche__lien\" href=\"#$articleId\">$articleName</a>
-            </h3>
+        <!-- L'id est sur le <h3> et pas sur le <a> : c'est le titre qu'on veut voir arriver
+             en haut de l'écran, et le CSS lui met un scroll-margin-top pour qu'il ne passe
+             pas sous la navbar. Le <a> donne un lien direct vers l'anecdote. -->
+        <h3 class=\"fiche__titre\" id=\"$articleId\">
+            <a class=\"fiche__lien\" href=\"#$articleId\">$articleName</a>
+        </h3>
         <!-- article-content est gardée pour ne pas casser les anciennes règles CSS.
              Cette div est fermée par generatePage(), pas ici. -->
         <div class=\"fiche__corps article-content\">
