@@ -1530,3 +1530,126 @@ tr:hover { background: #F4EFEF; }
 
     .haut { width: 2.6rem; height: 2.6rem; right: .8rem; bottom: .8rem; }
 }
+
+/* ============================ ZOOM SUR LES IMAGES ============================ */
+
+.zoomable { cursor: zoom-in; transition: opacity .15s ease; }
+.zoomable:hover { opacity: .88; }
+.zoomable:focus-visible { outline: 2px solid var(--main-color); outline-offset: 3px; }
+
+/* L'overlay des albums capte le clic à la place de l'image : on le laisse passer */
+.image-container .overlay { pointer-events: none; }
+
+body.zoom-ouvert { overflow: hidden; }
+
+.zoom {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 4vw, 3rem);
+    background: rgba(12, 7, 8, .92);
+    opacity: 0;
+    transition: opacity .2s ease;
+}
+.zoom.is-ouvert { display: flex; opacity: 1; }
+
+.zoom__figure {
+    margin: 0;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .9rem;
+}
+.zoom__img {
+    display: block;
+    max-width: 92vw;
+    max-height: 84vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--r-elem);
+    box-shadow: 0 24px 60px -20px rgba(0, 0, 0, .9);
+    cursor: default;
+}
+.zoom__legende {
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, .6);
+}
+
+/* ---- Croix de fermeture ---- */
+.zoom__fermer {
+    position: absolute;
+    top: 1.2rem; right: 1.2rem;
+    width: 2.8rem; height: 2.8rem;
+    background: rgba(255, 255, 255, .12);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+.zoom__fermer:hover { background: rgba(255, 255, 255, .25); }
+.zoom__fermer::before,
+.zoom__fermer::after {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 1.1rem; height: 2px;
+    margin: -1px 0 0 -.55rem;
+    background: #fff;
+}
+.zoom__fermer::before { transform: rotate(45deg); }
+.zoom__fermer::after  { transform: rotate(-45deg); }
+
+/* ---- Flèches de navigation ---- */
+.zoom__nav {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    width: 3.2rem; height: 3.2rem;
+    background: rgba(255, 255, 255, .12);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+.zoom__nav:hover { background: rgba(255, 255, 255, .25); }
+.zoom__nav[hidden] { display: none; }
+.zoom__nav--prec { left: 1.2rem; }
+.zoom__nav--suiv { right: 1.2rem; }
+.zoom__nav::before {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    width: .75rem; height: .75rem;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+}
+.zoom__nav--prec::before { margin: -.4rem 0 0 -.25rem; transform: rotate(-45deg); }
+.zoom__nav--suiv::before { margin: -.4rem 0 0 -.5rem;  transform: rotate(135deg); }
+
+@media (prefers-reduced-motion: reduce) {
+    .zoom, .zoomable, .zoom__fermer, .zoom__nav { transition: none; }
+}
+
+/* ---- Mobile : flèches en bas, plus de conflit avec le pouce sur l'image ---- */
+@media (max-width: 700px) {
+    .zoom { padding: 3.5rem .5rem 5rem; }
+    .zoom__img { max-width: 96vw; max-height: 72vh; }
+    .zoom__fermer { top: .8rem; right: .8rem; width: 2.4rem; height: 2.4rem; }
+    .zoom__nav {
+        top: auto;
+        bottom: 1rem;
+        translate: none;
+        width: 2.8rem; height: 2.8rem;
+    }
+    .zoom__nav--prec { left: 25%; }
+    .zoom__nav--suiv { right: 25%; }
+    .zoom__legende { font-size: .9rem; }
+}
