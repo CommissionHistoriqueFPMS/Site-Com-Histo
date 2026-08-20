@@ -150,11 +150,6 @@ function baseArticle($articleName, $articleId) {
             <h3 class=\"fiche__titre\" id=\"$articleId\">
                 <a class=\"fiche__lien\" href=\"#$articleId\">$articleName</a>
             </h3>
-            <!-- Repli déplacé du titre vers un bouton dédié : avant, rien n'indiquait que le titre
-                 était cliquable, et ça entrerait maintenant en conflit avec le lien d'ancre.
-                 type=\"button\" est obligatoire, sinon le bouton vaut submit dans un formulaire. -->
-            <button class=\"fiche__replier\" type=\"button\" aria-expanded=\"true\" aria-label=\"Replier « $nom »\"></button>
-        </div>
         <!-- article-content est gardée pour ne pas casser les anciennes règles CSS.
              Cette div est fermée par generatePage(), pas ici. -->
         <div class=\"fiche__corps article-content\">
