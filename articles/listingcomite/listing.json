@@ -2261,7 +2261,7 @@
 "r": {
 "Thème(s)": "Front'Alice au pays des merveilles",
 "President": "Jérémy Dumont",
-"Vice-Président": "raphael Bury",
+"Vice-Président": "Raphael Bury",
 "Trésorier": "Lucie Lefebvre",
 "Secrétaire": "Arnaud Rossel",
 "DRIR - Délégué aux Relations Inter-Régionales": "Loic Fourneau"
@@ -8835,12 +8835,20 @@
 "g": "Commissions",
 "c": "2011",
 "recs": [
+  {
+"n": "188",
+"a": "2026-2027",
+"r": {"Responsable officiel (début 188)": "Raphaël Platteau Holvoet",
+"Responsable": "Arthur Janssens + Arthur Maton",
+"Webmaster": "Hugo Quintart"
+}
+},
 {
 "n": "187",
 "a": "2025-2026",
 "r": {
 "Responsable officiel (début 188)": "Théo Flamme",
-"Responsable": "Lucy Bogeart",
+"Responsable": "Lucy Bogaert",
 "Webmaster": "Auguste Cordier"
 }
 },
