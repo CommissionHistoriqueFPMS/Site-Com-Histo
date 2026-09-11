@@ -7266,6 +7266,14 @@
 "c": "> 1965",
 "recs": [
 {
+"n": "188",
+"a": "2026-2027",
+"r": {
+"Président": "Antonin Meunier",
+"Trésorier (Secrétaire jusqu'en 186, Délégué Electronique jusque 166)": ""
+}
+},
+{
 "n": "187",
 "a": "2025-2026",
 "r": {
@@ -8799,6 +8807,13 @@
 "c": "2020",
 "recs": [
 {
+"n": "188",
+"a": "2026-2027",
+"r": {
+"Responsable": "Margaux Wolf Bayot + Marion André + Charline Bellet + Eva Kabelis + Guillaume Chamart"
+}
+},
+{
 "n": "187",
 "a": "2025-2026",
 "r": {
@@ -9000,7 +9015,7 @@
 "n": "188",
 "a": "2026-2027",
 "r": {
-"Webmaster": "Martin Coghetto"
+"Webmaster": "Damien Callewaert + Martin Coghetto +Florian Lefebvre"
 }
 },
 {
