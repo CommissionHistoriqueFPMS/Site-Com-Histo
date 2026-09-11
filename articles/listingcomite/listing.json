@@ -7270,9 +7270,9 @@
 "a": "2026-2027",
 "r": {
 "Président": "Antonin Meunier",
-"S": "",
+"Sec": "",
 "Délégué matériel": "",
-"Tr": "",
+"Tré": "",
 "Délégué Electronique": ""
 }
 },
@@ -7281,7 +7281,7 @@
 "a": "2025-2026",
 "r": {
 "Président": "Martin Vleminck",
-"T": "Antonin Meunier"
+"Tr": "Antonin Meunier"
 }
 },
 {
@@ -7289,7 +7289,7 @@
 "a": "2024-2025",
 "r": {
 "Président": "Raphaël Delens",
-"S": "Martin Vleminck"
+"Sec": "Martin Vleminck"
 }
 },
 {
@@ -7297,7 +7297,7 @@
 "a": "2023-2024",
 "r": {
 "Président": "Nathan Marcus",
-"S": "Audran Duquène"
+"Sec": "Audran Duquène"
 }
 },
 {
@@ -7305,7 +7305,7 @@
 "a": "2022-2023",
 "r": {
 "Président": "Gregoire Pottiez",
-"S": "Nathan Marcus"
+"Sec": "Nathan Marcus"
 }
 },
 {
@@ -7313,7 +7313,7 @@
 "a": "2021-2022",
 "r": {
 "Président": "Nicolas Thils",
-"S": "Grégoire Pottiez"
+"Sec": "Grégoire Pottiez"
 }
 },
 {
@@ -7321,7 +7321,7 @@
 "a": "2020-2021",
 "r": {
 "Président": "Nicolas Kuntz",
-"S": "Nicolas Thils"
+"Sec": "Nicolas Thils"
 }
 },
 {
@@ -7329,7 +7329,7 @@
 "a": "2019-2020",
 "r": {
 "Président": "Sédrick Stassin",
-"S": "Nicolas Kuntz"
+"Sec": "Nicolas Kuntz"
 }
 },
 {
@@ -7337,7 +7337,7 @@
 "a": "2018-2019",
 "r": {
 "Président": "Arnaud Bougard",
-"S": "Sédrick Stassin"
+"Sec": "Sédrick Stassin"
 }
 },
 {
@@ -7345,7 +7345,7 @@
 "a": "2017-2018",
 "r": {
 "Président": "Arnaud Bougard",
-"S": "Chloé Ponsart"
+"Sec": "Chloé Ponsart"
 }
 },
 {
@@ -7353,7 +7353,7 @@
 "a": "2016-2017",
 "r": {
 "Président": "Charles Grimonprez",
-"S": "Théo Poissonnier"
+"Sec": "Théo Poissonnier"
 }
 },
 {
@@ -7361,7 +7361,7 @@
 "a": "2015-2016",
 "r": {
 "Président": "Christophe Nachtergaele",
-"S": "Charles Grimonprez"
+"Sec": "Charles Grimonprez"
 }
 },
 {
@@ -7369,7 +7369,7 @@
 "a": "2014-2015",
 "r": {
 "Président": "Renaud Marlière",
-"S": "Christophe Nachtergaele"
+"Sec": "Christophe Nachtergaele"
 }
 },
 {
@@ -7377,7 +7377,7 @@
 "a": "2013-2014",
 "r": {
 "Président": "Gauthier Cherdon",
-"S": "Renaud Marlière"
+"Sec": "Renaud Marlière"
 }
 },
 {
@@ -7385,7 +7385,7 @@
 "a": "2012-2013",
 "r": {
 "Président": "Edwin Denil",
-"S": "Mehdi Khemir"
+"Sec": "Mehdi Khemir"
 }
 },
 {
@@ -7393,7 +7393,7 @@
 "a": "2011-2012",
 "r": {
 "Président": "François Piraux",
-"S": "Valentin Honoré"
+"Sec": "Valentin Honoré"
 }
 },
 {
@@ -7401,7 +7401,7 @@
 "a": "2010-2011",
 "r": {
 "Président": "Raphaël Renard",
-"S": "Morison Tollet"
+"Sec": "Morison Tollet"
 }
 },
 {
@@ -7409,7 +7409,7 @@
 "a": "2009-2010",
 "r": {
 "Président": "Natalia Lebedeff",
-"S": "Yves Vandekerkhove"
+"Sec": "Yves Vandekerkhove"
 }
 },
 {
@@ -7417,7 +7417,7 @@
 "a": "2008-2009",
 "r": {
 "Président": "Natalia Lebedeff (Simon Coubeau)",
-"S": "Yves Vandekerkhove (Natalia Lebedeff)"
+"Sec": "Yves Vandekerkhove (Natalia Lebedeff)"
 }
 },
 {
@@ -7425,7 +7425,7 @@
 "a": "2007-2008",
 "r": {
 "Président": "Vincent Antoine",
-"S": "Benoit Wallecan"
+"Sec": "Benoit Wallecan"
 }
 },
 {
@@ -7433,7 +7433,7 @@
 "a": "2006-2007",
 "r": {
 "Président": "Stéphane Waeyenbergh",
-"S": "Vincent Antoine"
+"Sec": "Vincent Antoine"
 }
 },
 {
@@ -7441,7 +7441,7 @@
 "a": "2005-2006",
 "r": {
 "Président": "Gonsette Charles-Etienne",
-"S": "Lecrenier Benjamin"
+"Sec": "Lecrenier Benjamin"
 }
 },
 {
