@@ -14,6 +14,18 @@ baseArticle($title,$id);
     Députation Permanente et, le 1er novembre de la même année, les cours s’ouvrent dans un local offert par la Ville de Mons.
     Les crédits annuels sont alloués par la Province de Hainaut et par la Ville de Mons. Les premiers cours de l’<b>École
         Provinciale des Mines du Hainaut</b> (1837-1838) auront lieu le premier lundi de novembre 1837
+</p>
+<p>
+    Il faut mesurer ce que l'initiative avait d'audacieux : aucune école d'ingénieurs n'existait
+    alors en Belgique. L'École des Mines de l'Université de Liège ne naîtra que la même année 1837
+    et l'École du Génie Civil de l'Université de Gand en 1838, toutes deux comme écoles de
+    spécialités. Thorn, lui, avait pris pour modèle l'École Centrale de Paris et sa formation
+    d'ingénieurs polyvalents, l'ancêtre de notre ingénieur civil.
+</p>
+<p>
+    Le local offert par la Ville se situait au n° 5 de la rue des Ursulines, dans l'ancien hôtel de
+    la famille de Fouleng. L'École y restera plus de quarante ans, jusqu'en 1879. Les quatre
+    diplômés de la toute première promotion en sortiront en 1839, après deux années d'études.
 </p><p>
     Suite à l'annonce dans la presse de la vacance des différentes chaires, Théophile Guibal et Barthélémi-Adolphe Devillez,
     deux jeunes et brillants ingénieurs issus de l'Ecole Centrale de Paris, postulent et sont choisis. Ils sont
