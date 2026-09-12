@@ -605,7 +605,18 @@ p {
 .horizontal-display .content {
     text-align: justify;
 }
+.fiche__corps p,
+.main-article-content p {
+    text-align: justify;
+    hyphens: auto;
+}
 
+@media (max-width: 825px) {
+    .fiche__corps p,
+    .main-article-content p {
+        text-align: left;
+    }
+}
 .container {
     display: flex;
     margin: 0 auto 3rem auto;   /* haut | côtés (auto) | bas | */
@@ -1686,4 +1697,32 @@ body.zoom-ouvert { overflow: hidden; }
 .js-reveal .duo.is-visible {
     opacity: 1;
     transform: none;
+}
+/* ============================ ALBUMS PHOTO ============================ */
+
+.album {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.album__case {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.album .img-album {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+}
+
+.album__legende {
+    font-family: 'Fondamento', serif;
+    text-align: center;
+    padding-top: .4rem;
 }
