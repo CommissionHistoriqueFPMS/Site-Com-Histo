@@ -1698,31 +1698,59 @@ body.zoom-ouvert { overflow: hidden; }
     opacity: 1;
     transform: none;
 }
+
 /* ============================ ALBUMS PHOTO ============================ */
 
 .album {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .55rem;
     margin: 1.5rem 0;
 }
 
 .album__case {
     margin: 0;
-    display: flex;
-    flex-direction: column;
+    flex-grow: var(--ratio);
+    flex-basis: calc(var(--ratio) * 14rem);   /* 14rem = hauteur de rangée visée */
+    max-width: 100%;
 }
 
 .album .img-album {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border-radius: 6px;
     display: block;
+    width: 100%;
+    aspect-ratio: var(--ratio);
+    border-radius: 6px;
 }
 
 .album__legende {
     font-family: 'Fondamento', serif;
     text-align: center;
-    padding-top: .4rem;
+    padding-top: .35rem;
+}
+
+/* Empêche la dernière rangée incomplète de s'étirer démesurément */
+.album::after {
+    content: "";
+    flex-grow: 999999;
+}
+
+.album__bascule { display: none; }
+
+@media (max-width: 825px) {
+    .album__bascule {
+        display: block;
+        width: 100%;
+        margin: 1.5rem 0 0;
+        padding: .7rem 1rem;
+        font-family: 'Fondamento', serif;
+        font-size: 1.05rem;
+        color: #fff;
+        background: var(--main-color);
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .album--repliable { display: none; }
+    .album--repliable.est-ouvert { display: flex; }
 }

@@ -21,7 +21,7 @@ Son plus grand projet annuel reste la construction du char qui défile fièremen
 
 <h4>Listing des Chars</h4>
 <?php
-createAlbum("image/cerclefedere/chars/");
+createAlbum("image/cerclefedere/chars/", true);
 ?>
 
 

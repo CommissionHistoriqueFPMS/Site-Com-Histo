@@ -140,8 +140,22 @@ document.addEventListener("DOMContentLoaded", function() {
             if (e.key === 'ArrowRight') afficher(index + 1);
         });
     })();
+    /* ---------- Repli des albums sur mobile ---------- */
+    (() => {
+        document.querySelectorAll('.album__bascule').forEach(bouton => {
+            const album = document.getElementById(bouton.getAttribute('aria-controls'));
+            if (!album) return;
+
+            bouton.addEventListener('click', () => {
+                const ouvert = album.classList.toggle('est-ouvert');
+                bouton.setAttribute('aria-expanded', ouvert);
+                bouton.textContent = ouvert ? 'Masquer les photos' : bouton.dataset.libelle;
+            });
+        });
+    })();
 });
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+    

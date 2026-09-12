@@ -204,23 +204,43 @@ function generateTable($headers, $contents) {
     echo "</tbody></table></div>";
 }
 
-function createAlbum($directory) {
-    $images = glob("$directory/*.*");
-    natcasesort($images);   // 9.jpg avant 10.jpg, ce que glob ne fait pas
+function createAlbum($directory, $masquerSurMobile = false) {
+    $images = glob(rtrim($directory, '/') . "/*.*");
+    if (!$images) return;
+    natcasesort($images);
 
-    echo '<div class="album">';
+    $id      = 'album-' . substr(md5($directory), 0, 6);
+    $libelle = 'Afficher les photos (' . count($images) . ')';
+
+    if ($masquerSurMobile) {
+        echo '<button type="button" class="album__bascule"
+                      aria-controls="' . $id . '" aria-expanded="false"
+                      data-libelle="' . $libelle . '">' . $libelle . '</button>';
+    }
+
+    echo '<div class="album' . ($masquerSurMobile ? ' album--repliable' : '') . '" id="' . $id . '">';
+
     foreach ($images as $image) {
         $legende = pathinfo($image, PATHINFO_FILENAME);
+
+        $ratio  = 1.5;                       // repli si l'image est illisible
+        $taille = @getimagesize($image);
+        if ($taille && $taille[1] > 0) {
+            $ratio = round($taille[0] / $taille[1], 4);
+        }
+
         echo '
-        <figure class="album__case">
+        <figure class="album__case" style="--ratio: ' . $ratio . ';">
             <img src="' . htmlspecialchars($image) . '"
                  alt="' . htmlspecialchars($legende) . '"
                  class="img-album" loading="lazy">
             <figcaption class="album__legende">' . htmlspecialchars($legende) . '</figcaption>
         </figure>';
     }
+
     echo '</div>';
 }
+
 function addChant($fichier, $air = "", $titre = "") {
     echo "<div class='chant'>";
 
