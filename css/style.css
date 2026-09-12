@@ -1673,3 +1673,17 @@ body.zoom-ouvert { overflow: hidden; }
 @media (min-width: 1900px) {
     html { font-size: 17px; }
 }
+/* ============ Apparition des blocs au défilement (javascript/reveal.js) ============ */
+
+.js-reveal .accueil__intro,
+.js-reveal .duo {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .7s ease-out, transform .7s ease-out;
+}
+
+.js-reveal .accueil__intro.is-visible,
+.js-reveal .duo.is-visible {
+    opacity: 1;
+    transform: none;
+}

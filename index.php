@@ -3,6 +3,7 @@
 <head>
     <title>Accueil - Commission Historique F.P.Ms</title>
     <?php include('include-php/header.php');?>
+    <script src="/javascript/reveal.js"></script>
 </head>
 <body class="has-hero">
 <?php include('include-php/navbar.php');?>
