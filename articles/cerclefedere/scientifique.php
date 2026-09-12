@@ -3,6 +3,21 @@ $title ="Scientifique";
 $id = "scientifique";
 baseArticle($title,$id);
 ?>
+On dit souvent qu’un ingénieur civil ne sait pas utiliser ses dix doigts et encore moins planter des clous… Le Cercle Scientifique est là pour y remédier !<br><br>
+
+Ce cercle est avant tout tourné vers l’aide aux étudiants et aux autres cercles de la Faculté.<br>
+Que ce soit pour de petites réparations dans votre kot (problème d’armoire, fenêtre coincée, etc.), le Cercle Scientifique est disponible tout au long de l’année !<br><br>
+
+Le Scientifique peut également prêter gratuitement du matériel de bricolage de bonne qualité (visseuses, scies sauteuses, marteaux, pieds-de-biche, etc.) pour vos projets académiques ou personnels.<br><br>
+
+Il s’implique aussi dans deux des trois méchouis annuels et organise chaque année depuis dix ans la BGT (Big Guinze Theory), en collaboration avec le Cercle Radio Extra et le Cercle Magellan.<br>
+Son plus grand projet annuel reste la construction du char qui défile fièrement dans les rues de Mons depuis plus de 50 ans lors du cortège des étudiants, le jour du Baptême !<br>
+<h4>Oripeaux</h4>
+<ul>
+<li>Ancien drapeau : un drapeau belge trop grand, toujours conservé au 700.</li>
+<li>Drapeau floqué : anecdotique : le drapeau a été sectionné par les chaînes du kuistax lors des kuistax 2024, puis réparé.</li>
+<li>Drapeau synthétique : avec le logo du cercle scientifique.</li>
+</ul>
 
 <h4>Listing des Chars</h4>
 <?php

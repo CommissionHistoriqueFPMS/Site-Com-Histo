@@ -206,70 +206,20 @@ function generateTable($headers, $contents) {
 
 function createAlbum($directory) {
     $images = glob("$directory/*.*");
-    echo ' <style>       
-         .image-container {
-             display: flex; 
-             flex-direction: column; 
-             align-items: center; 
-             position: relative; 
-             float:left; 
-             max-width: 450px; 
-             width: auto; 
-             max-height: 500px; 
-             height: auto;
-         }
-        .image-container .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); 
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .image-container:hover .overlay {
-            opacity: 1;
-        }
+    natcasesort($images);   // 9.jpg avant 10.jpg, ce que glob ne fait pas
 
-        .overlay-text {
-            font-size: 24px;
-            text-align: center;
-        } 
-        .img-album {
-        max-width: 450px; width: auto; max-height: 500px; height: auto;
-        }
-        
-        @media (max-width: 825px) {
-            .image-container {
-            max-width: 90%;
-            }
-            .img-album {
-            max-width: 100%;
-            }
-        }
-        </style>';
+    echo '<div class="album">';
     foreach ($images as $image) {
-        $promo = "img";
-        $lastBackslash = strrpos($image, '/');
-        $lastDot = strrpos($image, '.');
-        if ($lastBackslash !== false && $lastDot !== false && $lastBackslash < $lastDot) {
-            $promo = substr($image, $lastBackslash + 1, $lastDot - $lastBackslash - 1);
-        }
+        $legende = pathinfo($image, PATHINFO_FILENAME);
         echo '
-        <div class="image-container" style = "">
-            <img src=" ' . $image . '" alt="' . $promo . '" class="img-album" style="">
-            <div class="overlay" style="float:none;">
-                <div class="overlay-text"  style="float:none;">' . $promo . '</div>
-            </div>
-        </div>
-        ';
-//        addImage($image, 450, "left", "float:none; max-height: 500px;max-width:450px; width:auto; height:auto;");
+        <figure class="album__case">
+            <img src="' . htmlspecialchars($image) . '"
+                 alt="' . htmlspecialchars($legende) . '"
+                 class="img-album" loading="lazy">
+            <figcaption class="album__legende">' . htmlspecialchars($legende) . '</figcaption>
+        </figure>';
     }
+    echo '</div>';
 }
 function addChant($fichier, $air = "", $titre = "") {
     echo "<div class='chant'>";
