@@ -22,7 +22,13 @@
 
    Champs optionnels :
      'resume'  => texte court affiché sous le titre ;
-     'affiche' => image locale qui remplace la miniature YouTube (ex. image/revue/2025.jpg).
+     'affiche' => image locale qui remplace la miniature YouTube (ex. image/revue/2025.jpg) ;
+     'sortie'  => '2026-12-05 20:00' (heure de Bruxelles) ou 'bientôt' si la date n'est
+                  pas encore connue. Tant que la revue n'est pas sortie, elle n'apparaît
+                  qu'en tête d'affiche « Coming soon » (avec compte à rebours si datée) :
+                  titre, résumé et affiche visibles, vidéo jamais envoyée au navigateur.
+                  'videos' peut alors rester vide : la revue reste annoncée tant qu'elle
+                  n'a pas de vidéo, même une fois la date passée.
 
    Les apostrophes du texte s'échappent : 'L\'Odyssée'. Les guillemets doubles
    du code YouTube, eux, passent sans rien faire.
@@ -34,7 +40,7 @@ return [
     //     'annee'  => '2028',
     //     'titre'  => 'Titre de la revue',
     //     'resume' => 'Une ou deux phrases sur le thème et l\'intrigue.',
-    //      'sortie' => '2026-12-05 20:00', pour set up un countdown
+    //     'sortie' => '2026-12-05 20:00',   // ou 'bientôt'
     //     'videos' => [
     //         '<iframe width="560" height="315" src="https://www.youtube.com/embed/XXXXXXXXXXX" …></iframe>',
     //     ],
@@ -43,7 +49,7 @@ return [
         'annee'  => '2023',
         'titre'  => 'Imayini',
         'resume' => '',
-        'sortie' => '2026-11-03 10:00',
+        'sortie' => 'bientôt',
         'videos' => ['Enregistrement complet' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/dG32TwFu1Xg?si=V7CW6-mvHPBOZT7t" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'],
     ],
     [

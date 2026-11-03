@@ -63,11 +63,21 @@ function revueAnneeTri($annee) {
     return preg_match('/\d{4}/', (string) $annee, $m) ? (int) $m[0] : 0;
 }
 
+/* Valeurs spéciales de 'sortie'. Ce sont les deux plus grands entiers : une revue
+   ainsi marquée est toujours « dans le futur », et une vraie date passe devant. */
+const REVUE_SANS_DATE = PHP_INT_MAX - 1;   // annoncée, date encore inconnue
+const REVUE_CACHEE    = PHP_INT_MAX;       // date illisible : n'apparaît nulle part
+
 /* Date de sortie "AAAA-MM-JJ HH:MM", heure de Bruxelles, quel que soit le fuseau
-   du serveur. Renvoie un timestamp, null si absente, false si illisible. */
+   du serveur, ou 'bientôt' sans date. Renvoie un timestamp, REVUE_SANS_DATE,
+   null si absente, false si illisible. */
 function revueSortie($texte) {
     $texte = trim((string) $texte);
     if ($texte === '') return null;
+    // strtolower ne touche que l'ASCII : le « ô » est remplacé avant (pas de mbstring requis)
+    if (in_array(strtolower(str_replace(['ô', 'Ô'], 'o', $texte)), ['bientot', 'coming soon', 'soon'], true)) {
+        return REVUE_SANS_DATE;
+    }
     $date = DateTimeImmutable::createFromFormat('!Y-m-d H:i', $texte, new DateTimeZone('Europe/Brussels'))
          ?: DateTimeImmutable::createFromFormat('!Y-m-d', $texte, new DateTimeZone('Europe/Brussels'));
     return $date ? $date->getTimestamp() : false;
@@ -113,16 +123,17 @@ function revueCharger($fichier) {
             ];
         }
 
-        if ($titre === '' || !$parties) {
-            echo "<!-- revues.php, entrée $n : titre ou vidéo manquant, revue ignorée -->";
-            continue;
-        }
-
         $sortie = revueSortie($brute['sortie'] ?? '');
         if ($sortie === false) {
             // Une date mal écrite garde la revue cachée : mieux vaut un oubli qu'une fuite
-            echo "<!-- revues.php, entrée $n : date de sortie illisible (format AAAA-MM-JJ HH:MM), revue cachée -->";
-            $sortie = PHP_INT_MAX;
+            echo "<!-- revues.php, entrée $n : date de sortie illisible (AAAA-MM-JJ HH:MM ou 'bientôt'), revue cachée -->";
+            $sortie = REVUE_CACHEE;
+        }
+
+        // Sans vidéo, seule une revue annoncée (avec une 'sortie') a un sens
+        if ($titre === '' || (!$parties && $sortie === null)) {
+            echo "<!-- revues.php, entrée $n : titre ou vidéo manquant, revue ignorée -->";
+            continue;
         }
 
         // Identifiant d'ancre stable et unique : revue-2025, revue-2025-2…
@@ -159,9 +170,13 @@ function revueSeparerSorties($revues, $maintenant) {
     $publiees  = [];
     $prochaine = null;
     foreach ($revues as $r) {
-        if ($r['sortie'] === null || $r['sortie'] <= $maintenant) {
-            $publiees[] = $r;
-        } elseif ($r['sortie'] !== PHP_INT_MAX && (!$prochaine || $r['sortie'] < $prochaine['sortie'])) {
+        $sortie = $r['sortie'] ?? 0;
+        if ($sortie <= $maintenant) {
+            if ($r['parties']) { $publiees[] = $r; continue; }
+            // Date passée mais vidéo pas encore en ligne : reste annoncée, sans compte à rebours
+            $r['sortie'] = $sortie = REVUE_SANS_DATE;
+        }
+        if ($sortie !== REVUE_CACHEE && (!$prochaine || $sortie < $prochaine['sortie'])) {
             $prochaine = $r;
         }
     }
@@ -218,9 +233,12 @@ function revueAfficheEnTete($r) {
     </header>';
 }
 
-/* Tête d'affiche d'une revue pas encore sortie. N'utilise que des données sans
-   lien avec la vidéo : surtout pas la miniature YouTube, qui contient son identifiant. */
-function revueAfficheCompteRebours($r, $restant, $avecCatalogue) {
+/* Tête d'affiche d'une revue pas encore sortie : compte à rebours si la date est
+   connue, simple annonce sinon. N'utilise que des données sans lien avec la vidéo :
+   surtout pas la miniature YouTube, qui contient son identifiant. */
+function revueAfficheAVenir($r, $maintenant, $avecCatalogue) {
+    $datee   = $r['sortie'] !== REVUE_SANS_DATE;
+    $restant = $datee ? max($r['sortie'] - $maintenant, 0) : 0;
     $e = fn($t) => htmlspecialchars($t, ENT_QUOTES);
     // Pas de style en ligne sans affiche : il écraserait le dégradé de repli du CSS
     $fond = $r['affiche'] !== '' ? ' style="background-image:url(\'' . $e($r['affiche']) . '\');"' : '';
@@ -239,13 +257,14 @@ function revueAfficheCompteRebours($r, $restant, $avecCatalogue) {
         <div class="affiche__inner">
             <p class="affiche__surtitre">Coming soon</p>
             <h1 class="affiche__titre">' . $e($r['titre']) . '</h1>
-            <p class="affiche__meta">Sortie le ' . $e(revueDateEnClair($r['sortie'])) . '</p>';
+            <p class="affiche__meta">' . ($datee ? 'Sortie le ' . $e(revueDateEnClair($r['sortie'])) : 'Date de sortie bientôt annoncée') . '</p>';
 
     if ($r['resume'] !== '') {
         echo '<p class="affiche__resume">' . $e($r['resume']) . '</p>';
     }
 
     // data-restant vient du serveur : l'horloge du visiteur peut être fausse
+    if ($datee) {
     echo '  <div class="decompte" data-restant="' . $restant . '" role="timer" aria-label="Temps restant avant la sortie">';
     foreach ($cases as $unite => [$valeur, $libelle]) {
         echo '<span class="decompte__case">
@@ -254,6 +273,7 @@ function revueAfficheCompteRebours($r, $restant, $avecCatalogue) {
               </span>';
     }
     echo '  </div>';
+    }
 
     if ($avecCatalogue) {
         echo '<div class="affiche__actions"><a class="bouton bouton--voile" href="#catalogue">Revoir les précédentes</a></div>';
@@ -340,7 +360,7 @@ function generateRevuePage($fichierDonnees) {
     echo '<main class="revue">';
 
     if ($prochaine) {
-        revueAfficheCompteRebours($prochaine, $prochaine['sortie'] - time(), (bool) $revues);
+        revueAfficheAVenir($prochaine, time(), (bool) $revues);
     }
 
     if (!$revues && !$prochaine) {
