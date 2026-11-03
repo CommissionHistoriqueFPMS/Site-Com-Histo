@@ -8,3 +8,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+#Workspace
+Site-Com-Histo.code-workspace
