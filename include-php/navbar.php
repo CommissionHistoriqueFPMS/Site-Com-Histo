@@ -19,10 +19,10 @@
                     <a href="fedefetes.php">Fédé et Fêtes</a>
                     <a href="cerclesfederes.php">Cercles Fédérés</a>
                     <a href="regio.php">Régionales</a>
-                    <a href="revue.php">Revue des Mines</a>
                     <a href="listingcomite.php">Listing des Comités</a>
                 </div>
             </li>
+            <li> <a href="revue.php">Revue des Mines</a> </li>
             <li><a href="cerclesmons.php">Cercles Montois</a></li>
             <li class="nav-dropdown">
                 <span class="nav-dropdown-label">Anecdotes Diverses <span class="dropdown-arrow">&#9660;</span></span>

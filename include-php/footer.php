@@ -19,6 +19,7 @@
         <div class="footer-col">
             <h3>Site développé par</h3>
             <span>Kévin Dubrulle</span>
+            <span>Hugo Quintart</span>
         </div>
 
         <div class="footer-logo">

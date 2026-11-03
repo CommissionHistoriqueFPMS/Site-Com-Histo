@@ -1,0 +1,443 @@
+/* =============================================================================
+   Page « Revue des Mines » — chargée uniquement par revue.php,
+   après style.css dont elle réutilise les jetons (--main-color, --r-elem…).
+
+   Fond sombre limité à cette page : une salle obscure pour les vidéos.
+   ============================================================================= */
+
+.page-revue {
+    --salle:        #141012;
+    --salle-2:      #201a1c;
+    --salle-filet:  rgba(255, 255, 255, .12);
+    --clair:        #f4efef;
+    --clair-doux:   #b8acad;
+    --rose:         #e08a93;   /* bordeaux éclairci : lisible sur fond sombre */
+    --gouttiere:    clamp(1rem, 4vw, 3.5rem);
+    --colonne:      clamp(230px, 22vw, 330px);
+
+    background: var(--salle);
+    color: var(--clair);
+}
+
+/* Le lecteur ouvert fige la page derrière lui */
+.page-revue:has(.lecteur[open]) { overflow: hidden; }
+
+
+/* -----------------------------------------------------------------------------
+   1. BOUTONS
+   -------------------------------------------------------------------------- */
+.bouton {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .8rem 1.5rem;
+    border-radius: var(--r-bouton);
+    font: bold 1.1rem 'Roboto', sans-serif;
+    text-decoration: none;
+    border: 0;
+    cursor: pointer;
+    transition: background-color .15s ease, transform .15s ease;
+}
+.bouton:active { transform: scale(.97); }
+
+.bouton--plein { background: var(--main-color); color: #fff; }
+.bouton--plein:hover { background: #962834; }
+
+.bouton--voile { background: rgba(255, 255, 255, .16); color: #fff; backdrop-filter: blur(6px); }
+.bouton--voile:hover { background: rgba(255, 255, 255, .26); }
+
+
+/* -----------------------------------------------------------------------------
+   2. TÊTE D'AFFICHE — la dernière revue
+   -------------------------------------------------------------------------- */
+.affiche {
+    position: relative;
+    /* Plafonné : sur un grand écran, 82vh pousserait le catalogue hors de vue */
+    min-height: clamp(520px, 82vh, 860px);
+    min-height: clamp(520px, 82svh, 860px);
+    display: flex;
+    align-items: flex-end;
+    padding: 9rem var(--gouttiere) clamp(5rem, 12vh, 8rem);
+    box-sizing: border-box;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.affiche__fond {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--derive-main-color);
+    background-size: cover;
+    background-position: center 30%;
+}
+
+/* Voile : sombre à gauche pour le texte, fondu vers la salle en bas */
+.affiche__fond::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to right, rgba(20,16,18,.92) 0%, rgba(20,16,18,.55) 40%, rgba(20,16,18,0) 75%),
+        linear-gradient(to bottom, rgba(20,16,18,.55) 0%, rgba(20,16,18,0) 25%, rgba(20,16,18,0) 60%, var(--salle) 100%);
+}
+
+.affiche__inner { max-width: 40rem; }
+
+.affiche__surtitre {
+    display: inline-block;
+    margin: 0 0 1rem;
+    padding: .3em .8em;
+    border-radius: var(--r-bouton);
+    background: var(--main-color);
+    font-size: .85rem;
+    font-weight: bold;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.affiche__titre {
+    margin: 0;
+    font-family: 'Fondamento', serif;
+    font-weight: normal;
+    font-size: clamp(2.4rem, 6vw, 4.6rem);
+    line-height: 1.05;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, .5);
+}
+
+.affiche__meta { margin: .8rem 0 0; color: var(--clair-doux); font-size: 1.05rem; }
+.affiche__meta:empty { display: none; }
+
+.affiche__resume {
+    margin: 1rem 0 0;
+    max-width: 52ch;
+    font-size: 1.1rem;
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.affiche__actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.8rem; }
+
+
+/* Revue à venir : sans miniature, le fond reste bordeaux sous le voile */
+.affiche--a-venir .affiche__fond {
+    background-color: transparent;
+    background-image: radial-gradient(90% 90% at 75% 40%, var(--main-color), transparent 70%);
+}
+
+.decompte {
+    display: flex;
+    gap: clamp(.5rem, 1.5vw, 1rem);
+    margin-top: 1.8rem;
+}
+.decompte__case {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: clamp(4.2rem, 9vw, 5.6rem);
+    padding: .8rem .6rem .6rem;
+    border: 1px solid var(--salle-filet);
+    border-radius: var(--r-elem);
+    background: rgba(20, 16, 18, .55);
+    backdrop-filter: blur(6px);
+}
+.decompte__nombre {
+    font-size: clamp(1.9rem, 4.5vw, 2.8rem);
+    font-weight: bold;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;   /* les chiffres ne dansent pas en changeant */
+}
+.decompte__unite {
+    margin-top: .4rem;
+    color: var(--clair-doux);
+    font-size: .8rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+
+/* -----------------------------------------------------------------------------
+   3. CATALOGUE — une rangée par décennie
+   -------------------------------------------------------------------------- */
+.catalogue {
+    position: relative;
+    z-index: 1;
+    margin-top: -3.5rem;          /* la première rangée mord sur l'affiche */
+    padding-bottom: var(--gap-section);
+    scroll-margin-top: 5rem;
+}
+
+.rangee { margin-bottom: 2.2rem; }
+.rangee:last-child { margin-bottom: 0; }
+
+.rangee__titre {
+    margin: 0 0 .4rem;
+    padding: 0 var(--gouttiere);
+    font-family: 'Fondamento', serif;
+    font-weight: bold;
+    font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+}
+
+.rangee__cadre { position: relative; }
+
+.rangee__piste {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: var(--colonne);
+    gap: .9rem;
+    margin: 0;
+    padding: .6rem var(--gouttiere) 1rem;
+    list-style: none;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gouttiere);
+    scrollbar-width: none;
+}
+.rangee__piste::-webkit-scrollbar { display: none; }
+
+/* Flèches : souris uniquement, au tactile on fait glisser */
+.rangee__fleche {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    width: var(--gouttiere);
+    min-width: 2.75rem;
+    padding: 0;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .2s ease;
+}
+.rangee__fleche--prec { left: 0;  background: linear-gradient(to right, var(--salle) 20%, transparent); }
+.rangee__fleche--suiv { right: 0; background: linear-gradient(to left,  var(--salle) 20%, transparent); }
+.rangee__fleche::before {
+    content: "";
+    display: block;
+    width: .9rem;
+    height: .9rem;
+    margin: auto;
+    border: solid currentColor;
+    border-width: 0 3px 3px 0;
+    transform: rotate(135deg);
+}
+.rangee__fleche--suiv::before { transform: rotate(-45deg); }
+.rangee__fleche[hidden] { display: none; }
+.rangee__cadre:hover .rangee__fleche,
+.rangee__fleche:focus-visible { opacity: 1; }
+
+@media (hover: none) {
+    .rangee__fleche { display: none; }
+}
+
+
+/* -----------------------------------------------------------------------------
+   4. CARTE
+   -------------------------------------------------------------------------- */
+.carte { scroll-snap-align: start; min-width: 0; }
+
+.carte__lien { display: block; color: inherit; text-decoration: none; }
+.carte__lien:focus-visible { outline: none; }
+
+.carte__vignette {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--r-elem);
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--main-color), #2a0c10);
+    box-shadow: 0 10px 26px -18px rgba(0, 0, 0, .9);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+.carte__vignette img {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Visible seulement si la miniature manque ou ne charge pas */
+.carte__repli {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-family: 'Fondamento', serif;
+    font-size: 2.4rem;
+    color: rgba(255, 255, 255, .85);
+}
+
+.carte__play {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    place-items: center;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: rgba(0, 0, 0, .55);
+    color: #fff;
+    font-size: 1.05rem;
+    transform: translate(-50%, -50%) scale(.85);
+    opacity: 0;
+    transition: opacity .2s ease, transform .2s ease;
+}
+.carte__play i { margin-left: .2em; }   /* centrage optique du triangle */
+
+.carte__badge {
+    position: absolute;
+    z-index: 2;
+    top: .5rem;
+    right: .5rem;
+    padding: .2em .55em;
+    border-radius: var(--r-bouton);
+    background: rgba(0, 0, 0, .7);
+    font-size: .8rem;
+    font-weight: bold;
+}
+
+.carte__lien:hover .carte__vignette,
+.carte__lien:focus-visible .carte__vignette {
+    transform: scale(1.04);
+    box-shadow: 0 18px 36px -18px rgba(0, 0, 0, 1);
+}
+.carte__lien:focus-visible .carte__vignette { outline: 2px solid #fff; outline-offset: 2px; }
+.carte__lien:hover .carte__play,
+.carte__lien:focus-visible .carte__play { opacity: 1; transform: translate(-50%, -50%); }
+
+.carte__legende { display: flex; flex-direction: column; gap: .15rem; margin-top: .7rem; }
+.carte__annee { color: var(--rose); font-size: .85rem; font-weight: bold; letter-spacing: .04em; }
+.carte__titre {
+    font-size: 1.05rem;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+/* -----------------------------------------------------------------------------
+   5. LECTEUR (<dialog>)
+   -------------------------------------------------------------------------- */
+.lecteur {
+    width: min(1100px, 94vw);
+    max-width: none;
+    max-height: 94vh;
+    padding: 0;
+    border: 0;
+    border-radius: var(--r-carte);
+    background: var(--salle-2);
+    color: var(--clair);
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .9);
+    overflow-y: auto;
+}
+.lecteur::backdrop { background: rgba(8, 5, 6, .82); backdrop-filter: blur(3px); }
+
+.lecteur__ecran { aspect-ratio: 16 / 9; background: #000; }
+.lecteur__ecran iframe { display: block; width: 100%; height: 100%; border: 0; }
+
+.lecteur__infos {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0 1rem;
+    padding: 1.4rem 2rem 2rem;
+}
+.lecteur__infos > :not(.lecteur__fermer) { grid-column: 1; }
+
+/* Hors de la vidéo : au-dessus, il masquerait les commandes de YouTube */
+.lecteur__fermer {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border: 1px solid var(--salle-filet);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .06);
+    color: #fff;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+}
+.lecteur__fermer:hover { background: rgba(255, 255, 255, .16); }
+
+.lecteur__annee { margin: 0; color: var(--rose); font-weight: bold; letter-spacing: .04em; }
+.lecteur__titre {
+    margin: .2rem 0 0;
+    font-family: 'Fondamento', serif;
+    font-weight: normal;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    line-height: 1.15;
+}
+
+.lecteur__parties { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.lecteur__parties:empty { display: none; }
+.lecteur__partie {
+    padding: .45em 1em;
+    border: 1px solid var(--salle-filet);
+    border-radius: var(--r-bouton);
+    background: transparent;
+    color: var(--clair);
+    font: inherit;
+    cursor: pointer;
+}
+.lecteur__partie:hover { background: rgba(255, 255, 255, .08); }
+.lecteur__partie[aria-pressed="true"] { background: var(--main-color); border-color: var(--main-color); }
+
+.lecteur__resume { margin: 1rem 0 0; max-width: 70ch; color: var(--clair-doux); line-height: 1.6; }
+.lecteur__resume:empty { display: none; }
+
+
+/* -----------------------------------------------------------------------------
+   6. ÉTAT VIDE
+   -------------------------------------------------------------------------- */
+.revue__vide { padding: 12rem var(--gouttiere) 8rem; text-align: center; }
+.revue__vide h1 { margin: 0; font-family: 'Fondamento', serif; font-weight: normal; font-size: clamp(2.2rem, 5vw, 3.4rem); }
+.revue__vide p { color: var(--clair-doux); }
+
+
+/* -----------------------------------------------------------------------------
+   7. RESPONSIVE
+   -------------------------------------------------------------------------- */
+@media (max-width: 899px) {
+    .affiche { min-height: min(70svh, 640px); padding-top: 3rem; }
+    .affiche__fond::after {
+        background: linear-gradient(to bottom,
+            rgba(20,16,18,.2) 0%, rgba(20,16,18,.45) 45%, var(--salle) 100%);
+    }
+}
+
+@media (max-width: 640px) {
+    .page-revue { --colonne: 72vw; }        /* la carte suivante dépasse : on devine qu'on peut glisser */
+    .affiche__resume { font-size: 1rem; }
+    .decompte__case { flex: 1 1 0; min-width: 0; }
+    .bouton { flex: 1 1 auto; justify-content: center; }
+
+    /* Plein écran sur téléphone */
+    .lecteur {
+        width: 100%;
+        height: 100%;
+        max-height: none;
+        margin: 0;
+        border-radius: 0;
+    }
+    .lecteur__infos { padding: 1.1rem 1rem 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .carte__vignette, .carte__play, .bouton { transition: none; }
+    .carte__lien:hover .carte__vignette { transform: none; }
+}
