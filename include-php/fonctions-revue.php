@@ -257,7 +257,7 @@ function revueAfficheAVenir($r, $maintenant, $avecCatalogue) {
         <div class="affiche__inner">
             <p class="affiche__surtitre">Coming soon</p>
             <h1 class="affiche__titre">' . $e($r['titre']) . '</h1>
-            <p class="affiche__meta">' . ($datee ? 'Sortie le ' . $e(revueDateEnClair($r['sortie'])) : 'Disponible après la séance de projection') . '</p>';
+            <p class="affiche__meta">' . ($datee ? 'Sortie le ' . $e(revueDateEnClair($r['sortie'])) : 'Disponible après les séances de projection') . '</p>';
 
     if ($r['resume'] !== '') {
         echo '<p class="affiche__resume">' . $e($r['resume']) . '</p>';

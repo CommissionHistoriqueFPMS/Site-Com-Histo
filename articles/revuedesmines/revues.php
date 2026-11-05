@@ -72,7 +72,7 @@ return [
     ],
     [
         'annee'  => '2003',
-        'titre'  => 'Ca ne sent pire guerre...',
+        'titre'  => 'Ca ne sent pire guère...',
         'resume' => '',
         'videos' => ['Enregistrement complet' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/QmVlNeNywdw?si=-NosdB0A9EHVB8RH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'],
     ],
