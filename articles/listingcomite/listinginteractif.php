@@ -4,21 +4,6 @@ $id = "1listing-interactif";
 baseArticle($title, $id);
 ?>
 
-<!-- Fix "Flicker" barre de Recherche -->
-<style>
-.horizontal-display {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-}
-.sidebar {
-    flex: 0 0 310px;
-}
-.content {
-    flex: 1 0 0;
-    min-width: 0;
-}
-</style>
 
 <p class="lc-sub" id="lc-sub">Chargement…</p>
 
@@ -38,4 +23,4 @@ baseArticle($title, $id);
     <div id="lc-results"><p class="lc-hint">Commencez à taper pour retrouver quelqu'un à travers tous les comités.</p></div>
 </div>
 <?php include('include-php/suggestion-listing.php'); ?>
-<script src="/javascript/listing.js"></script>
+<script src="/javascript/listing.js"></script>

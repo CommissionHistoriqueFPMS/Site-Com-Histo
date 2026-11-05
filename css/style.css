@@ -1,81 +1,141 @@
-/* ------- Root, Body and Fonts ----- */
+/* =============================================================================
+   Commission Historique F.P.Ms — feuille de style principale
 
+    1. Jetons et polices
+    2. Base (body, titres, texte, ancres, focus, barre de défilement)
+    3. Navbar
+    4. Héros d'accueil
+    5. En-tête des pages de thème
+    6. Gabarit des pages de thème (grille, sommaire, fiches)
+    7. Contenu des articles (images, sources, tableaux, chants, albums)
+    8. Boutons et formulaires
+    9. Listing des comités
+   10. Accueil : chapô et blocs image/texte
+   11. Retour en haut
+   12. Zoom sur les images
+   13. Footer
+   14. Ajustements par largeur d'écran (mobile → grands écrans)
+
+   Les couleurs, rayons et ombres passent par les variables de :root.
+   La page Revue des Mines a sa propre feuille : css/revue.css.
+   ============================================================================= */
+
+
+/* -----------------------------------------------------------------------------
+   1. JETONS ET POLICES
+   -------------------------------------------------------------------------- */
 :root {
-    --main-color: #7e212a;
-    --derive-main-color: #5e1820;
-    --text-color: #fff;
-    --text-hover-color: #fff;
+    /* Identité */
+    --main-color:         #7e212a;   /* bordeaux */
+    --derive-main-color:  #5e1820;   /* bordeaux foncé (survol, bordures) */
+    --text-color:         #fff;      /* texte sur fond bordeaux */
+
+    /* Surfaces */
+    --fond:      #EDEDEC;   /* fond de page */
+    --surface:   #FFFFFF;   /* cartes */
+    --surface-2: #F6F6F5;   /* encadrés secondaires, en-têtes de tableau */
+    --filet:     #E2E2DF;   /* toutes les bordures 1px */
+
+    /* Texte */
+    --encre:       #23211F;
+    --encre-douce: #5F5C58;
+
+    /* Trois rayons, pas un de plus */
+    --r-carte:  14px;
+    --r-elem:   8px;
+    --r-bouton: .45em;
+
+    /* Deux niveaux d'ombre */
+    --ombre-1: 0 1px 2px rgba(0,0,0,.04), 0 14px 36px -22px rgba(0,0,0,.30);
+    --ombre-2: 0 2px 4px rgba(0,0,0,.05), 0 22px 50px -26px rgba(0,0,0,.40);
+
+    /* Rythme */
+    --gap-section: clamp(3rem, 7vw, 6rem);
+    --pad-carte:   clamp(1.5rem, 4vw, 3rem);
+    /* Fluide : 1180px reste le plancher, on récupère de la place au-delà de
+       ~1440px au lieu de laisser deux marges vides de 700px sur un grand écran. */
+    --largeur-max: clamp(1180px, 82vw, 1560px);
 }
+
+/* 'Roboto' désigne ici les fichiers Roboto Condensed */
+@font-face {
+    font-family: 'Roboto';
+    src: url('/css/fonts/RobotoCondensed-Regular.ttf') format('truetype');
+    font-weight: normal; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('/css/fonts/RobotoCondensed-Italic.ttf') format('truetype');
+    font-weight: normal; font-style: italic; font-display: swap;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('/css/fonts/RobotoCondensed-Bold.ttf') format('truetype');
+    font-weight: bold; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('/css/fonts/RobotoCondensed-BoldItalic.ttf') format('truetype');
+    font-weight: bold; font-style: italic; font-display: swap;
+}
+@font-face {
+    font-family: 'Fondamento';
+    src: url('/css/fonts/Fondamento-Regular.ttf') format('truetype');
+    font-weight: normal; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: 'Fondamento';
+    src: url('/css/fonts/Fondamento-Italic.ttf') format('truetype');
+    font-weight: normal; font-style: italic; font-display: swap;
+}
+
+
+/* -----------------------------------------------------------------------------
+   2. BASE
+   -------------------------------------------------------------------------- */
+html { scroll-behavior: smooth; scroll-padding-top: 7rem; }
 
 body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     width: 100%;
-    font-family: 'Roboto', serif;
+    font-family: 'Roboto', sans-serif;
+    background: var(--fond);
+    color: var(--encre);
 }
 
-@font-face {
-    font-family: 'Roboto';
-    src: url('/css/fonts/RobotoCondensed-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+h4, th { font-family: 'Fondamento', serif; }
+
+p {
+    margin: 0 0 1em;
+    line-height: 1.75;
 }
 
-@font-face {
-    font-family: 'Roboto';
-    src: url('/css/fonts/RobotoCondensed-Italic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: italic;
-}
-@font-face {
-    font-family: 'Fondamento';
-    src: url('/css/fonts/Fondamento-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+.bold-text { font-weight: bold; }
+
+/* Accessibilité clavier */
+:where(a, button, input, textarea, select):focus-visible {
+    outline: 2px solid var(--main-color);
+    outline-offset: 3px;
+    border-radius: var(--r-bouton);
 }
 
-@font-face {
-    font-family: 'Fondamento';
-    src: url('/css/fonts/Fondamento-Italic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: italic;
+/* Barre de défilement : propriété standard (Firefox, Chrome 121+)… */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
 }
+/* … et équivalent WebKit pour Safari */
+::-webkit-scrollbar             { width: 12px; }
+::-webkit-scrollbar-track       { background-color: #f1f1f1; }
+::-webkit-scrollbar-thumb       { background-color: #888; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background-color: #555; }
 
-@font-face {
-    font-family: 'Roboto';
-    src: url('/css/fonts/RobotoCondensed-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
 
-@font-face {
-    font-family: 'Roboto';
-    src: url('/css/fonts/RobotoCondensed-BoldItalic.ttf') format('truetype');
-    font-weight: bold;
-    font-style: italic;
-}
-
-/* Example for bold text */
-.bold-text {
-    font-family: 'Roboto', serif;
-    font-weight: bold;
-}
-
-/* Example for bold text */
-.italic-text {
-    font-family: 'Roboto', serif;
-    font-style: italic;
-}
-
-h4 {
-    font-family: 'Fondamento', serif;
-}
-th {
-    font-family: 'Fondamento', serif;
-}
-
-/* ============================ NAVBAR ============================ */
+/* -----------------------------------------------------------------------------
+   3. NAVBAR
+   -------------------------------------------------------------------------- */
 .navbar {
     position: fixed; top: 0; left: 0; width: 100%; z-index: 9;
     background-color: var(--main-color);
@@ -86,8 +146,8 @@ th {
 .navbar-spacer { height: 7.5rem; }   /* réserve la place sous la navbar fixe */
 
 .navbar-top {
-    max-width: 1300px;   /* ← ajouté */
-    margin: 0 auto;      /* ← ajouté */
+    max-width: 1300px;
+    margin: 0 auto;
     display: flex; align-items: center; justify-content: space-between;
     padding: .5rem 1.5rem;
 }
@@ -108,8 +168,8 @@ th {
 .navbar-burger span { height: .35rem; width: 100%; background: var(--text-color); border-radius: 10px; }
 
 .navbar-menu {
-    max-width: 1300px;   /* ← ajouté */
-    margin: 0 auto;      /* ← ajouté */
+    max-width: 1300px;
+    margin: 0 auto;
     display: flex; align-items: center; justify-content: space-between;
     flex-wrap: wrap; gap: 1rem; padding: 0 1.5rem .6rem;
 }
@@ -123,7 +183,7 @@ th {
     font-weight: bold; font-size: 1.15rem; cursor: pointer;
 }
 
-/* soulignement qui grandit au survol (façon Fédé) */
+/* Soulignement qui grandit au survol */
 .navbar-links > li > a::after,
 .nav-dropdown-label::after {
     content: ""; position: absolute; left: .9rem; bottom: .35rem;
@@ -138,14 +198,14 @@ th {
 
 .navbar-cta {
     background: #fff; color: var(--main-color);
+    border: 2px solid #fff;
     font-weight: bold; font-size: 1.1rem; white-space: nowrap;
     padding: .5rem 1.3rem; border-radius: .4em; text-decoration: none;
     transition: background-color .2s ease, opacity .15s ease;
-    border-color : #fff; border-width: 2px;border-style: solid;
 }
-.navbar-cta:hover { background: var(--main-color); color: #fff; border-color : #fff; border-width: 2px;border-style: solid;}
+.navbar-cta:hover { background: var(--main-color); color: #fff; }
 
-/* menus déroulants */
+/* Menus déroulants */
 .nav-dropdown { position: relative; }
 .nav-dropdown-content {
     display: none; position: absolute; left: 0; min-width: 210px;
@@ -157,32 +217,39 @@ th {
 .nav-dropdown:hover .nav-dropdown-content,
 .nav-dropdown.open .nav-dropdown-content { display: block; }
 
-/* ---- Navbar sur mobile ---- */
-@media (max-width: 825px) {
-    .navbar { position: static; }
-    .navbar-spacer { display: none; }
-    .navbar-burger { display: flex; }
-    .navbar-menu { display: none; flex-direction: column; align-items: stretch; padding: 0 1rem 1rem; }
-    .navbar-menu.open { display: flex; }
-    .navbar-links { flex-direction: column; width: 100%; }
-    .navbar-cta { text-align: center; margin-top: .5rem; }
-    .navbar-brand span { font-size: 1.15rem; }
+/* Navbar transparente par-dessus l'image d'en-tête (body.has-hero) */
+body.has-hero .navbar-spacer { display: none; }
 
-    /* les sous-menus s'ouvrent en dessous, sans se superposer */
-    .nav-dropdown-content { position: static; box-shadow: none; min-width: 0; margin: .2rem 0 .2rem 1rem; }
-
-    /* pas de soulignement en colonne : glissement vers la droite à la place */
-    .navbar-links > li > a::after,
-    .nav-dropdown-label::after { display: none; }
-    .navbar-links > li > a,
-    .nav-dropdown-label { transition: transform .2s ease; }
-    .navbar-links > li > a:hover,
-    .nav-dropdown-label:hover { transform: translateX(.5rem); }
+body.has-hero .navbar {
+    background: transparent;
+    border-bottom-color: transparent;
+    transition: background-color .35s ease, border-color .35s ease, box-shadow .35s ease;
 }
-/* ============================ HÉROS D'ACCUEIL ============================ */
-/* Tout est portée par body.has-hero : seul index.php est concerné,
-   les pages de generatePage() ne bougent pas. */
+body.has-hero .navbar.is-scrolled {
+    background: var(--main-color);
+    border-bottom-color: var(--derive-main-color);
+    box-shadow: 0 6px 24px -14px rgba(0, 0, 0, .55);
+}
 
+body.has-hero .navbar-links { gap: .6rem; }
+body.has-hero .navbar-links > li > a,
+body.has-hero .nav-dropdown-label { font-size: 1.1rem; }
+
+body.has-hero .navbar-cta {
+    background: var(--main-color);
+    color: #fff;
+    border-color: rgba(255, 255, 255, .35);
+}
+body.has-hero .navbar-cta:hover {
+    background: #fff;
+    color: var(--main-color);
+    border-color: #fff;
+}
+
+
+/* -----------------------------------------------------------------------------
+   4. HÉROS D'ACCUEIL (index.php)
+   -------------------------------------------------------------------------- */
 .hero {
     position: relative;
     width: 100%;
@@ -218,11 +285,6 @@ th {
             rgba(12, 7, 8, .05) 70%, rgba(12, 7, 8, .42) 100%);
 }
 
-/* Parallaxe uniquement là où c'est fiable (cassé sur iOS) */
-@media (min-width: 826px) and (hover: hover) {
-    .hero__media { background-attachment: fixed; }
-}
-
 .hero__inner {
     position: relative;
     text-align: center;
@@ -250,7 +312,6 @@ th {
 }
 
 .hero__sub {
-    font-family: 'Roboto', system-ui, sans-serif;
     font-size: clamp(1.05rem, 1.8vw, 1.3rem);
     line-height: 1.65;
     color: rgba(255, 255, 255, .95);
@@ -261,7 +322,6 @@ th {
 
 .hero__cta {
     display: inline-block;
-    font-family: 'Roboto', system-ui, sans-serif;
     font-size: 1.05rem;
     font-weight: bold;
     letter-spacing: .04em;
@@ -275,7 +335,6 @@ th {
 }
 .hero__cta:hover {
     background: var(--derive-main-color);
-    color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 12px 28px -14px rgba(0, 0, 0, .85);
 }
@@ -301,821 +360,26 @@ th {
     0%, 100% { transform: translateY(0);      opacity: .55; }
     50%      { transform: translateY(.45rem); opacity: 1;   }
 }
-@media (prefers-reduced-motion: reduce) {
-    .hero__scroll { animation: none; opacity: .7; }
-}
-
-@media (max-width: 825px) {
-    .hero { padding: 6rem 1.25rem 5rem; }
-    .hero__scroll { display: none; }
-}
-
-/* ---- Navbar par-dessus le héros ---- */
-body.has-hero .navbar-spacer { display: none; }
-
-body.has-hero .navbar {
-    background: transparent;
-    border-bottom-color: transparent;
-    transition: background-color .35s ease, border-color .35s ease, box-shadow .35s ease;
-}
-body.has-hero .navbar.is-scrolled {
-    background: var(--main-color);
-    border-bottom-color: var(--derive-main-color);
-    box-shadow: 0 6px 24px -14px rgba(0, 0, 0, .55);
-}
-
-body.has-hero .navbar-links { gap: .6rem; }
-body.has-hero .navbar-links > li > a,
-body.has-hero .nav-dropdown-label { font-size: 1.1rem; }
-
-body.has-hero .navbar-cta {
-    background: var(--main-color);
-    color: #fff;
-    border-color: rgba(255, 255, 255, .35);
-}
-body.has-hero .navbar-cta:hover {
-    background: #fff;
-    color: var(--main-color);
-    border-color: #fff;
-}
-
-/* Navbar sur une seule ligne, sans toucher au HTML de navbar.php */
-@media (min-width: 900px) {
-    body.has-hero .navbar {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-        padding: .35rem 2rem;
-    }
-    body.has-hero .navbar-top {
-        max-width: none;
-        margin: 0;
-        flex: none;
-        padding: 0;
-    }
-    body.has-hero .navbar-menu {
-        max-width: none;
-        margin: 0;
-        flex: 1 1 auto;
-        justify-content: flex-end;
-        gap: 1.5rem;
-        padding: 0;
-    }
-    body.has-hero .navbar-brand span { display: none; }
-    body.has-hero .navbar-brand img { height: 4.2rem; transition: height .35s ease; }
-    body.has-hero .navbar.is-scrolled .navbar-brand img { height: 3.2rem; }
-}
-
-/* Sous 900px : navbar pleine et fixe, sinon le menu déplié devient illisible */
-@media (max-width: 899px) {
-    body.has-hero .navbar,
-    body.has-hero .navbar.is-scrolled {
-        position: fixed;
-        background: var(--main-color);
-        border-bottom-color: var(--derive-main-color);
-    }
-    body.has-hero .navbar-spacer { display: block; height: 5.5rem; }
-}
-
-/* ---- Ancres ---- */
-html { scroll-behavior: smooth; scroll-padding-top: 7rem; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-/* ============================ FOOTER ============================ */
-.site-footer {
-    background-color: var(--main-color);
-    color: var(--text-color);
-    border-top: 3px solid var(--derive-main-color);
-    padding: 2rem 1.5rem 1rem;
-    font-family: 'Roboto', serif;
-}
-.footer-cols {
-    display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between;
-    max-width: 1300px; margin: 0 auto;
-}
-.footer-col { min-width: 180px; }
-.footer-col h3 { font-family: 'Fondamento', serif; font-size: 1.35rem; font-weight: bold; margin: 0 0 .8rem; }
-.footer-col a, .footer-col span { display: block; color: var(--text-color); text-decoration: none; padding: .25rem 0; }
-.footer-col a:hover { text-decoration: underline; }
-.footer-col i { width: 1.3em; text-align: center; }
-.footer-logo { display: flex; align-items: flex-start; }
-.footer-logo img { height: 10rem; background: none; border-radius: 8px; padding: .4rem; box-sizing: border-box; }
-.footer-copy {
-    text-align: center; margin-top: 1.5rem; padding-top: 1rem;
-    border-top: 1px solid rgba(255,255,255,.3); font-size: .9rem;
-}
-
-/* ---- Footer sur mobile : une colonne, avec séparateurs ---- */
-@media (max-width: 825px) {
-    .footer-cols { flex-direction: column; gap: 0; }
-    .footer-col { min-width: 0; border-top: 1px solid rgba(255,255,255,.3); padding: 1rem 0; }
-    .footer-col:first-child { border-top: none; }
-    .footer-logo { padding-top: 1rem; }
-}
-/* ---------------------- ScrollBar --------------------------*/
-/* Pour les navigateurs Webkit (Google Chrome, Safari) */
-::-webkit-scrollbar {
-    width: 12px; /* Largeur de la barre de défilement */
-}
-
-::-webkit-scrollbar-track {
-    background-color: #f1f1f1; /* Couleur de fond de la piste de défilement */
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #888; /* Couleur de la poignée de défilement */
-    border-radius: 6px; /* Coins arrondis de la poignée de défilement */
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #555; /* Couleur de la poignée de défilement au survol */
-}
-
-/* Pour Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: #888 #f1f1f1;
-}
-
-/*
-*::-moz-scrollbar {
-    width: 12px; /* Largeur de la barre de défilement
-}
-
-*::-moz-scrollbar-track {
-    background-color: #f1f1f1; /* Couleur de fond de la piste de défilement
-}
-
-*::-moz-scrollbar-thumb {
-    background-color: #888; /* Couleur de la poignée de défilement
-    border-radius: 6px; /* Coins arrondis de la poignée de défilement
-}
-
-*::-moz-scrollbar-thumb:hover {
-    background-color: #555; /* Couleur de la poignée de défilement au survol
-}*/
 
 
-
-/* ---------------------- HEADER --------------------------*/
-
-.body-img{
-    width: 100%;
-}
-
+/* -----------------------------------------------------------------------------
+   5. EN-TÊTE DES PAGES DE THÈME
+   Même traitement que le héros d'accueil, en plus court.
+   -------------------------------------------------------------------------- */
 .header {
-    height: 50vh;
-    width: 100vw;
-
-    background-position: center;
-    background-position: center 10%;
-    top: 0;
-    left:0;
     position: relative;
-
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-
+    width: 100%;
+    min-height: 46vh;
+    padding: 9rem 1.5rem 4rem;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-
-/* Add the following pseudo-element to create the blur effect */
-.header::after {
-    content: "";
-    position: absolute;
-    bottom: -5%;
-    left: 0;
-    width: 100%;
-    height: 10%;
-    background: inherit;
-    filter: blur(8px);
-}
-
-.fixed-background-image {
+    background-position: center 40%;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-}
-
-
-.header-text {
-    width: 95%;
-    text-align: center;
-
-    font-size: 9vh;
-    font-weight: bold;
-
-    color: #7B1E28;                 /* bordeaux profond */
-    -webkit-text-stroke: 2px #F5F1EC; /* ivoire */
-    text-shadow: 0 4px 10px rgba(0, 0, 0, .28);
-}
-
-
-/*------- Container -------*/
-
-/* Style for the QR code container */
-.container {
-    border-color: var(--main-color);
-    border-width: 5px;
-    border-style: solid; /* Add this line to specify the border style */
-    border-radius: 10px;
-
-    max-width: 1300px;
-    width: 80%;
-
-    padding: 30px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    margin: 0 auto;
-    font-size: larger;
-}
-
-.article-title, .sommaire-title {
-    font-family: 'Fondamento', serif;
-    font-weight: bold;
-    font-size: xx-large;
-    color: var(--derive-main-color);
-    border-bottom: 2px solid var(--derive-main-color);
-    padding-bottom: 5px;
-    margin-bottom: 20px;
-}
-.article-title {
-    cursor: pointer; /* Définir le curseur en une main */
-}
-
-.article-subtitle {
-    font-family: 'Fondamento', serif;
-    font-weight: bold;
-    font-size: x-large;
-    color: var(--derive-main-color);
-    cursor: pointer; /* Définir le curseur en une main */
-}
-
-p {
-    text-indent: 0;         /* on enlève le retrait de première ligne */
-    margin: 0 0 1em 0;      /* espace régulier entre paragraphes */
-    line-height: 1.6;       /* au lieu de 1.4 */
-}
-/* -------- Buttons --------- */
-
-.centered-item {
-    width:100%;
-    text-align: center;
-    align-content: center;
-    justify-content: center;
-}
-
-.big-button {
-    text-align: center;
-    display: inline-block;
-    border: 2px solid var(--derive-main-color);
-    border-radius: 0.5em;
-    color: var(--text-color);
-    text-decoration: none;
-
-    font-size: x-large; /* Make the font size larger but not too much*/
-    background-color: var(--main-color); /* Make the background color lighter */
-    padding: .5em .5em; /* Increase the padding to make the button bigger */
-
-    opacity: .9;
-
-    margin-top:0;
-    max-width: 95%;
-}
-
-.big-button:hover {
-    background-color: var(--derive-main-color);
-    color: var(--text-hover-color);
-}
-
-/* ------------------ Articles -------------------- */
-
-.horizontal-display {
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    align-content: center;
-    min-width: 0;
-}
-
-.horizontal-display .content {
-    text-align: justify;
-}
-.fiche__corps p,
-.main-article-content p {
-    text-align: justify;
-    hyphens: auto;
-}
-
-@media (max-width: 825px) {
-    .fiche__corps p,
-    .main-article-content p {
-        text-align: left;
-    }
-}
-.container {
-    display: flex;
-    margin: 0 auto 3rem auto;   /* haut | côtés (auto) | bas | */
-}
-
-.sidebar {
-    background-color: #f6f6f6;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow-anchor: none;
-    max-width: 400px;
-}
-
-.sidebar-content {
-    box-sizing: border-box;
-    position: sticky;
-    top: 10rem;
-}
-
-.sidebar-content ul li {
-    list-style-type: none;
-    margin-bottom: 0;
-    cursor: pointer;
-    text-align: left;
-}
-
-.sidebar-content ul ul {
-    margin-left: 15px;
-    padding-left: 10px;
-    border-left: 2px solid var(--derive-main-color);
-}
-
-.sidebar-content ul a {
-    text-decoration: none;
-    color: #333;
-    display: block;
-    padding: 8px;
-    cursor: pointer; /* Ajout de la propriété cursor */
-}
-
-.dropdown-toggle {
-    cursor: default;
-}
-
-.sidebar-content ul a:hover {
-    background-color: #f0f0f0;
-}
-
-.content {
-    flex: 1;
-    padding: 20px;
-    box-sizing: border-box;
-    min-width: 0; /*permet aux tableaux larges de défiler au lieu de déborder*/
-}
-
-/* Styles pour les petits écrans */
-@media (max-width: 825px) {
-    .header { background-attachment: scroll; }
-    .container {
-        flex-direction: column;
-
-        /* --- confort de lecture mobile --- */
-        font-size: 1rem;      /* au lieu de "larger" */
-        text-align: left;     /* fini le justifié à trous */
-        padding: 15px;        /* au lieu de 30px */
-        width: auto;
-        margin: 0 10px 2rem 10px;
-    }
-
-    .content {
-        padding: 0;
-    }
-
-    .sidebar {
-        display: none;
-    }
-
-    /* --- ajustements de tailles sur mobile --- */
-    p { line-height: 1.55; }
-    .article-title, .sommaire-title { font-size: 1.6rem; }
-    .article-subtitle { font-size: 1.3rem; }
-    .big-button { font-size: 1.4rem; }
-}
-
-.sources {
-    width: 100%;
-    text-align: right;
-    font-size: 20px;
-}
-
-.article-content {
-    transition: max-height 0.3s ease-in-out;
-}
-.main-article-content {
-    transition: max-height 0.5s ease-in-out;
-}
-
-/* --------------------- gestion des images dans les articles --------------------- */
-
-.main-article-content .clear,
-.fiche__corps .clear {
-    clear: both;
-}
-
-.main-article-content .img-full,
-.fiche__corps .img-full {
-    max-width: 90%;
-}
-
-.main-article-content .img-left,
-.fiche__corps .img-left {
-    float: left;
-    margin-right: 10px;
-}
-
-.main-article-content .img-right,
-.fiche__corps .img-right {
-    float: right;
-    margin-left: 10px;
-}
-
-.main-article-content .img-center,
-.fiche__corps .img-center {
-    float: unset;
-    max-width: 90%;
-    margin: 0;
-    margin-top: 5px;
-}
-
-@media (max-width: 1200px) {
-    .article-content {
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-    }
-    .article-content p {
-        width: 100%;
-    }
-
-    .header-text {
-        color: #7B1E28;
-        -webkit-text-stroke: 1.5px #F5F1EC;
-        text-shadow: 0 3px 8px rgba(0,0,0,.25);
-    }
-}
-
-
-/* --------------------------- TABLE ----------------------------- */
-.table-container {
-    width: 100%;
-    max-width: 80vw;
-    margin: 0 auto; /* Centrer le conteneur */
-    overflow-x: auto; /* Permettre le scroll horizontal si nécessaire */
-    -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur iOS */
-    min-height: 180px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0;
-    font-size: 18px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 12px;
-    text-align: center;
-}
-
-th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-}
-
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* ------------------ Formulaire de contact -------------------- */
-.contact-form {
-    max-width: 550px;
-    margin: 2em auto;
-    text-align: left;
-}
-.contact-form label {
-    display: block;
-    margin: 1em 0 .3em;
-    font-weight: bold;
-}
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    padding: .7em;
-    border: 2px solid var(--derive-main-color);
-    border-radius: .5em;
-    font-family: inherit;
-    font-size: 1em;
-    box-sizing: border-box;
-}
-.contact-form textarea {
-    min-height: 150px;
-    resize: vertical;
-}
-.contact-form input:focus,
-.contact-form textarea:focus {
-    outline: none;
-    border-color: var(--main-color);
-}
-.contact-form button {
-    margin-top: 1.2em;
-    padding: .7em 1.6em;
-    border: 2px solid var(--derive-main-color);
-    border-radius: .5em;
-    background-color: var(--main-color);
-    color: var(--text-color);
-    font-size: 1.2em;
-    cursor: pointer;
-    opacity: .9;
-}
-.contact-form button:hover {
-    background-color: var(--derive-main-color);
-}
-/* Champ anti-spam : invisible pour les humains, piège à robots */
-.contact-form .hp { display: none !important; }
-/* ------------------ Liens de contact (page contact) -------------------- */
-.contact-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem 2rem;
-    margin: 2rem 0 1rem;
-}
-.contact-links a {
-    display: inline-flex;
-    align-items: center;
-    gap: .6rem;
-    color: var(--derive-main-color);
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: color .15s ease;
-}
-.contact-links a:hover { color: var(--main-color); text-decoration: underline; }
-.contact-links i { font-size: 1.4rem; width: 1.4rem; text-align: center; }
-
-/* sur mobile : une colonne centrée, bien lisible */
-@media (max-width: 825px) {
-    .contact-links { flex-direction: column; align-items: center; gap: 1.1rem; }
-}
-
-/* ------------------ Listing des comités -------------------- */
-.lc-sub        { color:#777; margin:0 0 1.4em; }
-.lc-tabs       { display:flex; gap:.5em; margin-bottom:1.2em; flex-wrap:wrap; }
-.lc-tab        { padding:.55em 1.1em; border:2px solid var(--derive-main-color); border-radius:.5em;
-                 background:#fff; color:var(--derive-main-color); cursor:pointer;
-                 font-size:1em; font-weight:bold; font-family:inherit; }
-.lc-tab.on     { background:var(--main-color); color:var(--text-color); }
-.lc-field      { width:100%; padding:.7em; border:2px solid var(--derive-main-color); border-radius:.5em;
-                 font-size:1em; font-family:inherit; box-sizing:border-box; }
-.lc-field:focus{ outline:none; border-color:var(--main-color); }
-.lc-meta       { color:#888; font-size:.9em; margin:.6em 0 1em; }
-.lc-scroll     { max-width:100%; overflow-x:auto; border:1px solid #e3d7d7; border-radius:.5em; }
-.lc-table      { border-collapse:collapse; width:100%; font-size:.9em; white-space:nowrap; }
-.lc-table th,
-.lc-table td   { padding:.5em .7em; border-bottom:1px solid #e3d7d7; text-align:left; }
-.lc-table thead th          { background:var(--main-color); color:var(--text-color); position:sticky; top:0; }
-.lc-table tbody tr:nth-child(even) { background:#f6f2f2; }
-.lc-table td.y { font-weight:bold; color:var(--derive-main-color); }
-.lc-card       { border:1px solid #e3d7d7; border-left:4px solid var(--main-color); border-radius:.4em;
-                 padding:.7em 1em; margin:.6em 0; background:#f6f2f2; }
-.lc-card h3    { margin:0 0 .3em; color:var(--derive-main-color); }
-.lc-line       { font-size:.92em; padding:.12em 0; }
-.lc-role       { color:var(--main-color); font-weight:bold; }
-.lc-hint       { color:#999; padding:1em 0; }
-.lc-hidden     { display:none; }
-/* --- Bouton & formulaire « Suggérer une modification » --- */
-.lc-actions        { display:flex; align-items:center; flex-wrap:wrap; gap:.6em 1em; margin:1.6em 0 .4em; }
-.lc-btn            { padding:.55em 1.1em; border:2px solid var(--derive-main-color); border-radius:.5em;
-                     background:#fff; color:var(--derive-main-color); cursor:pointer;
-                     font-size:1em; font-weight:bold; font-family:inherit; }
-.lc-btn:hover,
-.lc-btn.on         { background:var(--main-color); color:var(--text-color); }
-.lc-actions-hint   { color:#888; font-size:.9em; }
-.lc-suggest        { border:1px solid #e3d7d7; border-left:4px solid var(--main-color);
-                     border-radius:.4em; background:#f6f2f2; padding:.2em 1.2em 1.2em; margin:.6em 0; }
-.lc-suggest .contact-form { margin:.5em auto 0; }
-.lc-opt            { font-weight:normal; color:#888; font-size:.9em; }
-.lc-ok             { border:1px solid #cfe3cf; border-left:4px solid #4a8f4a; border-radius:.4em;
-                     background:#f1f7f1; color:#2f5d2f; padding:.8em 1em; margin:.8em 0; }
-
-@media (max-width: 825px) {
-    .lc-actions      { flex-direction:column; align-items:stretch; }
-    .lc-actions-hint { text-align:center; }
-    .lc-suggest      { padding:.2em .8em 1em; }
-}
-
-/* Mise en valeur des chants / paroles dans les articles */
-.chant {
-    border-left: 4px solid var(--derive-main-color);
-    background: #f7f0f0;
-    border-radius: 0 8px 8px 0;
-    padding: 1em 1.5em;
-    margin: 1.5em auto;
-    max-width: 500px;
-    font-style: italic;
-    line-height: 1.5;
-}
-.chant .chant-air {
-    font-style: normal;
-    font-weight: bold;
-    color: var(--derive-main-color);
-    margin-bottom: .6em;
-}
-.chant p {
-    text-indent: 0;      /* annule le retrait global des <p> */
-    margin: 0 0 1em 0;
-}
-.chant p:last-child { margin-bottom: 0; }
-.chant .chant-titre {
-    font-family: 'Fondamento', serif;   /* la police de tes titres */
-    font-style: normal;
-    font-weight: bold;
-    font-size: 1.3rem;
-    color: var(--derive-main-color);
-    text-align: center;
-    margin-bottom: .2em;
-}
-
-/* ============================ ACCUEIL — INTRO & DUOS ============================ */
-/* Classes dédiées : aucune page générée par generatePage() n'est touchée. */
-
-.accueil {
-    background: #EDEDEC;
-    padding: clamp(3rem, 7vw, 6rem) 1.5rem clamp(4rem, 8vw, 7rem);
-}
-.accueil__inner {
-    max-width: var(--largeur-max);
-    margin: 0 auto;
-}
-
-/* ---- Chapô ---- */
-.accueil__intro {
-    background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 14px 36px -20px rgba(0, 0, 0, .3);
-    max-width: 920px;
-    margin: 0 auto clamp(3rem, 7vw, 6rem);
-    padding: clamp(1.75rem, 4vw, 3rem) clamp(1.5rem, 5vw, 4rem);
-    text-align: center;
-}
-.accueil__intro p {
-    margin: 0;
-    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-    line-height: 2;
-    color: #2b2b2b;
-}
-
-/* ---- Bloc image + texte ---- */
-.duo {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    margin-bottom: clamp(3rem, 6vw, 5.5rem);
-}
-.duo:last-child { margin-bottom: 0; }
-
-.duo__media { grid-column: 1; grid-row: 1; }
-.duo__media img {
-    display: block;
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px -18px rgba(0, 0, 0, .5);
-}
-
-.duo__texte {
-    grid-column: 2;
-    grid-row: 1;
-    position: relative;
-    z-index: 2;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 16px 40px -24px rgba(0, 0, 0, .35);
-    padding: clamp(1.5rem, 3vw, 2.75rem);
-    margin-left: clamp(-4rem, -3vw, -2rem);   /* chevauche l'image */
-}
-
-.duo__titre {
-    font-family: 'Fondamento', serif;
-    font-weight: bold;
-    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
-    color: var(--main-color);
-    margin: 0 0 1rem;
-    line-height: 1.2;
-}
-.duo__texte p {
-    margin: 0 0 1em;
-    line-height: 1.75;
-}
-.duo__texte p:last-of-type { margin-bottom: 0; }
-
-.duo__bouton {
-    margin-top: 1.75rem;
-    font-size: 1.05rem;
-    padding: .7rem 1.6rem;
-}
-
-/* Alternance : image à droite un bloc sur deux */
-.duo--inverse .duo__media { grid-column: 2; }
-.duo--inverse .duo__texte {
-    grid-column: 1;
-    margin-left: 0;
-    margin-right: clamp(-4rem, -3vw, -2rem);
-}
-
-/* ---- Mobile : une colonne, plus de chevauchement ---- */
-@media (max-width: 900px) {
-    .duo {
-        grid-template-columns: 1fr;
-        margin-bottom: 3rem;
-    }
-    .duo__media,
-    .duo--inverse .duo__media { grid-column: 1; grid-row: 1; }
-    .duo__texte,
-    .duo--inverse .duo__texte {
-        grid-column: 1;
-        grid-row: 2;
-        margin: -2rem 1rem 0;      /* léger décalage vertical à la place */
-    }
-    .accueil__intro p { line-height: 1.8; }
-}
-
-/* =============================================================================
-   SYSTÈME VISUEL + PAGES DE THÈME
-   À COLLER TOUT À LA FIN de css/style.css, après le bloc « ACCUEIL — INTRO & DUOS ».
-   L'ordre compte : ces règles surchargent l'existant, elles doivent venir en dernier.
-   ============================================================================= */
-
-
-/* -----------------------------------------------------------------------------
-   1. JETONS
-   -------------------------------------------------------------------------- */
-:root {
-    /* Surfaces */
-    --fond:      #EDEDEC;   /* fond de page */
-    --surface:   #FFFFFF;   /* cartes */
-    --surface-2: #F6F6F5;   /* encadrés secondaires, en-têtes de tableau */
-    --filet:     #E2E2DF;   /* toutes les bordures 1px */
-
-    /* Texte */
-    --encre:       #23211F;
-    --encre-douce: #5F5C58;
-
-    /* Trois rayons, pas un de plus */
-    --r-carte:  14px;
-    --r-elem:   8px;
-    --r-bouton: .45em;
-
-    /* Deux niveaux d'ombre */
-    --ombre-1: 0 1px 2px rgba(0,0,0,.04), 0 14px 36px -22px rgba(0,0,0,.30);
-    --ombre-2: 0 2px 4px rgba(0,0,0,.05), 0 22px 50px -26px rgba(0,0,0,.40);
-
-    /* Rythme */
-    --gap-section: clamp(3rem, 7vw, 6rem);
-    --pad-carte:   clamp(1.5rem, 4vw, 3rem);
-    /* Fluide : 1180px reste le plancher, on récupère de la place au-delà de
-       ~1440px au lieu de laisser deux marges vides de 700px sur un grand écran. */
-    --largeur-max: clamp(1180px, 82vw, 1560px);
-}
-
-body { background: var(--fond); color: var(--encre); }
-
-/* Accessibilité clavier — il n'y en avait aucune */
-:where(a, button, input, textarea, select):focus-visible {
-    outline: 2px solid var(--main-color);
-    outline-offset: 3px;
-    border-radius: var(--r-bouton);
-}
-
-
-/* -----------------------------------------------------------------------------
-   2. EN-TÊTE DES PAGES DE THÈME
-   Même traitement que le héros d'accueil, en plus court.
-   -------------------------------------------------------------------------- */
-.header {
-    width: 100%;              /* 100vw provoquait un débordement horizontal */
-    height: auto;
-    min-height: 46vh;
-    padding: 9rem 1.5rem 4rem;
-    box-sizing: border-box;
-    background-position: center 40%;
     isolation: isolate;       /* indispensable pour que ::before reste au-dessus de l'image */
 }
 
@@ -1133,24 +397,17 @@ body { background: var(--fond); color: var(--encre); }
             rgba(12,7,8,.05) 70%, rgba(12,7,8,.40) 100%);
 }
 
-/* Le hack de flou qui produisait la bande pixelisée sous l'image */
-.header::after { display: none; }
-
 .header__inner { position: relative; z-index: 1; text-align: center; max-width: 60rem; }
 
 .header-text {
+    width: 95%;
+    text-align: center;
     font-family: 'Fondamento', serif;
     font-weight: normal;
     font-size: clamp(2rem, 5vw, 3.6rem);
     line-height: 1.1;
     color: #fff;
-    -webkit-text-stroke: 0;
     text-shadow: 0 2px 26px rgba(0,0,0,.5), 0 1px 3px rgba(0,0,0,.35);
-}
-
-/* Neutralise la surcharge responsive qui remettait le contour bordeaux */
-@media (max-width: 1200px) {
-    .header-text { color: #fff; -webkit-text-stroke: 0; }
 }
 
 .header__sub {
@@ -1164,8 +421,8 @@ body { background: var(--fond); color: var(--encre); }
 
 
 /* -----------------------------------------------------------------------------
-   3. GABARIT DES PAGES DE THÈME
-   Le .container géant devient une grille : rail de sommaire + colonne d'articles.
+   6. GABARIT DES PAGES DE THÈME
+   Rail de sommaire + colonne de fiches d'articles.
    -------------------------------------------------------------------------- */
 .page { padding: var(--gap-section) 1.5rem; }
 
@@ -1211,10 +468,7 @@ body { background: var(--fond); color: var(--encre); }
 
 .theme__vide { color: var(--encre-douce); font-style: italic; padding: 2rem 0; }
 
-
-/* -----------------------------------------------------------------------------
-   4. SOMMAIRE
-   -------------------------------------------------------------------------- */
+/* ---- Sommaire ---- */
 .sommaire { grid-column: 1; }
 .sommaire__sticky { position: sticky; top: 8rem; }
 
@@ -1248,7 +502,7 @@ body { background: var(--fond); color: var(--encre); }
 }
 .sommaire__liste a:hover { background: var(--surface); color: var(--main-color); }
 
-/* Section en cours de lecture, posée par main-scripts.js */
+/* Section en cours de lecture */
 .sommaire__liste a.is-actif {
     color: var(--main-color);
     font-weight: bold;
@@ -1259,10 +513,7 @@ body { background: var(--fond); color: var(--encre); }
 /* Masqué en desktop : le <details> devient donc impossible à refermer */
 .sommaire__bouton { display: none; }
 
-
-/* -----------------------------------------------------------------------------
-   5. FICHE D'ARTICLE
-   -------------------------------------------------------------------------- */
+/* ---- Fiche d'article ---- */
 .fiche {
     background: var(--surface);
     border-radius: var(--r-carte);
@@ -1270,7 +521,7 @@ body { background: var(--fond); color: var(--encre); }
     padding: var(--pad-carte);
     margin-bottom: 1.75rem;
     text-align: left;
-    scroll-margin-top: 8rem;      /* l'ancre ne passe plus sous la navbar */
+    scroll-margin-top: 8rem;      /* l'ancre ne passe pas sous la navbar */
 }
 .fiche:last-child { margin-bottom: 0; }
 
@@ -1291,12 +542,478 @@ body { background: var(--fond); color: var(--encre); }
 /* overflow:hidden contient les images flottantes des articles */
 .fiche__corps { overflow: hidden; }
 
-/* addImage() pose un width en dur : max-width l'emporte et évite le débordement */
-.fiche__corps img { max-width: 100%; height: auto; }
+/* ---- Page contact (ancien gabarit, encore utilisé par contact.php) ---- */
+.container {
+    display: flex;
+    text-align: left;
+    background: var(--surface);
+    border-radius: var(--r-carte);
+    box-shadow: var(--ombre-1);
+    box-sizing: border-box;
+    width: min(92%, var(--largeur-max));
+    max-width: var(--largeur-max);
+    padding: var(--pad-carte);
+    margin: var(--gap-section) auto;
+}
+
+.centered-item {
+    width: 100%;
+    text-align: center;
+}
+
+.article-title {
+    font-family: 'Fondamento', serif;
+    font-weight: bold;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    color: var(--main-color);
+    border-bottom: 1px solid var(--filet);
+    padding-bottom: .5rem;
+    margin: 0 0 1.4rem;
+}
 
 
 /* -----------------------------------------------------------------------------
-   6. RETOUR EN HAUT
+   7. CONTENU DES ARTICLES
+   .fiche__corps : corps d'un article. .main-article-content : chapô de thème.
+   -------------------------------------------------------------------------- */
+.fiche__corps p,
+.main-article-content p {
+    text-align: justify;
+    hyphens: auto;
+}
+
+/* ---- Images posées par addImage() ---- */
+.main-article-content .clear,
+.fiche__corps .clear { clear: both; }
+
+.main-article-content .img-full,
+.fiche__corps .img-full { max-width: 90%; }
+
+.main-article-content .img-left,
+.fiche__corps .img-left {
+    float: left;
+    margin-right: 10px;
+}
+
+.main-article-content .img-right,
+.fiche__corps .img-right {
+    float: right;
+    margin-left: 10px;
+}
+
+.main-article-content .img-center,
+.fiche__corps .img-center {
+    max-width: 90%;
+    margin: 5px 0 0;
+}
+
+/* addImage() pose un width en dur : max-width l'emporte et évite le débordement */
+.fiche__corps img { max-width: 100%; height: auto; }
+
+.main-article-content img,
+.fiche__corps img {
+    border-radius: var(--r-elem);
+    box-shadow: 0 8px 24px -18px rgba(0,0,0,.5);
+}
+
+/* ---- Sources ---- */
+.sources {
+    width: 100%;
+    text-align: right;
+    font-size: .95rem;
+    color: var(--encre-douce);
+}
+.sources a { color: var(--encre-douce); }
+
+/* ---- Tableaux (generateTable) ---- */
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow-x: auto;            /* les tableaux larges défilent */
+    min-height: 180px;
+    border: 1px solid var(--filet);
+    border-radius: var(--r-elem);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    font-size: 18px;
+}
+
+table, th, td { border: 1px solid var(--filet); }
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background: var(--surface-2);
+    font-weight: bold;
+    font-size: .9rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) { background: #FAFAF9; }
+tr:hover { background: #F4EFEF; }
+
+/* ---- Chants (addChant) ---- */
+.chant {
+    background: var(--surface-2);
+    border-left: 3px solid var(--main-color);
+    border-radius: 0 var(--r-elem) var(--r-elem) 0;
+    padding: 1em 1.5em;
+    margin: 1.5em auto;
+    max-width: 500px;
+    font-style: italic;
+    line-height: 1.5;
+}
+.chant p { margin: 0 0 1em; }
+.chant p:last-child { margin-bottom: 0; }
+.chant .chant-titre {
+    font-family: 'Fondamento', serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: var(--derive-main-color);
+    text-align: center;
+    margin-bottom: .2em;
+}
+.chant .chant-air {
+    font-style: normal;
+    font-weight: bold;
+    color: var(--derive-main-color);
+    margin-bottom: .6em;
+}
+
+/* ---- Albums photo (createAlbum) ---- */
+.album {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .55rem;
+    margin: 1.5rem 0;
+}
+
+.album__case {
+    margin: 0;
+    flex-grow: var(--ratio);
+    flex-basis: calc(var(--ratio) * 14rem);   /* 14rem = hauteur de rangée visée */
+    max-width: 100%;
+}
+
+.album .img-album {
+    display: block;
+    width: 100%;
+    aspect-ratio: var(--ratio);
+    border-radius: 6px;
+}
+
+.album__legende {
+    font-family: 'Fondamento', serif;
+    text-align: center;
+    padding-top: .35rem;
+}
+
+/* Empêche la dernière rangée incomplète de s'étirer démesurément */
+.album::after {
+    content: "";
+    flex-grow: 999999;
+}
+
+.album__bascule { display: none; }
+
+
+/* -----------------------------------------------------------------------------
+   8. BOUTONS ET FORMULAIRES
+   -------------------------------------------------------------------------- */
+.big-button {
+    display: inline-block;
+    max-width: 95%;
+    margin-top: 0;
+    padding: .75rem 1.9rem;
+    border: 1px solid var(--derive-main-color);
+    border-radius: var(--r-bouton);
+    background-color: var(--main-color);
+    color: var(--text-color);
+    font-size: 1.05rem;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+/* ---- Formulaire de contact (contact-form.php, suggestion-listing.php) ---- */
+.contact-form {
+    max-width: 550px;
+    margin: 2em auto;
+    text-align: left;
+}
+.contact-form label {
+    display: block;
+    margin: 1em 0 .3em;
+    font-weight: bold;
+    font-size: .95rem;
+    color: var(--encre-douce);
+}
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: .7em;
+    background: var(--surface-2);
+    border: 1px solid var(--filet);
+    border-radius: var(--r-elem);
+    font-family: inherit;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+.contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    background: var(--surface);
+    border-color: var(--main-color);
+    box-shadow: 0 0 0 3px rgba(126,33,42,.12);
+}
+.contact-form button {
+    margin-top: 1.2em;
+    padding: .75rem 1.9rem;
+    border: 1px solid var(--derive-main-color);
+    border-radius: var(--r-bouton);
+    background-color: var(--main-color);
+    color: var(--text-color);
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.big-button:hover,
+.contact-form button:hover {
+    background-color: var(--derive-main-color);
+    color: var(--text-color);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px -16px rgba(94,24,32,.9);
+}
+/* Champ anti-spam : invisible pour les humains, piège à robots */
+.contact-form .hp { display: none !important; }
+
+/* ---- Liens de contact (contact.php) ---- */
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem 2rem;
+    margin: 2rem 0 1rem;
+}
+.contact-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    color: var(--derive-main-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color .15s ease;
+}
+.contact-links a:hover { color: var(--main-color); text-decoration: underline; }
+.contact-links i { font-size: 1.4rem; width: 1.4rem; text-align: center; }
+
+
+/* -----------------------------------------------------------------------------
+   9. LISTING DES COMITÉS (listinginteractif.php, listing.js)
+   -------------------------------------------------------------------------- */
+.lc-sub    { color: #777; margin: 0 0 1.4em; }
+.lc-tabs   { display: flex; gap: .5em; margin-bottom: 1.2em; flex-wrap: wrap; }
+.lc-meta   { color: #888; font-size: .9em; margin: .6em 0 1em; }
+.lc-hint   { color: #999; padding: 1em 0; }
+.lc-hidden { display: none; }
+
+.lc-tab,
+.lc-btn {
+    padding: .55em 1.1em;
+    border: 1px solid var(--filet);
+    border-radius: var(--r-bouton);
+    background: #fff;
+    color: var(--derive-main-color);
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: inherit;
+}
+.lc-tab.on,
+.lc-btn:hover,
+.lc-btn.on {
+    background: var(--main-color);
+    color: var(--text-color);
+    border-color: var(--derive-main-color);
+}
+
+.lc-field {
+    width: 100%;
+    padding: .7em;
+    background: var(--surface-2);
+    border: 1px solid var(--filet);
+    border-radius: var(--r-elem);
+    font-size: 1em;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+.lc-field:focus {
+    outline: none;
+    background: var(--surface);
+    border-color: var(--main-color);
+    box-shadow: 0 0 0 3px rgba(126,33,42,.12);
+}
+
+/* ---- Tableau « Parcourir par cercle » ---- */
+.lc-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--filet);
+    border-radius: var(--r-elem);
+}
+.lc-table { border-collapse: collapse; width: 100%; font-size: .9em; white-space: nowrap; }
+.lc-table th,
+.lc-table td { padding: .5em .7em; border-bottom: 1px solid var(--filet); text-align: left; }
+.lc-table thead th {
+    background: var(--main-color);
+    color: var(--text-color);
+    text-transform: none;
+    position: sticky;
+    top: 0;
+}
+.lc-table tbody tr:nth-child(even) { background: #f6f2f2; }
+.lc-table td.y { font-weight: bold; color: var(--derive-main-color); }
+
+/* ---- Résultats « Rechercher une personne » ---- */
+.lc-card,
+.lc-suggest {
+    background: var(--surface-2);
+    border: 1px solid var(--filet);
+    border-left: 3px solid var(--main-color);
+    border-radius: 0 var(--r-elem) var(--r-elem) 0;
+    margin: .6em 0;
+}
+.lc-card    { padding: .7em 1em; }
+.lc-card h3 { margin: 0 0 .3em; color: var(--derive-main-color); }
+.lc-line    { font-size: .92em; padding: .12em 0; }
+.lc-role    { color: var(--main-color); font-weight: bold; }
+
+/* ---- Bouton et formulaire « Suggérer une modification » ---- */
+.lc-actions       { display: flex; align-items: center; flex-wrap: wrap; gap: .6em 1em; margin: 1.6em 0 .4em; }
+.lc-actions-hint  { color: #888; font-size: .9em; }
+.lc-suggest       { padding: .2em 1.2em 1.2em; }
+.lc-suggest .contact-form { margin: .5em auto 0; }
+.lc-opt           { font-weight: normal; color: #888; font-size: .9em; }
+.lc-ok {
+    border: 1px solid #cfe3cf;
+    border-left: 4px solid #4a8f4a;
+    border-radius: .4em;
+    background: #f1f7f1;
+    color: #2f5d2f;
+    padding: .8em 1em;
+    margin: .8em 0;
+}
+
+
+/* -----------------------------------------------------------------------------
+   10. ACCUEIL : CHAPÔ ET BLOCS IMAGE/TEXTE (index.php)
+   -------------------------------------------------------------------------- */
+.accueil {
+    background: var(--fond);
+    padding: clamp(3rem, 7vw, 6rem) 1.5rem clamp(4rem, 8vw, 7rem);
+}
+.accueil__inner {
+    max-width: var(--largeur-max);
+    margin: 0 auto;
+}
+
+.accueil__intro {
+    background: var(--surface);
+    border-radius: var(--r-carte);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 14px 36px -20px rgba(0, 0, 0, .3);
+    max-width: 920px;
+    margin: 0 auto clamp(3rem, 7vw, 6rem);
+    padding: clamp(1.75rem, 4vw, 3rem) clamp(1.5rem, 5vw, 4rem);
+    text-align: center;
+}
+.accueil__intro p {
+    margin: 0;
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    line-height: 2;
+    color: #2b2b2b;
+}
+
+.duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin-bottom: clamp(3rem, 6vw, 5.5rem);
+}
+.duo:last-child { margin-bottom: 0; }
+
+.duo__media { grid-column: 1; grid-row: 1; }
+.duo__media img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px -18px rgba(0, 0, 0, .5);
+}
+
+.duo__texte {
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    z-index: 2;
+    background: var(--surface);
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 16px 40px -24px rgba(0, 0, 0, .35);
+    padding: clamp(1.5rem, 3vw, 2.75rem);
+    margin-left: clamp(-4rem, -3vw, -2rem);   /* chevauche l'image */
+}
+
+.duo__titre {
+    font-family: 'Fondamento', serif;
+    font-weight: bold;
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+    color: var(--main-color);
+    margin: 0 0 1rem;
+    line-height: 1.2;
+}
+.duo__texte p { margin: 0 0 1em; line-height: 1.75; }
+.duo__texte p:last-of-type { margin-bottom: 0; }
+
+.duo__bouton { margin-top: 1.75rem; }
+
+/* Alternance : image à droite un bloc sur deux */
+.duo--inverse .duo__media { grid-column: 2; }
+.duo--inverse .duo__texte {
+    grid-column: 1;
+    margin-left: 0;
+    margin-right: clamp(-4rem, -3vw, -2rem);
+}
+
+/* Apparition au défilement (javascript/reveal.js pose .js-reveal et .is-visible) */
+.js-reveal .accueil__intro,
+.js-reveal .duo {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .7s ease-out, transform .7s ease-out;
+}
+.js-reveal .accueil__intro.is-visible,
+.js-reveal .duo.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+
+/* -----------------------------------------------------------------------------
+   11. RETOUR EN HAUT
    -------------------------------------------------------------------------- */
 .haut {
     position: fixed;
@@ -1328,226 +1045,11 @@ body { background: var(--fond); color: var(--encre); }
 
 
 /* -----------------------------------------------------------------------------
-   7. SURFACES COMMUNES
-   .container ne sert plus qu'à contact.php, mais il doit suivre la même règle.
+   12. ZOOM SUR LES IMAGES (main-scripts.js)
    -------------------------------------------------------------------------- */
-.container {
-    background: var(--surface);
-    border: none;
-    border-radius: var(--r-carte);
-    box-shadow: var(--ombre-1);
-    box-sizing: border-box;
-    width: min(92%, var(--largeur-max));
-    max-width: var(--largeur-max);
-    padding: var(--pad-carte);
-    margin: var(--gap-section) auto;
-    font-size: 1rem;
-}
-
-
-/* -----------------------------------------------------------------------------
-   8. TITRES ET TEXTE
-   -------------------------------------------------------------------------- */
-.article-title, .sommaire-title {
-    font-size: clamp(1.5rem, 3vw, 2.1rem);
-    color: var(--main-color);
-    border-bottom: 1px solid var(--filet);   /* filet fin, plus le trait bordeaux 2px */
-    padding-bottom: .5rem;
-    margin: 0 0 1.4rem;
-}
-
-.article-subtitle {
-    font-size: clamp(1.2rem, 2.2vw, 1.55rem);
-    margin: 2.4rem 0 1rem;
-    cursor: default;                         /* le repli passe par le bouton désormais */
-}
-
-p { line-height: 1.75; }
-.sources { font-size: .95rem; color: var(--encre-douce); }
-.sources a { color: var(--encre-douce); }
-
-.main-article-content img, .fiche__corps img {
-    border-radius: var(--r-elem);
-    box-shadow: 0 8px 24px -18px rgba(0,0,0,.5);
-}
-
-
-/* -----------------------------------------------------------------------------
-   9. BOUTONS
-   -------------------------------------------------------------------------- */
-.big-button, .contact-form button {
-    border: 1px solid var(--derive-main-color);
-    border-radius: var(--r-bouton);
-    padding: .75rem 1.9rem;
-    font-size: 1.05rem;
-    opacity: 1;
-    transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease;
-}
-.big-button:hover, .contact-form button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 26px -16px rgba(94,24,32,.9);
-}
-
-.lc-btn, .lc-tab {
-    border-width: 1px;
-    border-color: var(--filet);
-    border-radius: var(--r-bouton);
-}
-.lc-btn:hover, .lc-btn.on, .lc-tab.on { border-color: var(--derive-main-color); }
-
-
-/* -----------------------------------------------------------------------------
-   10. TABLEAUX, ENCADRÉS, FORMULAIRES
-   -------------------------------------------------------------------------- */
-.table-container, .lc-scroll {
-    border: 1px solid var(--filet);
-    border-radius: var(--r-elem);
-    max-width: 100%;
-}
-table, th, td { border-color: var(--filet); }
-th { background: var(--surface-2); font-size: .9rem; letter-spacing: .04em; text-transform: uppercase; }
-tr:nth-child(even) { background: #FAFAF9; }
-tr:hover { background: #F4EFEF; }
-.lc-table thead th { background: var(--main-color); color: var(--text-color); text-transform: none; }
-.lc-table th, .lc-table td { border-color: var(--filet); }
-
-.chant, .lc-card, .lc-suggest {
-    background: var(--surface-2);
-    border-color: var(--filet);
-    border-left: 3px solid var(--main-color);
-    border-radius: 0 var(--r-elem) var(--r-elem) 0;
-}
-
-.contact-form input, .contact-form textarea, .lc-field {
-    background: var(--surface-2);
-    border: 1px solid var(--filet);
-    border-radius: var(--r-elem);
-}
-.contact-form input:focus, .contact-form textarea:focus, .lc-field:focus {
-    background: var(--surface);
-    border-color: var(--main-color);
-    box-shadow: 0 0 0 3px rgba(126,33,42,.12);
-}
-.contact-form label { color: var(--encre-douce); font-size: .95rem; }
-
-
-/* -----------------------------------------------------------------------------
-   11. MOBILE — le sommaire devient un dépliant en haut de page
-   -------------------------------------------------------------------------- */
-@media (max-width: 900px) {
-    .page { padding: 2rem 1rem 3rem; }
-    .page__inner { grid-template-columns: 1fr; gap: 1.5rem; }
-
-    .sommaire {
-        background: var(--surface);
-        border-radius: var(--r-carte);
-        box-shadow: var(--ombre-1);
-        overflow: hidden;
-    }
-    .sommaire__sticky { position: static; padding: 0 1rem 1rem; }
-    .sommaire__titre { display: none; }
-
-    .sommaire__bouton {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        cursor: pointer;
-        list-style: none;
-        padding: 1rem;
-        font-family: 'Fondamento', serif;
-        font-weight: bold;
-        font-size: 1.2rem;
-        color: var(--main-color);
-    }
-    .sommaire__bouton::-webkit-details-marker { display: none; }
-    .sommaire__bouton::after {
-        content: "";
-        width: .55rem; height: .55rem;
-        border-right: 2px solid var(--main-color);
-        border-bottom: 2px solid var(--main-color);
-        transform: rotate(45deg) translate(-.15rem, -.15rem);
-        transition: transform .25s ease;
-    }
-    .sommaire[open] .sommaire__bouton::after {
-        transform: rotate(-135deg) translate(-.15rem, -.15rem);
-    }
-
-    .fiche { padding: 1.25rem; scroll-margin-top: 6.5rem; }
-    .fiche__titre { scroll-margin-top: 6.5rem; }
-    .haut { right: 1rem; bottom: 1rem; }
-}
-
-/* ============================ AJUSTEMENTS MOBILE ============================ */
-
-/* Neutralise la vieille règle .article-content qui centrait tout sous 1200px.
-   .fiche__corps porte les deux classes, il faut donc la désactiver explicitement. */
-@media (max-width: 1200px) {
-    .fiche__corps.article-content {
-        display: block;
-        align-items: initial;
-    }
-}
-
-/* ---- Tablette et petit portable ---- */
-@media (max-width: 900px) {
-    .fiche { padding: 1.4rem 1.25rem; }
-    .fiche__titre {
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
-        padding-bottom: .55rem;
-    }
-    .theme__entete { padding: 1.4rem 1.25rem; font-size: 1rem; }
-    .theme__titre { font-size: 1.5rem; margin-bottom: 1rem; }
-    .theme { margin-bottom: 2.5rem; }
-
-    /* Les images flottantes passent en pleine largeur, sinon les colonnes de
-       texte de 3 mots à côté d'une image de 500px sont illisibles */
-    .fiche__corps .img-left,
-    .fiche__corps .img-right {
-        float: none;
-        display: block;
-        width: 100% !important;
-        margin: 1rem 0;
-    }
-
-    /* Les tableaux larges défilent au lieu de faire déborder la carte */
-    .fiche__corps .table-container,
-    .fiche__corps .lc-scroll { max-width: 100%; overflow-x: auto; }
-
-    .chant { max-width: 100%; padding: 1em 1.1em; }
-    .sources { text-align: left; font-size: .9rem; }
-}
-
-/* ---- Téléphone ---- */
-@media (max-width: 560px) {
-    .page { padding: 1.5rem .75rem 2.5rem; }
-    .fiche { padding: 1.15rem 1rem; border-radius: 10px; }
-    .fiche__titre { font-size: 1.15rem; line-height: 1.3; }
-    .theme__titre { font-size: 1.35rem; }
-    .theme__entete { padding: 1.15rem 1rem; border-radius: 10px; }
-
-    p { line-height: 1.65; }
-    .fiche__corps { font-size: .98rem; }
-
-    /* Le sommaire dépliant occupe toute la largeur disponible */
-    .sommaire { border-radius: 10px; }
-    .sommaire__bouton { font-size: 1.1rem; padding: .85rem 1rem; }
-    .sommaire__liste a { padding: .55rem .6rem; }
-
-    /* Éviter qu'un mot long (nom composé, URL) fasse déborder la carte */
-    .fiche__titre, .fiche__corps { overflow-wrap: break-word; }
-
-    .haut { width: 2.6rem; height: 2.6rem; right: .8rem; bottom: .8rem; }
-}
-
-/* ============================ ZOOM SUR LES IMAGES ============================ */
-
 .zoomable { cursor: zoom-in; transition: opacity .15s ease; }
 .zoomable:hover { opacity: .88; }
 .zoomable:focus-visible { outline: 2px solid var(--main-color); outline-offset: 3px; }
-
-/* L'overlay des albums capte le clic à la place de l'image : on le laisse passer */
-.image-container .overlay { pointer-events: none; }
 
 body.zoom-ouvert { overflow: hidden; }
 
@@ -1592,18 +1094,23 @@ body.zoom-ouvert { overflow: hidden; }
     text-shadow: 0 1px 10px rgba(0, 0, 0, .6);
 }
 
-/* ---- Croix de fermeture ---- */
-.zoom__fermer {
+/* ---- Croix de fermeture et flèches ---- */
+.zoom__fermer,
+.zoom__nav {
     position: absolute;
-    top: 1.2rem; right: 1.2rem;
-    width: 2.8rem; height: 2.8rem;
     background: rgba(255, 255, 255, .12);
     border: none;
     border-radius: 50%;
     cursor: pointer;
     transition: background-color .2s ease;
 }
-.zoom__fermer:hover { background: rgba(255, 255, 255, .25); }
+.zoom__fermer:hover,
+.zoom__nav:hover { background: rgba(255, 255, 255, .25); }
+
+.zoom__fermer {
+    top: 1.2rem; right: 1.2rem;
+    width: 2.8rem; height: 2.8rem;
+}
 .zoom__fermer::before,
 .zoom__fermer::after {
     content: "";
@@ -1616,19 +1123,11 @@ body.zoom-ouvert { overflow: hidden; }
 .zoom__fermer::before { transform: rotate(45deg); }
 .zoom__fermer::after  { transform: rotate(-45deg); }
 
-/* ---- Flèches de navigation ---- */
 .zoom__nav {
-    position: absolute;
     top: 50%;
     translate: 0 -50%;
     width: 3.2rem; height: 3.2rem;
-    background: rgba(255, 255, 255, .12);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color .2s ease;
 }
-.zoom__nav:hover { background: rgba(255, 255, 255, .25); }
 .zoom__nav[hidden] { display: none; }
 .zoom__nav--prec { left: 1.2rem; }
 .zoom__nav--suiv { right: 1.2rem; }
@@ -1643,11 +1142,241 @@ body.zoom-ouvert { overflow: hidden; }
 .zoom__nav--prec::before { margin: -.4rem 0 0 -.25rem; transform: rotate(-45deg); }
 .zoom__nav--suiv::before { margin: -.4rem 0 0 -.5rem;  transform: rotate(135deg); }
 
-@media (prefers-reduced-motion: reduce) {
-    .zoom, .zoomable, .zoom__fermer, .zoom__nav { transition: none; }
+
+/* -----------------------------------------------------------------------------
+   13. FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+    background-color: var(--main-color);
+    color: var(--text-color);
+    border-top: 3px solid var(--derive-main-color);
+    padding: 2rem 1.5rem 1rem;
+}
+.footer-cols {
+    display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between;
+    max-width: 1300px; margin: 0 auto;
+}
+.footer-col { min-width: 180px; }
+.footer-col h3 { font-family: 'Fondamento', serif; font-size: 1.35rem; font-weight: bold; margin: 0 0 .8rem; }
+.footer-col a, .footer-col span { display: block; color: var(--text-color); text-decoration: none; padding: .25rem 0; }
+.footer-col a:hover { text-decoration: underline; }
+.footer-col i { width: 1.3em; text-align: center; }
+.footer-logo { display: flex; align-items: flex-start; }
+.footer-logo img { height: 10rem; border-radius: 8px; padding: .4rem; box-sizing: border-box; }
+.footer-copy {
+    text-align: center; margin-top: 1.5rem; padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,.3); font-size: .9rem;
 }
 
-/* ---- Mobile : flèches en bas, plus de conflit avec le pouce sur l'image ---- */
+
+/* =============================================================================
+   14. AJUSTEMENTS PAR LARGEUR D'ÉCRAN
+   Du plus large au plus étroit, puis les préférences utilisateur.
+   ============================================================================= */
+
+/* ---- Grands écrans : on redonne de la place au contenu ---- */
+@media (min-width: 1500px) {
+    .page__inner {
+        grid-template-columns: 300px minmax(0, 1fr);
+        gap: 4rem;
+    }
+    .sommaire__liste a { font-size: 1rem; }
+    .footer-cols { max-width: var(--largeur-max); }
+}
+
+/* Au-delà, c'est la distance de lecture qui change, pas la mise en page */
+@media (min-width: 1900px) {
+    html { font-size: 17px; }
+}
+
+/* ---- Desktop : navbar d'accueil sur une seule ligne ---- */
+@media (min-width: 900px) {
+    body.has-hero .navbar {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding: .35rem 2rem;
+    }
+    body.has-hero .navbar-top {
+        max-width: none;
+        margin: 0;
+        flex: none;
+        padding: 0;
+    }
+    body.has-hero .navbar-menu {
+        max-width: none;
+        margin: 0;
+        flex: 1 1 auto;
+        justify-content: flex-end;
+        gap: 1.5rem;
+        padding: 0;
+    }
+    body.has-hero .navbar-brand span { display: none; }
+    body.has-hero .navbar-brand img { height: 4.2rem; transition: height .35s ease; }
+    body.has-hero .navbar.is-scrolled .navbar-brand img { height: 3.2rem; }
+}
+
+/* Parallaxe uniquement là où c'est fiable (cassé sur iOS) */
+@media (min-width: 826px) and (hover: hover) {
+    .hero__media { background-attachment: fixed; }
+}
+
+/* ---- Tablette et petit portable ---- */
+@media (max-width: 900px) {
+    /* Accueil : une colonne, plus de chevauchement */
+    .duo {
+        grid-template-columns: 1fr;
+        margin-bottom: 3rem;
+    }
+    .duo__media,
+    .duo--inverse .duo__media { grid-column: 1; grid-row: 1; }
+    .duo__texte,
+    .duo--inverse .duo__texte {
+        grid-column: 1;
+        grid-row: 2;
+        margin: -2rem 1rem 0;      /* léger décalage vertical à la place */
+    }
+    .accueil__intro p { line-height: 1.8; }
+
+    /* Pages de thème : le sommaire devient un dépliant en haut de page */
+    .page { padding: 2rem 1rem 3rem; }
+    .page__inner { grid-template-columns: 1fr; gap: 1.5rem; }
+
+    .sommaire {
+        background: var(--surface);
+        border-radius: var(--r-carte);
+        box-shadow: var(--ombre-1);
+        overflow: hidden;
+    }
+    .sommaire__sticky { position: static; padding: 0 1rem 1rem; }
+    .sommaire__titre { display: none; }
+
+    .sommaire__bouton {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        list-style: none;
+        padding: 1rem;
+        font-family: 'Fondamento', serif;
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: var(--main-color);
+    }
+    .sommaire__bouton::-webkit-details-marker { display: none; }
+    .sommaire__bouton::after {
+        content: "";
+        width: .55rem; height: .55rem;
+        border-right: 2px solid var(--main-color);
+        border-bottom: 2px solid var(--main-color);
+        transform: rotate(45deg) translate(-.15rem, -.15rem);
+        transition: transform .25s ease;
+    }
+    .sommaire[open] .sommaire__bouton::after {
+        transform: rotate(-135deg) translate(-.15rem, -.15rem);
+    }
+
+    .theme { margin-bottom: 2.5rem; }
+    .theme__titre { font-size: 1.5rem; margin-bottom: 1rem; }
+    .theme__entete { padding: 1.4rem 1.25rem; font-size: 1rem; }
+
+    .fiche { padding: 1.4rem 1.25rem; scroll-margin-top: 6.5rem; }
+    .fiche__titre {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        padding-bottom: .55rem;
+        scroll-margin-top: 6.5rem;
+    }
+
+    /* Les images flottantes passent en pleine largeur, sinon les colonnes de
+       texte de 3 mots à côté d'une image de 500px sont illisibles */
+    .fiche__corps .img-left,
+    .fiche__corps .img-right {
+        float: none;
+        display: block;
+        width: 100% !important;   /* écrase le width en ligne d'addImage() */
+        margin: 1rem 0;
+    }
+
+    .chant { max-width: 100%; padding: 1em 1.1em; }
+    .sources { text-align: left; font-size: .9rem; }
+
+    .haut { right: 1rem; bottom: 1rem; }
+}
+
+/* ---- Sous 900px : navbar d'accueil pleine et fixe, sinon le menu déplié est illisible ---- */
+@media (max-width: 899px) {
+    body.has-hero .navbar,
+    body.has-hero .navbar.is-scrolled {
+        position: fixed;
+        background: var(--main-color);
+        border-bottom-color: var(--derive-main-color);
+    }
+    body.has-hero .navbar-spacer { display: block; height: 5.5rem; }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 825px) {
+    /* Navbar : menu burger */
+    .navbar { position: static; }
+    .navbar-spacer { display: none; }
+    .navbar-burger { display: flex; }
+    .navbar-menu { display: none; flex-direction: column; align-items: stretch; padding: 0 1rem 1rem; }
+    .navbar-menu.open { display: flex; }
+    .navbar-links { flex-direction: column; width: 100%; }
+    .navbar-cta { text-align: center; margin-top: .5rem; }
+    .navbar-brand span { font-size: 1.15rem; }
+
+    /* Les sous-menus s'ouvrent en dessous, sans se superposer */
+    .nav-dropdown-content { position: static; box-shadow: none; min-width: 0; margin: .2rem 0 .2rem 1rem; }
+
+    /* Pas de soulignement en colonne : glissement vers la droite à la place */
+    .navbar-links > li > a::after,
+    .nav-dropdown-label::after { display: none; }
+    .navbar-links > li > a,
+    .nav-dropdown-label { transition: transform .2s ease; }
+    .navbar-links > li > a:hover,
+    .nav-dropdown-label:hover { transform: translateX(.5rem); }
+
+    .hero { padding: 6rem 1.25rem 5rem; }
+    .hero__scroll { display: none; }
+    .header { background-attachment: scroll; }
+
+    .container { flex-direction: column; }
+
+    /* Le justifié laisse des trous sur une colonne étroite */
+    .fiche__corps p,
+    .main-article-content p { text-align: left; }
+
+    .album__bascule {
+        display: block;
+        width: 100%;
+        margin: 1.5rem 0 0;
+        padding: .7rem 1rem;
+        font-family: 'Fondamento', serif;
+        font-size: 1.05rem;
+        color: #fff;
+        background: var(--main-color);
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    .album--repliable { display: none; }
+    .album--repliable.est-ouvert { display: flex; }
+
+    .contact-links { flex-direction: column; align-items: center; gap: 1.1rem; }
+
+    .lc-actions      { flex-direction: column; align-items: stretch; }
+    .lc-actions-hint { text-align: center; }
+    .lc-suggest      { padding: .2em .8em 1em; }
+
+    .footer-cols { flex-direction: column; gap: 0; }
+    .footer-col { min-width: 0; border-top: 1px solid rgba(255,255,255,.3); padding: 1rem 0; }
+    .footer-col:first-child { border-top: none; }
+    .footer-logo { padding-top: 1rem; }
+}
+
+/* ---- Zoom : flèches en bas, plus de conflit avec le pouce sur l'image ---- */
 @media (max-width: 700px) {
     .zoom { padding: 3.5rem .5rem 5rem; }
     .zoom__img { max-width: 96vw; max-height: 72vh; }
@@ -1663,94 +1392,32 @@ body.zoom-ouvert { overflow: hidden; }
     .zoom__legende { font-size: .9rem; }
 }
 
+/* ---- Téléphone ---- */
+@media (max-width: 560px) {
+    p { line-height: 1.65; }
 
-/* -----------------------------------------------------------------------------
-   GRANDS ÉCRANS
-   Tout le gabarit est pensé pour 1180px. Au-delà, on redonne de la place au
-   contenu plutôt que d'élargir les marges vides.
-   -------------------------------------------------------------------------- */
-@media (min-width: 1500px) {
-    .page__inner {
-        grid-template-columns: 300px minmax(0, 1fr);
-        gap: 4rem;
-    }
-    .sommaire__liste a { font-size: 1rem; }
+    .page { padding: 1.5rem .75rem 2.5rem; }
+    .theme__titre { font-size: 1.35rem; }
+    .theme__entete { padding: 1.15rem 1rem; border-radius: 10px; }
 
-    /* Le pied de page suivait sa propre largeur, désalignée du reste. */
-    .footer-cols { max-width: var(--largeur-max); }
+    /* Le sommaire dépliant occupe toute la largeur disponible */
+    .sommaire { border-radius: 10px; }
+    .sommaire__bouton { font-size: 1.1rem; padding: .85rem 1rem; }
+    .sommaire__liste a { padding: .55rem .6rem; }
+
+    .fiche { padding: 1.15rem 1rem; border-radius: 10px; }
+    .fiche__titre { font-size: 1.15rem; line-height: 1.3; }
+    .fiche__corps { font-size: .98rem; }
+
+    /* Éviter qu'un mot long (nom composé, URL) fasse déborder la carte */
+    .fiche__titre, .fiche__corps { overflow-wrap: break-word; }
+
+    .haut { width: 2.6rem; height: 2.6rem; right: .8rem; bottom: .8rem; }
 }
 
-/* Au-delà, c'est la distance de lecture qui change, pas la mise en page. */
-@media (min-width: 1900px) {
-    html { font-size: 17px; }
-}
-/* ============ Apparition des blocs au défilement (javascript/reveal.js) ============ */
-
-.js-reveal .accueil__intro,
-.js-reveal .duo {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity .7s ease-out, transform .7s ease-out;
-}
-
-.js-reveal .accueil__intro.is-visible,
-.js-reveal .duo.is-visible {
-    opacity: 1;
-    transform: none;
-}
-
-/* ============================ ALBUMS PHOTO ============================ */
-
-.album {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .55rem;
-    margin: 1.5rem 0;
-}
-
-.album__case {
-    margin: 0;
-    flex-grow: var(--ratio);
-    flex-basis: calc(var(--ratio) * 14rem);   /* 14rem = hauteur de rangée visée */
-    max-width: 100%;
-}
-
-.album .img-album {
-    display: block;
-    width: 100%;
-    aspect-ratio: var(--ratio);
-    border-radius: 6px;
-}
-
-.album__legende {
-    font-family: 'Fondamento', serif;
-    text-align: center;
-    padding-top: .35rem;
-}
-
-/* Empêche la dernière rangée incomplète de s'étirer démesurément */
-.album::after {
-    content: "";
-    flex-grow: 999999;
-}
-
-.album__bascule { display: none; }
-
-@media (max-width: 825px) {
-    .album__bascule {
-        display: block;
-        width: 100%;
-        margin: 1.5rem 0 0;
-        padding: .7rem 1rem;
-        font-family: 'Fondamento', serif;
-        font-size: 1.05rem;
-        color: #fff;
-        background: var(--main-color);
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-    }
-
-    .album--repliable { display: none; }
-    .album--repliable.est-ouvert { display: flex; }
+/* ---- Préférences utilisateur ---- */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero__scroll { animation: none; opacity: .7; }
+    .zoom, .zoomable, .zoom__fermer, .zoom__nav { transition: none; }
 }
